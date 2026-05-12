@@ -1,0 +1,36 @@
+# Override defaults for glmocr SDK self-hosted mode (vLLM + local layout).
+# Used with: glmocr parse --config configs/models/glm_ocr_pipeline.yaml --mode selfhosted
+logging:
+  level: INFO
+pipeline:
+  maas:
+    enabled: false
+  ocr_api:
+    api_host: 127.0.0.1
+    api_port: 8081
+    api_scheme: http
+    api_path: /v1/chat/completions
+    api_mode: openai
+    model: glm-ocr
+    verify_ssl: false
+    connect_timeout: 30
+    request_timeout: 600
+    retry_max_attempts: 3
+    retry_status_codes: [429, 500, 502, 503, 504]
+    connection_pool_size: 64
+  max_workers: 16
+  page_loader:
+    max_tokens: 8192
+    temperature: 0.0
+    top_p: 0.00001
+    top_k: 1
+    repetition_penalty: 1.1
+    image_format: JPEG
+  result_formatter:
+    output_format: both
+  layout:
+    model_dir: ${PDB_MODEL_ROOT}/PP-DocLayoutV3_safetensors
+    threshold: 0.3
+    batch_size: 1
+    cuda_visible_devices: '0'
+    use_polygon: false

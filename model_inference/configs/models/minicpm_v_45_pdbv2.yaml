@@ -1,0 +1,40 @@
+name: "MiniCPM-V 4.5"
+slug: "minicpm_v_45_pdbv2"
+status: "full_running"
+backend: "vllm_generate"
+arch: "minicpmv"
+env_name: "glmocr_vllm_nightly"
+env_freeze: "repro/envs/glmocr_vllm_nightly.txt"
+python_bin: "${PDB_ENV_ROOT}/glmocr_vllm_nightly/bin/python3.10"
+ld_library_path: "${PDB_ENV_ROOT}/vllm_env/lib"
+model_root: "${PDB_MODEL_ROOT}/MiniCPM-V-4_5"
+prompt_file: "prompts/minicpm_v_45_pdbv2.txt"
+script: "tools/model_infer/minicpm_v_45_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+mm_len: 24576
+gpu_memory_utilization: 0.88
+max_num_seqs: 2
+max_num_batched_tokens: 24576
+tensor_parallel_size: 1
+limit_mm_per_prompt_image: 1
+temperature: 0.0
+batch: 8
+max_tokens: 8192
+chat_template_kwargs:
+  enable_thinking: false
+notes: |
+  Two model-specific patches required:
+  (1) Reasoning model: chat template natively supports enable_thinking=False which inserts
+      <think>
+
+</think>
+
+ at assistant turn start, bypassing reasoning. WITHOUT this kwarg
+      passed to apply_chat_template, model produces prose narrative summary instead of markdown
+      reproduction (TextEdit/TableTEDS/ReadOrder all collapse). strip_output() also drops any
+      residual <think>...</think> as defensive backstop.
+  (2) vLLM 0.19.1 TokenizersBackend wrapper does not expose im_start_id/im_end_id/slice_start_id
+      /slice_end_id attrs that processing_minicpmv.py expects. Script monkey-patches
+      AutoTokenizer.from_pretrained to inject those *_id attrs by resolving <image>/</image>
+      /<slice>/</slice> via convert_tokens_to_ids before vLLM constructs its CachedTokenizer copy.

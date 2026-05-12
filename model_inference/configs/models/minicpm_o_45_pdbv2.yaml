@@ -1,0 +1,20 @@
+name: "MiniCPM-o 4.5"
+slug: "minicpm_o_45_pdbv2"
+status: "smoke_failing"
+backend: "hf_transformers"
+arch: "minicpmo"
+env_name: "omni_hf_flash"
+env_freeze: "repro/envs/omni_hf_flash.txt"
+python_bin: "${PDB_ENV_ROOT}/omni_hf_flash/bin/python3.10"
+model_root: "${PDB_MODEL_ROOT}/MiniCPM-o-4_5"
+prompt_file: "prompts/minicpm_o_45_pdbv2.txt"
+script: "tools/model_infer/minicpm_o_45_pdbv2.py"
+trust_remote_code: true
+attn_implementation: "flash_attention_2"
+init_audio: false
+init_tts: false
+dtype: "bfloat16"
+max_new_tokens: 8192
+temperature: 0.0
+do_sample: false
+notes: "vLLM 0.19.x 不支持 MiniCPM-o-4.5 image-only 模式（需 tc-mb fork），改用 transformers route。omni_hf_flash 缺 librosa+soundfile 已补。当前 cuDNN_STATUS_NOT_INITIALIZED 待修，建议 attn_implementation 从 flash_attention_2 改 sdpa。权重在 /tmp（cfs-fuse 写大 shard 反复 I/O error）。"

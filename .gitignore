@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+._*
+.venv/
+dist/
+build/
+tmp/
+data/
+*.tar
+*.tar.gz
+*.zip
+pdb_full.tar.part-*
+SHA256SUMS.local

@@ -1,0 +1,14 @@
+device: cuda
+weights:
+  doclayout_yolo: Structure/doclayout_yolo_docstructbench_imgsz1280_2501.pt
+  layoutreader: Relation
+models_dir: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-1.2B
+layout_config:
+  model: doclayout_yolo
+  reader:
+    name: layoutreader
+chat_config:
+  weight_path: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-1.2B/Recognition
+  backend: vllm
+  model_parallelism: 1
+  batch_size: 8

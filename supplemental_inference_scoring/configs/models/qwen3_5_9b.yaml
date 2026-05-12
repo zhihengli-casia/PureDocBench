@@ -1,0 +1,40 @@
+model:
+  name: Qwen3.5-9B
+  slug: qwen3_5_9b
+  family: qwen3_5
+  weights_path: ${PDB_MODEL_ROOT}/Qwen3.5-9B
+  enable_thinking: false
+
+prompt:
+  source: OmniDocBench/tools/model_infer/Qwen3-VL-235B_img2md.py
+  file: prompts/qwen3_5_9b.txt
+
+dataset:
+  name: PureDocBench
+  manifest: ${PDB_MANIFEST_JSON}
+  images_root: ${PDB_DATASET_ROOT}/images/clean
+  total_pages: 1474
+  smoke_count: 5
+
+runtime:
+  env_python: ${PDB_ENV_ROOT}/vllm_qwen3/bin/python
+  script: tools/model_infer/qwen3_5_9b.py
+  prediction_dir: predictions/qwen3_5_9b
+  smoke_output_dir: outputs_smoke/qwen3_5_9b
+  log_dir: logs/
+
+inference:
+  backend: vllm
+  vllm_version: "0.19.1"
+  tensor_parallel_size: 1
+  max_model_len: 24576
+  gpu_memory_utilization: 0.90
+  max_num_seqs: 32
+  max_num_batched_tokens: 32768
+  batch_size: 32
+  temperature: 0.0
+  top_p: 1.0
+  repetition_penalty: 1.0
+  max_output_tokens: 8192
+  limit_mm_per_prompt:
+    image: 1

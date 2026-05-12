@@ -1,0 +1,13 @@
+name: "Dolphin"
+slug: "dolphin_pdbv2"
+status: "not_started"
+backend: "hf_visionencoderdecoder"
+arch: "dolphin"
+env_name: "TBD"
+env_freeze: "TBD"
+python_bin: "TBD"
+model_root: "${PDB_MODEL_ROOT}/Dolphin"
+prompt_file: "prompts/dolphin_pdbv2.txt"
+script: "tools/model_infer/dolphin_pdbv2.py"
+trust_remote_code: true
+notes: "Dolphin v1 weights downloaded via hf-mirror to ${PDB_MODEL_ROOT}/Dolphin (9 files, 36s). Inference uses VisionEncoderDecoderModel + AutoProcessor (HF, NOT vllm). Two-stage pipeline (parse layout + parse content) per official; script not yet written."

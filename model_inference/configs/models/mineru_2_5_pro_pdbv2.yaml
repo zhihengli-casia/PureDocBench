@@ -1,0 +1,25 @@
+name: "MinerU2.5-Pro-2604-1.2B"
+slug: "mineru_2_5_pro_pdbv2"
+status: "blocked"
+backend: "vllm_chat"
+arch: "qwen2_vl"
+env_name: "glmocr_vllm_nightly"
+env_freeze: "repro/envs/glmocr_vllm_nightly.txt"
+python_bin: "${PDB_ENV_ROOT}/glmocr_vllm_nightly/bin/python3.10"
+ld_library_path: "${PDB_ENV_ROOT}/vllm_env/lib"
+model_root: "${PDB_MODEL_ROOT}/MinerU2.5-Pro-2604-1.2B"
+prompt_file: "prompts/mineru_2_5_pro_pdbv2.txt"
+script: "tools/model_infer/mineru_2_5_pro_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+mm_len: 8192
+gpu_memory_utilization: 0.92
+max_num_seqs: 8
+max_num_batched_tokens: 16384
+tensor_parallel_size: 1
+limit_mm_per_prompt_image: 1
+temperature: 0.0
+batch: 8
+max_tokens: 8192
+prompt_source: "prompts/<slug>.txt"
+notes: "same as mineru_2_5; max_position_embeddings=8192 pre-fixed MM_LEN"

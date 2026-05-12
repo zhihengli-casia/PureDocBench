@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+title: "How Far Is Document Parsing from Solved? PureDocBench: A Source-Traceable Benchmark across Clean, Degraded, and Real-World Settings"
+message: "If you use PureDocBench, please cite the paper."
+type: article
+authors:
+  - family-names: Li
+    given-names: Zhiheng
+  - family-names: Ma
+    given-names: Zongyang
+  - family-names: Chen
+    given-names: Jiaxian
+  - family-names: Zhang
+    given-names: Jianing
+  - family-names: Su
+    given-names: Zhaolong
+  - family-names: Zhang
+    given-names: Yutong
+  - family-names: Yu
+    given-names: Zhiyin
+  - family-names: Liu
+    given-names: Ruiqi
+  - family-names: Lv
+    given-names: Xiaolei
+  - family-names: Li
+    given-names: Bo
+  - family-names: Gao
+    given-names: Jun
+  - family-names: Zhang
+    given-names: Ziqi
+  - family-names: Yuan
+    given-names: Chunfeng
+  - family-names: Li
+    given-names: Bing
+  - family-names: Hu
+    given-names: Weiming
+year: 2026
+date-released: 2026-05-08
+doi: "10.48550/arXiv.2605.07492"
+url: "https://arxiv.org/abs/2605.07492"
+repository-code: "https://github.com/zhihengli-casia/PureDocBench"
+identifiers:
+  - type: url
+    value: "https://huggingface.co/datasets/zhihengli-casia/puredocbench"
+license: CC-BY-4.0

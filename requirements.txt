@@ -1,0 +1,8 @@
+beautifulsoup4>=4.12
+numpy>=1.26
+opencv-python>=4.8
+pandas>=2.2
+pillow>=10.0
+playwright>=1.40
+PyYAML>=6.0
+tqdm>=4.66

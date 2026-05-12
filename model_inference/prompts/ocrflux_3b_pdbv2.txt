@@ -1,0 +1,1 @@
+Extract the main content from the document image, preserving structure. Use markdown for text, HTML for tables, and LaTeX for formulas.

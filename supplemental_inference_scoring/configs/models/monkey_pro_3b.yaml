@@ -1,0 +1,36 @@
+model:
+  name: MonkeyOCR-pro-3B
+  slug: monkey_pro_3b
+  family: monkey_ocr_pro
+  weights_path: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-3B
+  submodules:
+    structure: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-3B/Structure (doclayout_yolo_docstructbench_imgsz1280_2501.pt)
+    relation: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-3B/Relation (layoutreader)
+    recognition: ${PDB_MODEL_ROOT}/MonkeyOCR-pro-3B/Recognition (vllm
+      chat model)
+prompt:
+  source: MonkeyOCR built-in pipeline (doclayout_yolo + layoutreader + vllm chat)
+  file: (no external prompt; pipeline-managed)
+dataset:
+  name: PureDocBench
+  manifest: ${PDB_MANIFEST_JSON}
+  images_root: ${PDB_DATASET_ROOT}/images/clean
+  images_flat_root: ${PDB_FLAT_IMAGE_ROOT:-/tmp/pdb_full_src}
+  total_pages: 1474
+runtime:
+  env_python: ${PDB_ENV_ROOT}/monkey_env/bin/python
+  repo: ${PDB_REPOS_ROOT}/MonkeyOCR
+  entry: parse.py
+  config_yaml: configs/models/monkey_pro_3b_inference.yaml
+  runner_shell: scripts/_runner/run_monkey.sh
+  prediction_dir: predictions/monkey_pro_3b
+  log: ${PDB_LOG_ROOT:-logs}/monkey_pro_3b_full.log
+inference:
+  backend: vllm (Recognition stage) + onnx/torch (layout/relation)
+  layout_model: doclayout_yolo (Structure)
+  reading_order_model: layoutreader (Relation)
+  recognition_model: vllm chat (Recognition)
+  tensor_parallel_size: 1
+  batch_size: 8
+  use_gpu: true
+  temperature: 0.0

@@ -1,0 +1,57 @@
+model:
+  name: Dolphin-v2
+  slug: dolphin_v2
+  family: dolphin
+  weights_path: ${PDB_MODEL_ROOT}/Dolphin-v2
+  base_arch: Qwen2.5-VL
+
+prompt:
+  source: Dolphin official two-stage pipeline
+  stage1: Parse the reading order of this document.
+  stage2:
+    tab: Parse the table in the image.
+    equ: Read formula in the image.
+    code: Read code in the image.
+    text: Read text in the image.
+  file: (pipeline-managed; no external prompt file)
+
+dataset:
+  name: PureDocBench
+  manifest: ${PDB_MANIFEST_JSON}
+  images_root: ${PDB_DATASET_ROOT}/images/clean
+  image_list: ${PDB_IMAGE_LIST_ROOT}/image_list_pdb.txt
+  total_pages: 1474
+  smoke_count: 5
+
+runtime:
+  env_python: ${PDB_ENV_ROOT}/vllm_qwen3/bin/python
+  repo: ${PDB_REPOS_ROOT}/Dolphin
+  script: tools/model_infer/dolphin_v2.py
+  prediction_dir: predictions/dolphin_v2
+  legacy_stage1_dir: predictions/dolphin_v2_stage1_layout_legacy
+  smoke_output_dir: outputs_smoke/dolphin_v2
+  work_dir: .cache/dolphin_v2
+  log_dir: logs/
+
+inference:
+  backend: vllm
+  vllm_version: "0.19.1"
+  tensor_parallel_size: 1
+  full_tensor_parallel_size_recommended: 4
+  max_model_len: 16384
+  gpu_memory_utilization: 0.85
+  max_pixels: 2560000
+  min_pixels: 784
+  chunk: 32
+  stage1_temperature: 0.0
+  stage1_max_tokens: 4096
+  stage2_temperature: 0.0
+  stage2_max_tokens: 4096
+  max_aspect_ratio: 100
+  dtype: bfloat16
+  limit_mm_per_prompt:
+    image: 1
+
+notes:
+  - Dolphin-v2 must run the full two-stage pipeline; Stage-1 layout strings alone are not valid Markdown predictions.
+  - Legacy Stage-1-only outputs were moved aside to avoid resume logic treating them as completed predictions.

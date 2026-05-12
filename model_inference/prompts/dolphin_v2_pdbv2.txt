@@ -1,0 +1,1 @@
+Extract the main content from the document image, preserving reading order and structure. Use Markdown. Convert formulas to LaTeX and tables to HTML.

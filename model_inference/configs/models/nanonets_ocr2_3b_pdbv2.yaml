@@ -1,0 +1,27 @@
+name: "Nanonets-OCR2-3B"
+slug: "nanonets_ocr2_3b_pdbv2"
+status: "full_done"
+backend: "vllm_chat"
+arch: "qwen2_5_vl"
+env_name: "glmocr_vllm_nightly"
+env_freeze: "repro/envs/glmocr_vllm_nightly.txt"
+python_bin: "${PDB_ENV_ROOT}/glmocr_vllm_nightly/bin/python3.10"
+ld_library_path: "${PDB_ENV_ROOT}/vllm_env/lib"
+model_root: "${PDB_MODEL_ROOT}/Nanonets-OCR2-3B"
+prompt_file: "prompts/nanonets_ocr2_3b_pdbv2.txt"
+script: "tools/model_infer/nanonets_ocr2_3b_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+mm_len: 24576
+gpu_memory_utilization: 0.92
+max_num_seqs: 8
+max_num_batched_tokens: 49152
+tensor_parallel_size: 1
+limit_mm_per_prompt_image: 1
+temperature: 0.0
+batch: 8
+max_tokens: 8192
+hf_overrides:
+  tie_word_embeddings: true
+prompt_source: "prompts/<slug>.txt"
+notes: "tie_word_embeddings only in text_config; must hf_overrides; 1 image empty (accepted)"

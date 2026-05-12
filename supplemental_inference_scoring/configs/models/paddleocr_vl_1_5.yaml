@@ -1,0 +1,35 @@
+model:
+  name: PaddleOCR-VL-1.5
+  slug: paddleocr_vl_1_5
+  family: paddleocr_vl
+  weights_path: ${PDB_MODEL_ROOT}/PaddleOCR-VL-1.5
+  arch: PaddleOCRVLForConditionalGeneration
+  size: 0.9B
+
+prompt:
+  source: PaddlePaddle/PaddleOCR-VL-1.5 README (HF)
+  file: prompts/paddleocr_vl_1_5.txt
+  body: 'OCR:'
+
+dataset:
+  name: PureDocBench
+  manifest: ${PDB_MANIFEST_JSON}
+  images_root: ${PDB_DATASET_ROOT}/images/clean
+  total_pages: 1474
+  smoke_count: 5
+
+runtime:
+  env_python: ${PDB_ENV_ROOT}/vllm_qwen3/bin/python
+  script: tools/model_infer/paddleocr_vl_1_5.py
+  prediction_dir: predictions/paddleocr_vl_1_5
+  smoke_output_dir: outputs_smoke/paddleocr_vl_1_5
+
+inference:
+  backend: transformers
+  trust_remote_code: true
+  dtype: bfloat16
+  device: cuda
+  temperature: 0.0
+  max_new_tokens: 8192
+  max_pixels: 1003520  # 1280*28*28 per official README
+  batch_size: 1  # transformers offline single-image

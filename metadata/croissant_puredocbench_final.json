@@ -1,0 +1,288 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "conformsTo": "dct:conformsTo",
+    "citeAs": "cr:citeAs",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "recordSet": "cr:recordSet",
+    "source": "cr:source",
+    "column": "cr:column"
+  },
+  "@type": "sc:Dataset",
+  "name": "PureDocBench",
+  "alternateName": "puredocbench-v1.0",
+  "description": "PureDocBench is a source-driven document parsing benchmark with 1,475 annotated pages across 10 domains and 66 fine-grained subcategories. Each page has aligned clean, digital-degraded, and real-degraded image tracks for OCR and document parsing evaluation.",
+  "url": "https://huggingface.co/datasets/zhihengli-casia/puredocbench",
+  "sameAs": "https://github.com/zhihengli-casia/PureDocBench",
+  "version": "1.0.0",
+  "dateCreated": "2026-05-06",
+  "datePublished": "2026-05-07",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "name": "Zhiheng Li"
+    }
+  ],
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "PureDocBench authors"
+  },
+  "maintainer": {
+    "@type": "sc:Person",
+    "name": "Zhiheng Li"
+  },
+  "keywords": [
+    "document parsing",
+    "OCR",
+    "benchmark",
+    "tables",
+    "formulas",
+    "reading order",
+    "synthetic documents",
+    "document image degradation"
+  ],
+  "inLanguage": [
+    "en",
+    "zh"
+  ],
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "isAccessibleForFree": true,
+  "isLiveDataset": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "release_manifest_1475",
+      "name": "release_manifest_1475.csv",
+      "description": "Official page-level manifest for the 1,475-page PureDocBench release. The manifest is included in the full release archive and mirrored with the release materials.",
+      "contentUrl": "https://huggingface.co/datasets/zhihengli-casia/puredocbench",
+      "encodingFormat": "text/csv",
+      "sha256": "ab1f61b6a1b23eb310f53f4555f8ab0bcbacc53df9ec7a6f276ec611718faaf7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "full_release_archive",
+      "name": "pdb_full.tar.part-000 ... pdb_full.tar.part-009",
+      "description": "Full dataset release as a split tar archive. Download all 10 parts plus SHA256SUMS.txt from the Kaggle page, verify with shasum -a 256 -c SHA256SUMS.txt, then reconstruct with cat pdb_full.tar.part-* | tar -xf -. Contains GT JSON, HTML sources, clean images, digital-degraded images, real-degraded images, manifests, and documentation. The sha256 value records the checksum of the reconstructed tar stream after concatenating the 10 split parts in lexical order.",
+      "contentUrl": "https://huggingface.co/datasets/zhihengli-casia/puredocbench",
+      "encodingFormat": "application/x-tar",
+      "sha256": "b6da85b87e168ebc0d1277e9daa762fcfbb60993b86523b9c431000605507483"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "full_release_sha256_manifest",
+      "name": "SHA256SUMS.txt",
+      "description": "SHA256 checksum manifest for the 10 full split archive parts.",
+      "contentUrl": "https://huggingface.co/datasets/zhihengli-casia/puredocbench",
+      "encodingFormat": "text/plain",
+      "sha256": "922c1cf2b66f43bf6aba87d276cff0152ffd3c8d1df029a50ccccce0e8456fae"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "sample_release_archive",
+      "name": "puredocbench-v1.0-sample",
+      "description": "Representative sample containing one official page from each of the 66 subcategories.",
+      "contentUrl": "https://huggingface.co/datasets/zhihengli-casia/puredocbench",
+      "encodingFormat": "application/x-tar",
+      "sha256": "e47be6be8be3ac144a419d5d2724cd06a5605f3f91409f61a7e94b3521e8dccd"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "pages",
+      "name": "pages",
+      "description": "One record per official PureDocBench page. Each record links the GT JSON, HTML source, clean image, digital-degraded image, and real-degraded image.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "pages/page_id",
+          "name": "page_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "page_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/category",
+          "name": "category",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/subcategory",
+          "name": "subcategory",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "subcategory"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/gt_rel",
+          "name": "gt_rel",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "gt_rel"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/html_rel",
+          "name": "html_rel",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "html_rel"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/clean_rel",
+          "name": "clean_rel",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "clean_rel"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/digital_rel",
+          "name": "digital_rel",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "digital_rel"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/real_rel",
+          "name": "real_rel",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "real_rel"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "pages/real_chain_label",
+          "name": "real_chain_label",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "release_manifest_1475"
+            },
+            "extract": {
+              "column": "real_chain_label"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "PureDocBench is synthetically generated. Document HTML/CSS sources are generated from document-type prompts, rendered into images, and used as hidden annotation anchors. The benchmark does not scrape or redistribute real documents.",
+  "rai:dataCollectionType": [
+    "Software Collection",
+    "Experiments",
+    "Physical data collection",
+    "Others: synthetic document generation"
+  ],
+  "rai:dataCollectionRawData": "The raw assets are synthetic HTML/CSS source documents, rendered document images, and controlled visual degradation outputs derived from the same page identities.",
+  "rai:dataPreprocessingProtocol": [
+    "HTML/CSS pages are rendered into clean document images.",
+    "Digitally degraded images are generated from the clean renders.",
+    "Real-degraded images are produced under controlled physical or capture conditions.",
+    "GT JSON annotations are extracted from the source-driven page representation and checked against expected schema and pairing constraints."
+  ],
+  "rai:dataAnnotationProtocol": "Annotations are source-driven page-level labels covering text blocks, titles, tables, table captions, formulas, figure captions, code, references, headers, footers, page numbers, and reading order metadata.",
+  "rai:dataAnnotationPlatform": [
+    "Custom HTML/CSS rendering and annotation extraction pipeline",
+    "Python validation scripts"
+  ],
+  "rai:machineAnnotationTools": [
+    "Playwright/Chromium rendering",
+    "Custom PureDocBench validation scripts"
+  ],
+  "rai:annotationsPerItem": "One source-driven GT JSON file per official page, with additional validation and review.",
+  "rai:dataUseCases": [
+    "Testing and benchmarking OCR and document parsing systems.",
+    "Evaluating robustness across clean, digital-degraded, and real-degraded document images.",
+    "Studying recovery of text, tables, formulas, and reading order."
+  ],
+  "rai:dataLimitations": [
+    "The dataset is synthetic and may not capture all variability of real documents.",
+    "The dataset should not be used for decisions about real people, finances, healthcare, legal status, education, employment, or benefits.",
+    "Fictional names, IDs, addresses, or record-like values may appear in synthetic documents and should not be treated as real records."
+  ],
+  "rai:dataBiases": [
+    "The distribution reflects the prompt taxonomy, template design, rendering engine, and selected degradation profiles.",
+    "Chinese, English, and mixed Chinese-English documents are represented, but global language and institutional coverage is incomplete."
+  ],
+  "rai:personalSensitiveInformation": [
+    "No real personal documents are intentionally included. Some synthetic documents imitate sensitive domains such as finance, medical, legal/government, logistics, and certificates using fictional record-like fields."
+  ],
+  "rai:dataSocialImpact": "The dataset is intended to improve transparency and reproducibility in document parsing evaluation. Risks include over-interpreting synthetic content as real records or using benchmark performance as a proxy for safe deployment in sensitive real-world workflows.",
+  "rai:dataReleaseMaintenancePlan": "The public release is versioned as puredocbench-v1.0. Corrections should be released as new versions with changelogs, manifest diffs, and updated Croissant metadata. The public release is maintained through the GitHub repository and Hugging Face dataset page.",
+  "citeAs": "arXiv:2605.07492",
+  "citation": "https://arxiv.org/abs/2605.07492"
+}

@@ -1,0 +1,1 @@
+OpenOCR official OCR task: no natural-language prompt is used. The model performs text detection and recognition with task=ocr, and detected transcriptions are joined in reading order as Markdown lines.

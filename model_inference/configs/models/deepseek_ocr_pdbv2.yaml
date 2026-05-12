@@ -1,0 +1,60 @@
+name: "DeepSeek-OCR"
+slug: "deepseek_ocr_pdbv2"
+status: "official_rerun_in_progress"
+backend: "hf_transformers_official"
+arch: "deepseek_ocr"
+env_name: "ds2_official"
+env_freeze: "repro/envs/ds2_official.txt"
+python_bin: "${PDB_ENV_ROOT}/ds2_official/bin/python"
+ld_library_path: ""
+model_root: "${PDB_MODEL_ROOT}/DeepSeek-OCR"
+prompt_file: "prompts/deepseek_ocr_pdbv2.txt"
+script: "tools/model_infer/deepseek_ocr_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+base_size: 1024
+image_size: 640
+crop_mode: true
+save_results: true
+test_compress: true
+batch: 1
+max_new_tokens: null
+tokenizer_use_fast: null
+attention_impl_preference: "flash_attention_2_then_default"
+generation_backend: "official_model.infer"
+runtime:
+  controller: "tools/model_infer/_run_deepseek_official_rerun.py"
+  monitor: "tools/model_infer/monitor_deepseek_official_rerun.sh"
+  output_base: "predictions_deepseek_official_rerun_20260501"
+  log_dir: "logs/deepseek_official_rerun_20260501"
+  tmp_dir: "${PDB_TMPDIR:-/tmp/pdbv2_tmp}"
+  gpu_ids: [0, 1, 2, 3]
+  num_shards: 24
+  workers_per_gpu: 6
+  batch_per_worker: 1
+  effective_parallel_workers: 24
+  poll_seconds: 60
+  monitor_interval_seconds: 1200
+datasets:
+  - name: "images"
+    path: "${PDB_DATASET_ROOT}/images/clean"
+  - name: "degraded_v2_merged"
+    path: "${PDB_DATASET_ROOT}/images/digital_degraded"
+  - name: "real_degraded"
+    path: "${PDB_DATASET_ROOT}/images/real_degraded"
+queue_order:
+  - "images/deepseek_ocr_pdbv2"
+  - "degraded_v2_merged/deepseek_ocr_pdbv2"
+  - "real_degraded/deepseek_ocr_pdbv2"
+output_cleaning:
+  strip_code_fences: true
+  strip_endoftext: true
+  strip_grounding_ref_det_tags: true
+notes: |
+  Official HF model.infer document-mode route. Uses grounding markdown prompt.
+  Current rerun uses base_size=1024, image_size=640, crop_mode=True,
+  save_results=True, test_compress=True. No max_new_tokens override is applied.
+  The HF API is single-image; acceleration is implemented with 24 tmux shards
+  across four GPUs (6 workers/GPU), each with batch_per_worker=1. The script
+  attempts flash_attention_2 and falls back to default attention when flash_attn
+  is unavailable.

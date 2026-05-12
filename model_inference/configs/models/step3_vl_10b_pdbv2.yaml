@@ -1,0 +1,26 @@
+name: "Step3-VL 10B"
+slug: "step3_vl_10b_pdbv2"
+status: "full_running"
+backend: "vllm_chat"
+arch: "step_vl"
+env_name: "deepseekocr2_vllm_nightly"
+env_freeze: "repro/envs/deepseekocr2_vllm_nightly.txt"
+python_bin: "${PDB_ENV_ROOT}/deepseekocr2_vllm_nightly/bin/python3.10"
+ld_library_path: "${PDB_ENV_ROOT}/vllm_env/lib"
+model_root: "${PDB_MODEL_ROOT}/Step3-VL-10B"
+prompt_file: "prompts/step3_vl_10b_pdbv2.txt"
+script: "tools/model_infer/step3_vl_10b_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+mm_len: 24576
+gpu_memory_utilization: 0.90
+max_num_seqs: 32
+max_num_batched_tokens: 8192
+tensor_parallel_size: 1
+limit_mm_per_prompt_image: 1
+temperature: 0.0
+batch: 8
+max_tokens: 8192
+chat_template_kwargs:
+  enable_thinking: false
+notes: "reasoning 模型，必须禁 thinking 否则输出含 reasoning trace 污染 + 慢 5x。model weights should be placed on fast local storage（cfs-fuse 静默写坏 model-00002/00004 shard 导致 vLLM engine core 加载时 abort，stderr 不传）。CUDAGraph 开（enforce_eager=False）GPU 100% util 才能用全速。"

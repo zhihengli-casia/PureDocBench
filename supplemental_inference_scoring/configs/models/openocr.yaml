@@ -1,0 +1,56 @@
+model: openocr
+official_repo: https://github.com/Topdu/OpenOCR
+package: openocr-python==0.1.5
+task: ocr
+mode: server
+backend: torch
+use_gpu: true
+drop_score: 0.5
+rec_batch_num: 8
+outputs:
+  clean: predictions/openocr
+  degraded: predictions_degraded/openocr
+  real_degraded: predictions_real/openocr
+empty_on_error: false
+
+opendoc_0_1b:
+  model: opendoc_0_1b
+  official_repo: https://github.com/Topdu/OpenOCR
+  package: openocr-python==0.1.5
+  task: doc
+  official_api: openocr.tools.infer_doc_onnx.OpenDocONNX
+  architecture:
+    layout: PP-DocLayoutV2 ONNX layout detector
+    recognition: UniRec/OpenDoc-0.1B ONNX encoder-decoder recognizer
+    output: official save_to_markdown markdown export
+  init_parameters:
+    layout_model_path: null
+    unirec_encoder_path: null
+    unirec_decoder_path: null
+    tokenizer_mapping_path: null
+    use_gpu: true
+    layout_threshold: 0.5
+    use_layout_detection: true
+    use_chart_recognition: true
+    auto_download: true
+    max_parallel_blocks: 4
+  call_parameters:
+    max_length: 2048
+    merge_layout_blocks: true
+  smoke_command: >-
+    CUDA_VISIBLE_DEVICES=0
+    LD_LIBRARY_PATH=${PDB_ENV_ROOT}/vllm_qwen3/lib/python3.10/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
+    PDBV2_IMAGES_ROOT=${PDB_DATASET_ROOT}/images/clean
+    PDBV2_PRED_ROOT=predictions
+    PDBV2_SMOKE_ROOT=outputs_smoke
+    PDBV2_JSON=${PDB_MANIFEST_JSON}
+    ${PDB_ENV_ROOT}/openocr_unirec/bin/python
+    tools/model_infer/opendoc_0_1b.py --smoke --n 5 --use-gpu
+  full_command_template: >-
+    bash /tmp/run_opendoc_dataset.sh {clean|degraded|real} {gpu_id} {shard_index} {num_shards}
+  outputs:
+    smoke_clean: outputs_smoke/opendoc_0_1b
+    clean: predictions/opendoc_0_1b
+    degraded: predictions_degraded/opendoc_0_1b
+    real_degraded: predictions_real/opendoc_0_1b
+

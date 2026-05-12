@@ -1,0 +1,1 @@
+Extract the main content from the document in the image, keeping the original structure. Convert all formulas to LaTeX and all tables to HTML.

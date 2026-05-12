@@ -1,0 +1,26 @@
+name: "GLM-OCR"
+slug: "glm_ocr_pdbv2"
+status: "pending"
+backend: "pipeline_layout_vllm_chat"
+arch: "glm_ocr"
+env_name: "glm_ocr_pipeline"
+env_freeze: "repro/envs/glm_ocr_pipeline.txt"
+python_bin: "${PDB_ENV_ROOT}/glm_ocr_pipeline/bin/python"
+model_root: "${PDB_MODEL_ROOT}/GLM-OCR"
+layout_model_root: "${PDB_MODEL_ROOT}/PP-DocLayoutV3_safetensors"
+script: "tools/model_infer/glm_ocr_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+mm_len: 16384
+gpu_memory_utilization: 0.85
+max_num_seqs: 32
+tensor_parallel_size: 1
+limit_mm_per_prompt_image: 1
+temperature: 0.0
+batch: 1
+max_tokens: 8192
+ocr_api_host: "127.0.0.1"
+ocr_api_port: 18080
+notes: "Pipeline: PP-DocLayoutV3 (transformers, GPU) + vLLM-served GLM-OCR. Layout crops then OCR each region. Single GPU queue."
+vllm_serve_cmd: |
+  vllm serve ${PDB_MODEL_ROOT}/GLM-OCR --served-model-name glm-ocr --port 18080 --allowed-local-media-path / --gpu-memory-utilization 0.85 --max-model-len 16384

@@ -1,0 +1,24 @@
+end2end_eval:
+  metrics:
+    text_block:
+      metric: [Edit_dist]
+    display_formula:
+      metric: [Edit_dist, CDM]
+      cdm_workers: 24
+    table:
+      metric: [TEDS, Edit_dist]
+      teds_workers: 24
+    reading_order:
+      metric: [Edit_dist]
+  dataset:
+    dataset_name: end2end_dataset
+    ground_truth:
+      data_path: ${PDB_MANIFEST_JSON}
+    prediction:
+      data_path: ${PDB_SUPPLEMENTAL_ROOT}/predictions/paddleocr_vl_1_5_v4_plus_low122_e2e_direct
+    match_method: quick_match
+    match_workers: 24
+    quick_match_truncated_timeout_sec: 300
+    match_timeout_sec: 420
+    timeout_fallback_max_chunk_span: 10
+    timeout_fallback_order_penalty: 0.10

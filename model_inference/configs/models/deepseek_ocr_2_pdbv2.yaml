@@ -1,0 +1,68 @@
+name: "DeepSeek-OCR-2"
+slug: "deepseek_ocr_2_pdbv2"
+status: "official_rerun_partial_done_paused"
+backend: "hf_transformers_official"
+arch: "deepseek_ocr"
+env_name: "ds2_official"
+env_freeze: "repro/envs/ds2_official.txt"
+python_bin: "${PDB_ENV_ROOT}/ds2_official/bin/python"
+ld_library_path: ""
+model_root: "${PDB_MODEL_ROOT}/DeepSeek-OCR-2"
+prompt_file: "prompts/deepseek_ocr_2_pdbv2.txt"
+script: "tools/model_infer/deepseek_ocr_2_pdbv2.py"
+trust_remote_code: true
+dtype: "bfloat16"
+base_size: 1024
+image_size: 768
+crop_mode: true
+save_results: true
+test_compress: null
+batch: 1
+max_new_tokens: null
+tokenizer_use_fast: false
+attention_impl_preference: "flash_attention_2_then_default"
+generation_backend: "official_model.infer"
+runtime:
+  controller: "tools/model_infer/_run_deepseek_official_rerun.py"
+  monitor: "tools/model_infer/monitor_deepseek_official_rerun.sh"
+  output_base: "predictions_deepseek_official_rerun_20260501"
+  log_dir: "logs/deepseek_official_rerun_20260501"
+  tmp_dir: "${PDB_TMPDIR:-/tmp/pdbv2_tmp}"
+  gpu_ids: [0, 1, 2, 3]
+  num_shards: 24
+  workers_per_gpu: 6
+  batch_per_worker: 1
+  effective_parallel_workers: 24
+  poll_seconds: 60
+  monitor_interval_seconds: 1200
+datasets:
+  - name: "images"
+    path: "${PDB_DATASET_ROOT}/images/clean"
+  - name: "degraded_v2_merged"
+    path: "${PDB_DATASET_ROOT}/images/digital_degraded"
+  - name: "real_degraded"
+    path: "${PDB_DATASET_ROOT}/images/real_degraded"
+queue_order:
+  - "images/deepseek_ocr_pdbv2"
+  - "degraded_v2_merged/deepseek_ocr_pdbv2"
+  - "real_degraded/deepseek_ocr_pdbv2"
+output_cleaning:
+  strip_code_fences: true
+  strip_endoftext: true
+  strip_grounding_ref_det_tags: true
+known_missing_outputs:
+  images:
+    - "service_receipt_009_家政清洁服务单_-_Home_Service_Data_Hub.png"
+  real_degraded:
+    - "service_receipt_009_家政清洁服务单_-_Home_Service_Data_Hub__real_screenshot_na_na_na.png"
+notes: |
+  Uses HF transformers (NOT vLLM). Required deps from official: python 3.12.9 +
+  torch 2.6.0 cu118 + transformers 4.46.3 + tokenizers 0.20.3. transformers >= 4.49
+  breaks (LlamaAttention forward signature change). Env at /tmp (tmpfs, not persistent).
+  Official HF model.infer document-mode route. Uses grounding markdown prompt,
+  base_size=1024, image_size=768, crop_mode=True, save_results=True.
+  No max_new_tokens override is applied.
+  The HF API is single-image; acceleration is implemented with 24 tmux shards
+  across four GPUs (6 workers/GPU), each with batch_per_worker=1.
+  Attempts flash_attention_2 and falls back to default attention when flash_attn
+  is unavailable. No max_new_tokens monkey-patch is applied.

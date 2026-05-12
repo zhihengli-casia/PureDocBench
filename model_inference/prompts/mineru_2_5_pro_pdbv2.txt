@@ -1,0 +1,1 @@
+Extract the document content and preserve structure. Return markdown-compatible text blocks in reading order.

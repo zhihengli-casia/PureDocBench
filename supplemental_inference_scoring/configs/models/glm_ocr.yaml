@@ -1,0 +1,40 @@
+model:
+  name: GLM-OCR
+  slug: glm_ocr
+  family: zai-org
+  weights_path: ${PDB_MODEL_ROOT}/GLM-OCR
+  arch: GlmOcrForConditionalGeneration
+  size: 0.9B
+
+prompt:
+  source: glmocr SDK config.yaml task_prompt_mapping
+  body:
+    text: 'Text Recognition:'
+    table: 'Table Recognition:'
+    formula: 'Formula Recognition:'
+
+dataset:
+  name: PureDocBench
+  manifest: ${PDB_MANIFEST_JSON}
+  images_root: ${PDB_DATASET_ROOT}/images/clean
+  total_pages: 1474
+
+runtime:
+  env_python: ${PDB_ENV_ROOT}/vllm_qwen3/bin/python
+  sdk_path: ${PDB_REPOS_ROOT}/glmocr_sdk
+  layout_model: ${PDB_MODEL_ROOT}/PP-DocLayoutV3_safetensors
+  pipeline_yaml: configs/models/glm_ocr_pipeline.yaml
+  launcher: scripts/_runner/run_glm_ocr.sh
+  prediction_dir: predictions/glm_ocr
+  smoke_output_dir: outputs_smoke/glm_ocr
+
+inference:
+  backend: vllm_serve_plus_sdk
+  vllm_version: '0.19.1'
+  trust_remote_code: true
+  max_model_len: 32768
+  max_num_batched_tokens: 8192
+  gpu_memory_utilization: 0.6
+  layout_backend: transformers_safetensors
+  max_workers: 16
+  dtype: bfloat16
