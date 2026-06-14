@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store">
-  <title>PureDocBench GT Case Compare</title>
+  <title>PureDocBench GT Review</title>
   <link rel="stylesheet" href="styles.css?puredocbench_gt_bbox_v1_0_0_web_updates">
 </head>
 <body>
   <header class="topbar">
     <div>
-      <h1>PureDocBench GT Case Compare</h1>
+      <h1>PureDocBench GT Review</h1>
       <p id="summary">Loading...</p>
     </div>
     <div class="top-actions">
@@ -20,8 +20,8 @@
       <a class="action-link" href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide</a>
       <button id="prevCase" type="button">Prev</button>
       <button id="nextCase" type="button">Next</button>
-      <button id="exportReview" type="button">Export JSON</button>
-      <button id="clearLocalEdits" type="button">Clear Local Edits</button>
+      <button id="exportReview" type="button">Export Review</button>
+      <button id="clearLocalEdits" type="button">Clear Edits</button>
     </div>
   </header>
 
@@ -69,11 +69,11 @@
       <textarea id="noteInput" placeholder="Note for selected GT item"></textarea>
       <button id="markCaseOk" type="button">Mark Case OK</button>
       <div class="correction-panel">
-        <label for="caseIssueInput">Case correction note</label>
-        <textarea id="caseIssueInput" placeholder="Missing annotation, wrong type, reading-order issue, or other case-level correction"></textarea>
+        <label for="caseIssueInput">Correction note</label>
+        <textarea id="caseIssueInput" placeholder="Describe a missing box, wrong type, duplicate box, or reading-order issue."></textarea>
         <div class="correction-actions">
-          <button id="exportCorrectionPatch" type="button">Export Correction Patch</button>
-          <a href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">GitHub Issue</a>
+          <button id="exportCorrectionPatch" type="button">Export Patch</button>
+          <a href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">Submit Issue</a>
           <a href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide</a>
         </div>
       </div>

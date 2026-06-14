@@ -676,7 +676,7 @@ function correctionPatchCases() {
 function exportCorrectionPatch() {
   const cases = correctionPatchCases();
   if (!cases.length) {
-    window.alert("No correction patch to export. Drag a bbox, mark an item Problem/Unsure, or add a case correction note first.");
+    window.alert("No correction patch to export. Edit a box, mark an item, or add a correction note first.");
     return;
   }
   const updateCount = cases.reduce(
