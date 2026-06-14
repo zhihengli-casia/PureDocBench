@@ -148,8 +148,8 @@ http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-GitHub 仓库不包含完整图片。Local launch 默认读取 `assets/images`。网页部署可通过
-`public_image_base_url` 或 `imageBase=` 参数指向 clean-image mirror。
+GitHub 仓库不包含完整图片。视觉检查需要先下载 Hugging Face release 并本地启动，
+或用 `imageBase=` 参数指定 clean-image base URL。
 
 ## GT 坐标补齐
 

@@ -34,7 +34,7 @@ Static app URL:
 https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-The GitHub repository does not include the full image release. Local launches read `review/gt_case_compare_all_fixed7/assets/images` by default. Web deployments can read images from a clean image mirror through `public_image_base_url` or the `imageBase=` query parameter.
+The GitHub repository does not include the full image release. Visual review requires downloaded images with local launch, or a clean-image base URL passed through `imageBase=`.
 
 ## Correction Flow
 
