@@ -16,8 +16,8 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 ## 更新
 
-- **2026-06-14**：发布面向社区的 GT bbox 标注版本 `puredocbench-gt-bbox-v1.0.0`，并加入公开 review app 与 GitHub correction workflow。见 [GT 标注 Review](ANNOTATION_CORRECTIONS.md)。
-- **2026-06-14**：加入 GT bbox 标注的 Hugging Face 版本化打包方式：`gt_bbox/versions/<public-version>/` 与 `gt_bbox/latest/`。公开评测结果应引用明确的 annotation version。
+- **2026-06-14**：发布 GT bbox 标注版本 `puredocbench-gt-bbox-v1.0.0` 和公开修正流程。见 [GT 标注 Review](ANNOTATION_CORRECTIONS.md)。
+- **2026-06-14**：加入 GT bbox 标注的 Hugging Face 版本化打包方式：`gt_bbox/versions/<version>/` 与 `gt_bbox/latest/`。公开评测结果应引用明确的 annotation version。
 
 <p align="center">
   <img src="../assets/figures/fig3_data_overview_final.png" alt="PureDocBench 数据概览" width="92%">
@@ -117,40 +117,39 @@ python scripts/validate_release_manifest.py \
   --manifest manifests/release_manifest_candidate_1475.csv
 ```
 
-## 社区 GT Review 与修正提交
+## GT 标注 Review
 
-当前公开 GT bbox 版本为 `puredocbench-gt-bbox-v1.0.0`。如果发现明显标注错误，可以打开 review app 导出 correction patch，再通过 GitHub issue 提交。
+当前 GT bbox 版本：`puredocbench-gt-bbox-v1.0.0`。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
   [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
-- Review app：
+- 仓库文件：
   [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - 修正说明：
   [docs/ANNOTATION_CORRECTIONS.md](ANNOTATION_CORRECTIONS.md)
-- GitHub issue 模板：
+- 提交修正：
   [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
-推荐本地启动：
+本地启动：
 
 ```bash
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
-然后打开：
+打开：
 
 ```text
 http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-如果仓库启用了 GitHub Pages，同一个静态 app 可以发布到：
+静态 app URL：
 
 ```text
 https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-GitHub 仓库不存完整图片。Local launch 会默认读取 `assets/images`。如果启用
-GitHub Pages，可以通过 `public_image_base_url` 或 `imageBase=` 参数指向
-Hugging Face 上解包后的 clean-image mirror。
+GitHub 仓库不包含完整图片。Local launch 默认读取 `assets/images`。网页部署可通过
+`public_image_base_url` 或 `imageBase=` 参数指向 clean-image mirror。
 
 ## GT 坐标补齐
 

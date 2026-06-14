@@ -25,8 +25,8 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 
 ## Updates
 
-- **2026-06-14**: Released the community-facing GT bbox annotation version `puredocbench-gt-bbox-v1.0.0`, with a public review app and GitHub correction workflow. See [GT Review & Corrections](docs/ANNOTATION_CORRECTIONS.md).
-- **2026-06-14**: Added versioned HF packaging for GT bbox annotations under `gt_bbox/versions/<public-version>/` and `gt_bbox/latest/`. Public results should cite the exact annotation version.
+- **2026-06-14**: Released GT bbox annotations `puredocbench-gt-bbox-v1.0.0` and a public correction workflow. See [GT Review & Corrections](docs/ANNOTATION_CORRECTIONS.md).
+- **2026-06-14**: Added versioned Hugging Face packaging for GT bbox annotations under `gt_bbox/versions/<version>/` and `gt_bbox/latest/`. Public results should cite the exact annotation version.
 
 <p align="center">
   <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
@@ -127,44 +127,41 @@ python scripts/validate_release_manifest.py \
   --manifest manifests/release_manifest_candidate_1475.csv
 ```
 
-## Community GT Review
+## GT Review
 
-The public GT bbox release is versioned as `puredocbench-gt-bbox-v1.0.0`.
-If you find a visible annotation error, please open the review app, export a
-correction patch, and submit it through a GitHub issue.
+Current GT bbox version: `puredocbench-gt-bbox-v1.0.0`.
+Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
   [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
-- Review app in this repository:
+- Repository file:
   [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
 - Correction guide:
   [docs/ANNOTATION_CORRECTIONS.md](docs/ANNOTATION_CORRECTIONS.md)
-- GitHub issue template:
+- Submit a correction:
   [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
-Recommended local launch:
+Local launch:
 
 ```bash
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
-Then open:
+Open:
 
 ```text
 http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-If GitHub Pages is enabled for the repository, the same static app can be
-published at:
+Static app URL:
 
 ```text
 https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
 ```
 
-The repository does not store the full image release. Local launches use
-`assets/images` by default. A GitHub Pages deployment can load images from an
-unpacked Hugging Face clean-image mirror through `public_image_base_url` or an
-`imageBase=` query parameter.
+The GitHub repository does not include the full image release. Local launches
+read `assets/images` by default. Web deployments can read images from a clean
+image mirror through `public_image_base_url` or the `imageBase=` query parameter.
 
 ## GT Coordinates
 

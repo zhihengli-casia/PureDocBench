@@ -694,7 +694,6 @@ function exportCorrectionPatch() {
   const payload = {
     schema_version: CORRECTION_SCHEMA_VERSION,
     base_annotation_version: PUBLIC_VERSION,
-    base_internal_token: INTERNAL_VERSION,
     exported_at: new Date().toISOString(),
     source: "review/gt_case_compare_all_fixed7",
     contributor: {
@@ -712,7 +711,7 @@ function exportCorrectionPatch() {
     cases,
     submission: {
       github_repo: "https://github.com/zhihengli-casia/PureDocBench",
-      instruction: "Submit this JSON as a GitHub issue or pull request attachment. Maintainers will validate it visually against the HTML and clean image before the next HF GT release."
+      instruction: "Submit this JSON through the GT annotation correction issue template or a pull request."
     }
   };
   const stamp = new Date().toISOString().replace(/[:.]/g, "").replace("T", "_").slice(0, 17);
