@@ -9,16 +9,24 @@
   <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench"><img alt="Hugging Face Dataset" src="https://img.shields.io/badge/Dataset-Hugging%20Face-yellow"></a>
   <a href="LICENSE_DATA"><img alt="Data License" src="https://img.shields.io/badge/Data-CC%20BY%204.0-lightgrey"></a>
   <a href="LICENSE"><img alt="Code License" src="https://img.shields.io/badge/Code-MIT-green"></a>
-  <a href="https://arxiv.org/abs/2605.07492"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2605.07492-b31b1b"></a>
+  <a href="paper/PureDocBench-paper.pdf"><img alt="Paper" src="https://img.shields.io/badge/Paper-PDF-red"></a>
 </p>
 
 <p align="center">
-  <a href="docs/README_ZH.md">Chinese README</a> |
+  <a href="docs/README_ZH.md">中文说明</a> |
   <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench">Dataset</a> |
-  <a href="https://arxiv.org/abs/2605.07492">Paper</a>
+  <a href="paper/PureDocBench-paper.pdf">Paper</a> |
+  <a href="docs/ANNOTATION_CORRECTIONS.md">GT Review & Corrections</a>
 </p>
 
 PureDocBench uses HTML/CSS document sources as hidden anchors: each page is rendered into images and annotated from the same structured source. This gives a benchmark where text, tables, formulas, captions, and reading order can be scored with less post-hoc annotation noise.
+
+PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 HTML/CSS 源文件渲染而来，GT 标注从同源结构中抽取，覆盖 clean、digital-degraded、real-degraded 三条图像轨道。
+
+## Updates
+
+- **2026-06-14**: Released the community-facing GT bbox annotation version `puredocbench-gt-bbox-v1.0.0`, with a public review app and GitHub correction workflow. See [GT Review & Corrections](docs/ANNOTATION_CORRECTIONS.md).
+- **2026-06-14**: Added versioned HF packaging for GT bbox annotations under `gt_bbox/versions/<public-version>/` and `gt_bbox/latest/`. Public results should cite the exact annotation version.
 
 <p align="center">
   <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
@@ -81,7 +89,7 @@ The four case studies below are all taken from the paper. They show failures tha
 
 ## Appendix Highlights
 
-The appendix documents the degradation design and per-category behavior used to make the benchmark reproducible.
+The appendix documents the degradation design, per-category behavior, and source-validity checks used to make the benchmark reproducible.
 
 <p align="center">
   <img src="assets/figures/fig_degradation_ops.png" alt="Degradation operations" width="96%">
@@ -93,6 +101,10 @@ The appendix documents the degradation design and per-category behavior used to 
 
 <p align="center">
   <img src="assets/figures/fig_per_category_overview.png" alt="Per-category overview" width="92%">
+</p>
+
+<p align="center">
+  <img src="assets/figures/fig_source_validity_dashboard.png" alt="Source-validity dashboard" width="96%">
 </p>
 
 ## Download
@@ -115,9 +127,78 @@ python scripts/validate_release_manifest.py \
   --manifest manifests/release_manifest_candidate_1475.csv
 ```
 
+## Community GT Review
+
+The public GT bbox release is versioned as `puredocbench-gt-bbox-v1.0.0`.
+If you find a visible annotation error, please open the review app, export a
+correction patch, and submit it through a GitHub issue.
+
+- Public review app:
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
+- Review app in this repository:
+  [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
+- Correction guide:
+  [docs/ANNOTATION_CORRECTIONS.md](docs/ANNOTATION_CORRECTIONS.md)
+- GitHub issue template:
+  [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
+
+Recommended local launch:
+
+```bash
+python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+```
+
+If GitHub Pages is enabled for the repository, the same static app can be
+published at:
+
+```text
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+```
+
+The repository does not store the full image release. Local launches use
+`assets/images` by default. A GitHub Pages deployment can load images from an
+unpacked Hugging Face clean-image mirror through `public_image_base_url` or an
+`imageBase=` query parameter.
+
+## GT Coordinates
+
+If you need spatial labels, regenerate clean-render coordinates from the
+HTML/CSS sources:
+
+```bash
+python scripts/add_gt_coordinates.py \
+  --release-root /path/to/puredocbench-v1.0 \
+  --manifest manifests/release_manifest_candidate_1475.csv \
+  --in-place \
+  --include-bbox \
+  --include-coordinate-system \
+  --report coordinate_report.json
+
+python scripts/validate_release_manifest.py \
+  --release-root /path/to/puredocbench-v1.0 \
+  --manifest manifests/release_manifest_candidate_1475.csv \
+  --require-coordinates \
+  --require-bbox
+```
+
+The script follows the OmniDocBench GT convention and adds a rectangular `poly`
+field to each `layout_dets` item. `poly` is a flat list of clean-image pixel
+coordinates in top-left, top-right, bottom-right, bottom-left order:
+`[x1, y1, x2, y1, x2, y2, x1, y2]`. A derived `bbox: [x1, y1, x2, y2]` can also
+be written with `--include-bbox`, but `poly` is the primary coordinate field.
+Run `playwright install chromium` first if the Playwright browser is not
+installed, or pass `--browser-channel chrome` to use a local Chrome
+installation.
+
 ## Inference And Scoring
 
-PureDocBench includes a public CLI for model-agnostic inference, fast lightweight scoring, and OmniDocBench-aligned evaluation. Use `puredocbench score` for quick sanity checks; use `puredocbench score-omnidocbench` with an OmniDocBench checkout for platform-aligned CDM/TEDS numbers.
+PureDocBench includes a public CLI for model-agnostic inference, lightweight scoring, and OmniDocBench export:
 
 ```bash
 pip install -e .
@@ -132,19 +213,10 @@ puredocbench score \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --pred-dir predictions/my_model_clean \
   --track clean \
-  --limit 20 \
   --out-dir scores/my_model_clean
-
-puredocbench score-omnidocbench \
-  --release-root /path/to/puredocbench-v1.0 \
-  --manifest manifests/release_manifest_candidate_1475.csv \
-  --pred-dir predictions/my_model_clean \
-  --track clean \
-  --omnidocbench-root /path/to/OmniDocBench \
-  --out-dir omnidocbench_scores/my_model_clean
 ```
 
-See [docs/INFERENCE_SCORING.md](docs/INFERENCE_SCORING.md) for the full interface and evaluator-version notes.
+See [docs/INFERENCE_SCORING.md](docs/INFERENCE_SCORING.md) for the full interface and OmniDocBench export path.
 
 ## Repository Contents
 
@@ -156,6 +228,7 @@ puredocbench/                      Public inference, scoring, and OmniDocBench e
 model_inference/                   Sanitized model inference configs and runners
 supplemental_inference_scoring/    API/local inference and scoring utilities
 assets/figures/                    Figures from the paper
+paper/                             Paper PDF
 ```
 
 ## Quick Start
@@ -194,12 +267,11 @@ python scripts/apply_degradation_ablation.py \
 ## Citation
 
 ```bibtex
-@article{li2026puredocbench,
-  title   = {How Far Is Document Parsing from Solved? PureDocBench: A Source-Traceable Benchmark across Clean, Degraded, and Real-World Settings},
-  author  = {Li, Zhiheng and Ma, Zongyang and Chen, Jiaxian and Zhang, Jianing and Su, Zhaolong and Zhang, Yutong and Yu, Zhiyin and Liu, Ruiqi and Lv, Xiaolei and Li, Bo and Gao, Jun and Zhang, Ziqi and Yuan, Chunfeng and Li, Bing and Hu, Weiming},
-  journal = {arXiv preprint arXiv:2605.07492},
-  year    = {2026},
-  doi     = {10.48550/arXiv.2605.07492},
-  url     = {https://arxiv.org/abs/2605.07492}
+@misc{puredocbench,
+  title        = {How Far Is Document Parsing from Solved? PureDocBench: A Source-Traceable Benchmark across Clean, Degraded, and Real-World Settings},
+  author       = {Li, Zhiheng and collaborators},
+  year         = {2026},
+  howpublished = {\url{https://github.com/zhihengli-casia/puredocbench}},
+  note         = {Dataset and benchmark release}
 }
 ```

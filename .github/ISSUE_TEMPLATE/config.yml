@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Open GT Review App
+    url: https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+    about: Inspect public GT bbox annotations and export a correction patch.
+  - name: Read GT Correction Guide
+    url: https://github.com/zhihengli-casia/PureDocBench/blob/main/docs/ANNOTATION_CORRECTIONS.md
+    about: Learn how to submit bbox, type, reading-order, missing, or duplicate annotation fixes.

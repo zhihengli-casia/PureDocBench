@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>PureDocBench GT Case Compare</title>
+  <link rel="stylesheet" href="styles.css?puredocbench_gt_bbox_v1_0_0_web_updates">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>PureDocBench GT Case Compare</h1>
+      <p id="summary">Loading...</p>
+    </div>
+    <div class="top-actions">
+      <span id="dataVersion" class="data-version"></span>
+      <a class="action-link" href="../../README.md#updates" target="_blank" rel="noopener">Updates</a>
+      <a class="action-link primary-link" href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">Submit Correction</a>
+      <a class="action-link" href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide</a>
+      <button id="prevCase" type="button">Prev</button>
+      <button id="nextCase" type="button">Next</button>
+      <button id="exportReview" type="button">Export JSON</button>
+      <button id="clearLocalEdits" type="button">Clear Local Edits</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="case-panel">
+      <div class="toolbar">
+        <input id="caseSearch" type="search" placeholder="Search case, text, category">
+        <label><input id="onlyOpen" type="checkbox"> Open only</label>
+      </div>
+      <div id="categoryFilters" class="filters"></div>
+      <div id="caseList" class="case-list"></div>
+    </aside>
+
+    <section class="viewer-panel">
+      <div class="viewer-toolbar">
+        <div id="caseTitle" class="case-title"></div>
+        <div class="viewer-controls">
+          <label><input id="showLabels" type="checkbox" checked> Labels</label>
+          <label><input id="showOnlySelected" type="checkbox"> Selected</label>
+          <label><input id="showProblemOnly" type="checkbox"> Problem boxes</label>
+          <label><input id="coverBoxes" type="checkbox"> Cover</label>
+          <label>Zoom <input id="zoom" type="range" min="35" max="190" value="78"></label>
+        </div>
+      </div>
+      <div id="stageScroll" class="stage-scroll">
+        <div id="stage" class="stage">
+          <img id="pageImage" alt="clean page">
+          <svg id="overlay" aria-label="GT overlay"></svg>
+          <div id="imageWarning" class="image-warning" hidden>
+            Page image is unavailable. Run locally with assets/images, or provide an imageBase query parameter.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="anno-panel">
+      <div id="selectedDetails" class="details"></div>
+      <div class="review-actions">
+        <button data-status="ok" type="button">OK</button>
+        <button data-status="problem" type="button">Problem</button>
+        <button data-status="unsure" type="button">Unsure</button>
+        <button id="clearStatus" type="button">Clear</button>
+        <button id="resetBox" type="button">Reset Box</button>
+      </div>
+      <textarea id="noteInput" placeholder="Note for selected GT item"></textarea>
+      <button id="markCaseOk" type="button">Mark Case OK</button>
+      <div class="correction-panel">
+        <label for="caseIssueInput">Case correction note</label>
+        <textarea id="caseIssueInput" placeholder="Missing annotation, wrong type, reading-order issue, or other case-level correction"></textarea>
+        <div class="correction-actions">
+          <button id="exportCorrectionPatch" type="button">Export Correction Patch</button>
+          <a href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">GitHub Issue</a>
+          <a href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide</a>
+        </div>
+      </div>
+      <div id="typeFilters" class="type-filters"></div>
+      <div id="annoList" class="anno-list"></div>
+    </aside>
+  </main>
+
+  <script src="review_data.js?puredocbench_gt_bbox_v1_0_0_web_updates"></script>
+  <script src="app.js?puredocbench_gt_bbox_v1_0_0_web_updates"></script>
+</body>
+</html>

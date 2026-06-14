@@ -12,3 +12,11 @@ data/
 *.zip
 pdb_full.tar.part-*
 SHA256SUMS.local
+
+# Local GT bbox review/audit artifacts. These are generated during visual QA
+# and can grow to tens of GB; publish only curated review app files and HF packages.
+review/gt_case_compare_all_fixed7/cover_audit_*/
+review/gt_case_compare_all_fixed7/outline_audit_*/
+review/gt_case_compare_all_fixed7/cover_residual_*/
+review/gt_case_compare_all_fixed7/tmp_*/
+review/gt_case_compare_all_fixed7/review_data.before_*.json

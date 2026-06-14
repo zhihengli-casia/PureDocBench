@@ -1,0 +1,36 @@
+name: GT annotation correction
+description: Report or submit a PureDocBench GT bbox annotation correction.
+title: "[GT annotation] "
+labels: ["gt-annotation", "data-correction"]
+body:
+  - type: input
+    id: annotation_version
+    attributes:
+      label: Base annotation version
+      description: Copy this from the review app data version.
+      placeholder: "puredocbench-gt-bbox-v1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: case_id
+    attributes:
+      label: Case ID
+      description: The full PureDocBench case id shown in the review app.
+      placeholder: "01_academic/01_journal_paper/example"
+    validations:
+      required: true
+  - type: textarea
+    id: correction_patch
+    attributes:
+      label: Correction patch JSON or summary
+      description: Paste the exported correction patch JSON, or attach it to the issue and summarize the requested change here.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: visual_evidence
+    attributes:
+      label: Visual evidence
+      description: Add screenshots, before/after overlays, or a concise explanation of the visible problem.
+    validations:
+      required: false
