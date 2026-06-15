@@ -10,6 +10,8 @@ const URL_PARAMS = new URLSearchParams(window.location.search);
 const PUBLIC_IMAGE_BASE = URL_PARAMS.get("imageBase") || DATA.meta?.public_image_base_url || "";
 const IS_LOCAL_APP = window.location.protocol === "file:" || ["", "localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
 const USE_LOCAL_IMAGES = URL_PARAMS.get("localImages") === "1" || (IS_LOCAL_APP && !URL_PARAMS.get("imageBase"));
+const IMAGE_PATH_PREFIX = "assets/images/";
+const LOCAL_IMAGE_MARKERS = ["assets/images/", "images/clean/", "clean/"];
 let caseIndex = 0;
 let selectedId = null;
 let activeCategories = new Set();
@@ -19,6 +21,8 @@ let onlyOpen = false;
 let review = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 let suppressNextBoxClick = false;
 let boxEdit = null;
+let localImageFiles = new Map();
+let localImageUrls = new Map();
 
 const $ = (id) => document.getElementById(id);
 
@@ -30,16 +34,78 @@ function encodePathSegments(path) {
   return path.split("/").map((part) => encodeURIComponent(part)).join("/");
 }
 
+function imageRelativePath(src) {
+  return src?.startsWith(IMAGE_PATH_PREFIX) ? src.slice(IMAGE_PATH_PREFIX.length) : src;
+}
+
+function localImageCandidates(src) {
+  const rel = imageRelativePath(src);
+  const filename = rel?.split("/").pop();
+  return [rel, src, `clean/${rel}`, `images/clean/${rel}`, `${IMAGE_PATH_PREFIX}${rel}`, filename].filter(Boolean);
+}
+
+function localImageObjectUrl(src) {
+  for (const key of localImageCandidates(src)) {
+    const file = localImageFiles.get(key);
+    if (!file) continue;
+    if (!localImageUrls.has(key)) {
+      localImageUrls.set(key, URL.createObjectURL(file));
+    }
+    return localImageUrls.get(key);
+  }
+  return "";
+}
+
 function resolveImageSrc(src) {
   if (!src || /^(https?:|data:|blob:)/.test(src)) return src;
+  const localSrc = localImageObjectUrl(src);
+  if (localSrc) return localSrc;
   if (USE_LOCAL_IMAGES) return src;
-  const prefix = "assets/images/";
-  if (src.startsWith(prefix)) {
+  if (src.startsWith(IMAGE_PATH_PREFIX)) {
     if (!PUBLIC_IMAGE_BASE) return src;
     const base = PUBLIC_IMAGE_BASE.replace(/\/$/, "");
-    return `${base}/${encodePathSegments(src.slice(prefix.length))}`;
+    return `${base}/${encodePathSegments(src.slice(IMAGE_PATH_PREFIX.length))}`;
   }
   return src;
+}
+
+function indexLocalImage(file, path) {
+  const normalized = path.replace(/\\/g, "/").replace(/^\/+/, "");
+  const aliases = new Set([normalized, file.name]);
+  LOCAL_IMAGE_MARKERS.forEach((marker) => {
+    const markerIndex = normalized.indexOf(marker);
+    if (markerIndex >= 0) {
+      aliases.add(normalized.slice(markerIndex + marker.length));
+      aliases.add(normalized.slice(markerIndex));
+    }
+  });
+  aliases.forEach((alias) => localImageFiles.set(alias, file));
+}
+
+function setLocalImages(fileList) {
+  localImageUrls.forEach((url) => URL.revokeObjectURL(url));
+  localImageFiles = new Map();
+  localImageUrls = new Map();
+  Array.from(fileList || [])
+    .filter((file) => file.type.startsWith("image/") || /\.(png|jpe?g|webp)$/i.test(file.name))
+    .forEach((file) => indexLocalImage(file, file.webkitRelativePath || file.name));
+  updateImageSourceStatus();
+  renderViewer();
+}
+
+function updateImageSourceStatus() {
+  const status = $("imageSourceStatus");
+  if (!status) return;
+  const uniqueCount = new Set(localImageFiles.values()).size;
+  if (uniqueCount) {
+    status.textContent = `Images: ${uniqueCount} loaded`;
+  } else if (PUBLIC_IMAGE_BASE) {
+    status.textContent = "Images: imageBase";
+  } else if (USE_LOCAL_IMAGES) {
+    status.textContent = "Images: local assets";
+  } else {
+    status.textContent = "Images: not loaded";
+  }
 }
 
 function caseKey(item) {
@@ -264,19 +330,28 @@ function renderViewer() {
   stage.style.height = `${Math.round(baseWidth * item.height / item.width * zoom)}px`;
 
   const img = $("pageImage");
+  const svg = $("overlay");
   const imageWarning = $("imageWarning");
-  if (imageWarning) imageWarning.hidden = true;
+  const setImageLoaded = (loaded) => {
+    stage.classList.toggle("image-missing", !loaded);
+    img.hidden = !loaded;
+    svg.hidden = !loaded;
+    svg.style.display = loaded ? "" : "none";
+    if (imageWarning) imageWarning.hidden = loaded;
+  };
+  setImageLoaded(false);
   img.onload = () => {
-    if (imageWarning) imageWarning.hidden = true;
+    setImageLoaded(true);
   };
   img.onerror = () => {
-    if (imageWarning) imageWarning.hidden = false;
+    setImageLoaded(false);
   };
-  img.src = resolveImageSrc(item.image);
+  const resolvedSrc = resolveImageSrc(item.image);
+  img.src = resolvedSrc;
+  if (img.complete && img.naturalWidth > 0) setImageLoaded(true);
   img.width = item.width;
   img.height = item.height;
 
-  const svg = $("overlay");
   svg.setAttribute("viewBox", `0 0 ${item.width} ${item.height}`);
   svg.innerHTML = "";
   const showLabels = $("showLabels").checked;
@@ -520,6 +595,7 @@ function renderAnnoList() {
 }
 
 function renderAll() {
+  updateImageSourceStatus();
   renderSummary();
   renderCaseList();
   renderTypeFilters();
@@ -756,6 +832,8 @@ function bindEvents() {
   $("nextCase").addEventListener("click", () => stepVisibleCase(1));
   $("exportReview").addEventListener("click", exportReview);
   $("exportCorrectionPatch").addEventListener("click", exportCorrectionPatch);
+  $("loadLocalImages").addEventListener("click", () => $("localImageDir").click());
+  $("localImageDir").addEventListener("change", (event) => setLocalImages(event.target.files));
   $("clearLocalEdits").addEventListener("click", () => {
     review = {};
     localStorage.removeItem(STORAGE_KEY);

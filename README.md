@@ -133,7 +133,7 @@ Current GT bbox version: `puredocbench-gt-bbox-v1.0.0`.
 Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images)
 - Repository file:
   [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
 - Correction guide:
@@ -144,24 +144,26 @@ Use the review app to inspect annotations and export correction patches.
 Local launch:
 
 ```bash
+mkdir -p review/gt_case_compare_all_fixed7/assets
+ln -s /path/to/puredocbench-v1.0/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
 
 The GitHub repository does not include the full image release. For visual
-review, download the Hugging Face release and launch the app locally, or provide
-a clean-image base URL with the `imageBase=` query parameter.
+review on GitHub Pages, click `Load Images` and select the downloaded
+`images/clean` folder. Local launch can also use the symlink above.
 
 ## GT Coordinates
 

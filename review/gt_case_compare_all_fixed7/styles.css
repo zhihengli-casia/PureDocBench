@@ -62,6 +62,14 @@ button.active { border-color: #175cd3; background: #e9f1ff; color: #0b4cb8; }
   color: #637083;
   font-size: 11px;
 }
+.image-source-status {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #637083;
+  font-size: 11px;
+}
 .layout {
   height: calc(100vh - 64px);
   display: grid;
@@ -213,6 +221,15 @@ button.active { border-color: #175cd3; background: #e9f1ff; color: #0b4cb8; }
   background: #fff;
   box-shadow: 0 1px 9px rgba(20, 31, 46, 0.18);
   transform-origin: top center;
+}
+.stage.image-missing {
+  background:
+    linear-gradient(45deg, #f7f9fc 25%, transparent 25%),
+    linear-gradient(-45deg, #f7f9fc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f7f9fc 75%),
+    linear-gradient(-45deg, transparent 75%, #f7f9fc 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
 }
 #pageImage {
   width: 100%;
@@ -385,9 +402,10 @@ button.active { border-color: #175cd3; background: #e9f1ff; color: #0b4cb8; }
 .correction-actions a:hover { text-decoration: underline; }
 .image-warning {
   position: absolute;
-  left: 24px;
-  right: 24px;
-  top: 24px;
+  left: 50%;
+  top: 50%;
+  width: min(620px, calc(100% - 48px));
+  transform: translate(-50%, -50%);
   z-index: 3;
   padding: 12px 14px;
   border: 1px solid #f2c94c;

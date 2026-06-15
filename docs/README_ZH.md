@@ -122,7 +122,7 @@ python scripts/validate_release_manifest.py \
 当前 GT bbox 版本：`puredocbench-gt-bbox-v1.0.0`。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images)
 - 仓库文件：
   [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - 修正说明：
@@ -133,23 +133,25 @@ python scripts/validate_release_manifest.py \
 本地启动：
 
 ```bash
+mkdir -p review/gt_case_compare_all_fixed7/assets
+ln -s /path/to/puredocbench-v1.0/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 打开：
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
 
 静态 app URL：
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
 
-GitHub 仓库不包含完整图片。视觉检查需要先下载 Hugging Face release 并本地启动，
-或用 `imageBase=` 参数指定 clean-image base URL。
+GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Images`，
+选择下载后的 `images/clean` 文件夹；本地启动也可以使用上面的软链方式。
 
 ## GT 坐标补齐
 

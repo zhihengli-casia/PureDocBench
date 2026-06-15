@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store">
   <title>PureDocBench GT Review</title>
-  <link rel="stylesheet" href="styles.css?puredocbench_gt_bbox_v1_0_0_web_updates">
+  <link rel="stylesheet" href="styles.css?puredocbench_gt_bbox_v1_0_0_local_images">
 </head>
 <body>
   <header class="topbar">
@@ -15,6 +15,9 @@
     </div>
     <div class="top-actions">
       <span id="dataVersion" class="data-version"></span>
+      <span id="imageSourceStatus" class="image-source-status">Images: not loaded</span>
+      <button id="loadLocalImages" type="button">Load Images</button>
+      <input id="localImageDir" type="file" accept="image/*" webkitdirectory directory multiple hidden>
       <a class="action-link" href="../../README.md#updates" target="_blank" rel="noopener">Updates</a>
       <a class="action-link primary-link" href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">Submit Correction</a>
       <a class="action-link" href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide</a>
@@ -51,7 +54,7 @@
           <img id="pageImage" alt="clean page">
           <svg id="overlay" aria-label="GT overlay"></svg>
           <div id="imageWarning" class="image-warning" hidden>
-            Image not loaded. For visual review, run locally with downloaded images or add imageBase.
+            Image not loaded. Click Load Images and select the downloaded images/clean folder.
           </div>
         </div>
       </div>
@@ -82,7 +85,7 @@
     </aside>
   </main>
 
-  <script src="review_data.js?puredocbench_gt_bbox_v1_0_0_web_updates"></script>
-  <script src="app.js?puredocbench_gt_bbox_v1_0_0_web_updates"></script>
+  <script src="review_data.js?puredocbench_gt_bbox_v1_0_0_local_images"></script>
+  <script src="app.js?puredocbench_gt_bbox_v1_0_0_local_images"></script>
 </body>
 </html>

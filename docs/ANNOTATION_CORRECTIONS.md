@@ -12,29 +12,31 @@ This page defines the correction workflow for PureDocBench GT bounding-box annot
 
 The review app is a static HTML app:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
+
+The GitHub repository does not include the full image release. For visual review, download the Hugging Face release, open the public review app, click `Load Images`, and select the extracted `images/clean` folder.
 
 Local launch:
 
 ```bash
+mkdir -p review/gt_case_compare_all_fixed7/assets
+ln -s /path/to/puredocbench-v1.0/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_web_updates
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
 ```
-
-The GitHub repository does not include the full image release. Visual review requires downloaded images with local launch, or a clean-image base URL passed through `imageBase=`.
 
 ## Correction Flow
 
