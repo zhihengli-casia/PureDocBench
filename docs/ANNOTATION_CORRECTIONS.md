@@ -48,6 +48,8 @@ https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7
 6. Click `Export Correction Patch`.
 7. Submit the exported JSON in a GitHub issue or pull request.
 
+The GitHub issue form accepts either English or Chinese. If you cannot export a patch, describe the problem and attach a screenshot.
+
 Accepted corrections are verified against the clean image and source HTML before the next GT release.
 
 ## Patch Format

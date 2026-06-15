@@ -129,7 +129,7 @@ python scripts/validate_release_manifest.py \
 - 修正说明：
   [docs/ANNOTATION_CORRECTIONS.md](ANNOTATION_CORRECTIONS.md)
 - 提交修正：
-  [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
+  [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)（表单支持中文或英文）
 
 本地启动：
 

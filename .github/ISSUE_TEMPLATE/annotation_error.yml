@@ -1,36 +1,50 @@
-name: GT annotation correction
-description: Report or submit a PureDocBench GT bbox annotation correction.
+name: GT annotation correction / GT 标注修正
+description: Report or submit a PureDocBench GT bbox annotation correction. / 报告或提交 GT 标注修正。
 title: "[GT annotation] "
 labels: ["gt-annotation", "data-correction"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve PureDocBench annotations.
+
+        感谢你帮助改进 PureDocBench 标注。可以用中文或英文填写；如果已经从 review app 导出了 correction patch，请粘贴 JSON，否则请描述可见问题并附截图。
   - type: input
     id: annotation_version
     attributes:
-      label: Base annotation version
-      description: Copy this from the review app data version.
+      label: Base annotation version / 基础标注版本
+      description: Copy this from the review app data version. / 请从 review app 顶部的 data version 复制。
       placeholder: "puredocbench-gt-bbox-v1.0.0"
     validations:
       required: true
   - type: input
     id: case_id
     attributes:
-      label: Case ID
-      description: The full PureDocBench case id shown in the review app.
+      label: Case ID / 样例 ID
+      description: The full PureDocBench case id shown in the review app. / 请填写 review app 中显示的完整 case id。
       placeholder: "01_academic/01_journal_paper/example"
+    validations:
+      required: true
+  - type: textarea
+    id: problem_summary
+    attributes:
+      label: Problem summary / 问题说明
+      description: Describe the visible annotation problem and the expected fix. / 请说明可见的标注问题以及期望如何修正。
+      placeholder: "Example / 示例：#6 bbox truncates the Summary block; it should extend to the bottom of the pink Summary area."
     validations:
       required: true
   - type: textarea
     id: correction_patch
     attributes:
-      label: Correction patch JSON or summary
-      description: Paste the exported correction patch JSON, or attach it to the issue and summarize the requested change here.
+      label: Correction patch JSON / 修正 Patch JSON
+      description: Paste the exported correction patch JSON if available. / 如果已经在 review app 中导出 patch，请粘贴 JSON；没有也可以留空。
       render: json
     validations:
-      required: true
+      required: false
   - type: textarea
     id: visual_evidence
     attributes:
-      label: Visual evidence
-      description: Add screenshots, before/after overlays, or a concise explanation of the visible problem.
+      label: Visual evidence / 视觉证据
+      description: Add screenshots, before/after overlays, or a concise explanation of the visible problem. / 可附截图、修改前后 overlay，或补充说明。
     validations:
       required: false

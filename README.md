@@ -140,7 +140,7 @@ Use the review app to inspect annotations and export correction patches.
 - Correction guide:
   [docs/ANNOTATION_CORRECTIONS.md](docs/ANNOTATION_CORRECTIONS.md)
 - Submit a correction:
-  [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
+  [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml) (English or Chinese)
 
 Local launch:
 
