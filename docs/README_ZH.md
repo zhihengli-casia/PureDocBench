@@ -18,6 +18,7 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 - **2026-06-14**：发布 GT bbox 标注版本 `puredocbench-gt-bbox-v1.0.0` 和公开修正流程。见 [GT 标注 Review](ANNOTATION_CORRECTIONS.md)。
 - **2026-06-14**：加入 GT bbox 标注的 Hugging Face 版本化打包方式：`gt_bbox/versions/<version>/` 与 `gt_bbox/latest/`。公开评测结果应引用明确的 annotation version。
+- **2026-05-08**：发布 PureDocBench 论文 PDF 和初始完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
 
 <p align="center">
   <img src="../assets/figures/fig3_data_overview_final.png" alt="PureDocBench 数据概览" width="92%">
