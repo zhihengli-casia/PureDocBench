@@ -25,7 +25,7 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 
 ## Updates
 
-- **2026-06-14**: Updated the public GT bounding-box annotations to `puredocbench-gt-bbox-v1.0.0` and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. The dataset layout remains `images/`, `html/`, and `gt/`; this release updates the bbox annotations in `gt/`. Please cite the GT bbox version when reporting results.
+- **2026-06-14**: Updated the public GT bounding-box annotations to `puredocbench-gt-bbox-v1.0.0` and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. The dataset layout remains `images/`, `html/`, and `gt/`; this release updates the bbox annotations in `gt/`. For bbox evaluation, report the setting as `GT bbox = puredocbench-gt-bbox-v1.0.0`.
 - **2026-05-08**: Released the PureDocBench paper PDF and the initial full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench).
 
 <p align="center">

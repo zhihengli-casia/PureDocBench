@@ -7,7 +7,7 @@ This page defines the correction workflow for PureDocBench GT bounding-box annot
 - The current GT bbox version is `puredocbench-gt-bbox-v1.0.0`.
 - The dataset layout remains `images/`, `html/`, and `gt/`.
 - This release updates the bbox annotations in `gt/`.
-- Papers and evaluation reports should cite the exact GT bbox version.
+- For bbox evaluation, report the setting as `GT bbox = puredocbench-gt-bbox-v1.0.0`.
 
 ## Review App
 
