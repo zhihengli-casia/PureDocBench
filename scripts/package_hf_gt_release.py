@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package versioned GT bbox annotations for Hugging Face dataset release."""
+"""Package versioned GT annotations for Hugging Face dataset release."""
 
 from __future__ import annotations
 
@@ -147,9 +147,9 @@ def package_release(
     release_readme.write_text(
         "\n".join(
             [
-                f"# PureDocBench GT BBox {annotation_version}",
+                f"# PureDocBench GT {annotation_version}",
                 "",
-                "This directory is a versioned GT bounding-box annotation release for Hugging Face.",
+                "This directory is a versioned GT annotation release for Hugging Face.",
                 f"The public annotation version is `{annotation_version}`.",
                 f"The maintainer-only repair provenance token is `{internal_token}`.",
                 "",
@@ -210,9 +210,9 @@ def package_release(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--review-dir", type=Path, default=DEFAULT_REVIEW_DIR)
-    parser.add_argument("--out-root", type=Path, default=Path("dist/hf_gt_bbox"))
+    parser.add_argument("--out-root", type=Path, default=Path("dist/hf_gt"))
     parser.add_argument("--token", help="Internal repair/build token. Defaults to review_data.json meta.")
-    parser.add_argument("--public-version", help="Community-facing annotation version, e.g. puredocbench-gt-bbox-v1.0.0.")
+    parser.add_argument("--public-version", help="Community-facing GT version, e.g. puredocbench-gt-v1.0.0.")
     parser.add_argument("--dataset-version", default="puredocbench-v1.0")
     parser.add_argument("--write-latest", action="store_true")
     args = parser.parse_args()

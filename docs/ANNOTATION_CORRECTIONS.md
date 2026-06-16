@@ -1,19 +1,19 @@
 # PureDocBench GT Annotation Corrections
 
-This page defines the correction workflow for PureDocBench GT bounding-box annotations.
+This page defines the correction workflow for PureDocBench GT annotations.
 
 ## Current Public GT
 
-- The current GT bbox version is `puredocbench-gt-bbox-v1.0.0`.
+- The current GT version is `puredocbench-gt-v1.0.0`.
 - The dataset layout remains `images/`, `html/`, and `gt/`.
-- This release updates the bbox annotations in `gt/`.
-- For bbox evaluation, report the setting as `GT bbox = puredocbench-gt-bbox-v1.0.0`.
+- This release revises the bbox annotations inside `gt/`.
+- For bbox-related results, write `GT = puredocbench-gt-v1.0.0` in the experimental setup.
 
 ## Review App
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
@@ -30,13 +30,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_v1_0_0_local_images
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images
 ```
 
 ## Correction Flow
@@ -60,7 +60,7 @@ The review app exports this schema:
 ```json
 {
   "schema_version": "puredocbench-gt-correction-patch-v1",
-  "base_annotation_version": "puredocbench-gt-bbox-v1.0.0",
+  "base_annotation_version": "puredocbench-gt-v1.0.0",
   "summary": {
     "case_count": 1,
     "bbox_update_count": 1,
@@ -102,7 +102,7 @@ For missing or duplicate annotations, use the case-level correction note. Accept
 ```bash
 python scripts/package_hf_gt_release.py \
   --review-dir review/gt_case_compare_all_fixed7 \
-  --out-root dist/hf_gt_bbox \
+  --out-root dist/hf_gt \
   --write-latest
 ```
 
@@ -110,16 +110,16 @@ python scripts/package_hf_gt_release.py \
 
 ```bash
 huggingface-cli upload zhihengli-casia/puredocbench \
-  dist/hf_gt_bbox/puredocbench-gt-bbox-v1.0.0 \
-  gt_bbox/versions/puredocbench-gt-bbox-v1.0.0 \
+  dist/hf_gt/puredocbench-gt-v1.0.0 \
+  gt/versions/puredocbench-gt-v1.0.0 \
   --repo-type dataset \
-  --commit-message "Add GT bbox annotations puredocbench-gt-bbox-v1.0.0"
+  --commit-message "Add GT puredocbench-gt-v1.0.0"
 
 huggingface-cli upload zhihengli-casia/puredocbench \
-  dist/hf_gt_bbox/latest \
-  gt_bbox/latest \
+  dist/hf_gt/latest \
+  gt/latest \
   --repo-type dataset \
-  --commit-message "Update latest GT bbox annotation manifest"
+  --commit-message "Update latest GT manifest"
 ```
 
 ## Evaluation Rule
@@ -127,8 +127,8 @@ huggingface-cli upload zhihengli-casia/puredocbench \
 Every public score should record:
 
 - dataset version
-- annotation version
+- GT version
 - evaluation script version
 - model output version
 
-Do not report benchmark results against an implicit `latest` annotation set.
+For this release, use `GT = puredocbench-gt-v1.0.0`; do not report benchmark results against an implicit `latest` GT.

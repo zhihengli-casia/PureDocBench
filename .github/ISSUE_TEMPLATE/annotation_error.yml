@@ -1,5 +1,5 @@
 name: GT annotation correction / GT 标注修正
-description: Report or submit a PureDocBench GT bbox annotation correction. / 报告或提交 GT 标注修正。
+description: Report or submit a PureDocBench GT annotation correction. / 报告或提交 GT 标注修正。
 title: "[GT annotation] "
 labels: ["gt-annotation", "data-correction"]
 body:
@@ -14,7 +14,7 @@ body:
     attributes:
       label: Base annotation version / 基础标注版本
       description: Copy this from the review app data version. / 请从 review app 顶部的 data version 复制。
-      placeholder: "puredocbench-gt-bbox-v1.0.0"
+      placeholder: "puredocbench-gt-v1.0.0"
     validations:
       required: true
   - type: input
