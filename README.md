@@ -25,8 +25,8 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 
 ## Updates
 
-- **2026-06-14**: Updated the public GT to `puredocbench-gt-v1.0.0` and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. The dataset layout remains `images/`, `html/`, and `gt/`; this release revises the bbox annotations inside `gt/`. For bbox-related results, write `GT = puredocbench-gt-v1.0.0` in the experimental setup.
-- **2026-05-08**: Released the PureDocBench paper PDF and the initial full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench).
+- **2026-06-14**: Updated the public GT to `puredocbench-gt-v1.1` and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. The dataset layout remains `images/`, `html/`, and `gt/`; this release adds bbox annotations and includes GT fixes inside `gt/`. For bbox-related results, write `GT = puredocbench-gt-v1.1` in the experimental setup.
+- **2026-05-08**: Released `puredocbench-v1.0`, including the PureDocBench paper PDF and the initial full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench).
 
 <p align="center">
   <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
@@ -129,11 +129,11 @@ python scripts/validate_release_manifest.py \
 
 ## GT Review
 
-Current GT version: `puredocbench-gt-v1.0.0`.
+Current GT version: `puredocbench-gt-v1.1`.
 Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_1_local_images)
 - Repository file:
   [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
 - Correction guide:
@@ -152,13 +152,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_v1_0_0_local_images
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_v1_1_local_images
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_1_local_images
 ```
 
 The GitHub repository does not include the full image release. For visual

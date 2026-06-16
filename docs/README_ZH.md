@@ -16,8 +16,8 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 ## 更新
 
-- **2026-06-14**：将公开 GT 更新为 `puredocbench-gt-v1.0.0`，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。数据集仍保持 `images/`、`html/`、`gt/` 三部分结构；本次更新修订了 `gt/` 中的 bbox 标注。如报告 bbox 相关结果，请在实验设置中写：`GT = puredocbench-gt-v1.0.0`。
-- **2026-05-08**：发布 PureDocBench 论文 PDF 和初始完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
+- **2026-06-14**：将公开 GT 更新为 `puredocbench-gt-v1.1`，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。数据集仍保持 `images/`、`html/`、`gt/` 三部分结构；本次更新在 `gt/` 中加入 bbox 标注并包含部分 GT 修正。如报告 bbox 相关结果，请在实验设置中写：`GT = puredocbench-gt-v1.1`。
+- **2026-05-08**：发布 `puredocbench-v1.0`，包括 PureDocBench 论文 PDF 和初始完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
 
 <p align="center">
   <img src="../assets/figures/fig3_data_overview_final.png" alt="PureDocBench 数据概览" width="92%">
@@ -119,10 +119,10 @@ python scripts/validate_release_manifest.py \
 
 ## GT 标注 Review
 
-当前 GT 版本：`puredocbench-gt-v1.0.0`。可以使用 review app 检查标注并导出 correction patch。
+当前 GT 版本：`puredocbench-gt-v1.1`。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_1_local_images)
 - 仓库文件：
   [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - 修正说明：
@@ -141,13 +141,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 打开：
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_gt_v1_0_0_local_images
+http://127.0.0.1:8767/index.html?cb=puredocbench_gt_v1_1_local_images
 ```
 
 静态 app URL：
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_0_0_local_images
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_v1_1_local_images
 ```
 
 GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Images`，

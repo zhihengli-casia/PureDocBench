@@ -14,7 +14,7 @@ body:
     attributes:
       label: Base annotation version / 基础标注版本
       description: Copy this from the review app data version. / 请从 review app 顶部的 data version 复制。
-      placeholder: "puredocbench-gt-v1.0.0"
+      placeholder: "puredocbench-gt-v1.1"
     validations:
       required: true
   - type: input
