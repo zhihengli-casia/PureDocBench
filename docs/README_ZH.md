@@ -16,7 +16,7 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 ## 更新
 
-- **2026-06-14**：发布第一版公开 GT bbox 标注包 `puredocbench-gt-bbox-v1.0.0`。标注文件可在 Hugging Face 的 `gt_bbox/latest/` 获取，也会长期保留在 `gt_bbox/versions/puredocbench-gt-bbox-v1.0.0/`；读者可以通过 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 检查标注，并用中文或英文提交修正。报告评测结果时请注明使用的 GT bbox 版本。
+- **2026-06-14**：将公开 GT bbox 标注更新为 `puredocbench-gt-bbox-v1.0.0`，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。下载后的数据结构仍然是三部分：`images/`、`html/`、`gt/`；这个版本名只表示 `gt/` 里的 bbox 标注版本。报告评测结果时请注明使用的 GT bbox 版本。
 - **2026-05-08**：发布 PureDocBench 论文 PDF 和初始完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
 
 <p align="center">

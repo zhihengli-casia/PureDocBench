@@ -5,18 +5,19 @@ This page defines the correction workflow for PureDocBench GT bounding-box annot
 ## Current Public GT
 
 - The current GT bbox version is `puredocbench-gt-bbox-v1.0.0`.
-- Hugging Face stores released versions under `gt_bbox/versions/<version>/`.
-- `gt_bbox/latest/manifest.json` may point to the newest version, but papers and evaluation reports should cite the exact public annotation version.
+- The dataset remains organized into three parts after download: `images/`, `html/`, and `gt/`.
+- The version name refers only to the bbox annotations inside `gt/`. It does not add a fourth data part.
+- Papers and evaluation reports should cite the exact GT bbox version.
 
 ## Review App
 
-The review app is a static HTML app:
+The review app is a static HTML app for inspecting the GT annotations visually:
 
 - Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_gt_bbox_v1_0_0_local_images)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
-The GitHub repository does not include the full image release. For visual review, download the Hugging Face release, open the public review app, click `Load Images`, and select the extracted `images/clean` folder.
+The GitHub repository does not include the full image release. For visual review, download the Hugging Face release, open the public review app, click `Load Images`, and select the extracted `images/clean` folder. The app uses `review_data.json` as a compact inspection view of the GT annotations; it is not a separate dataset component.
 
 Local launch:
 
