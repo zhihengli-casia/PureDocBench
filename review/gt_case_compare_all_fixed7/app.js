@@ -5,7 +5,7 @@ const PUBLIC_VERSION = DATA.meta?.public_annotation_version || DATA.meta?.annota
 const PUBLIC_VERSION_LABEL = DATA.meta?.public_annotation_version_label || PUBLIC_VERSION;
 const STORAGE_VERSION = INTERNAL_VERSION;
 const STORAGE_KEY = `pdbFullGtCaseCompare1475:${STORAGE_VERSION}`;
-const CORRECTION_SCHEMA_VERSION = "puredocbench-gt-correction-patch-v1";
+const CORRECTION_SCHEMA_VERSION = "puredocbench-annotation-correction-patch-v1";
 const URL_PARAMS = new URLSearchParams(window.location.search);
 const PUBLIC_IMAGE_BASE = URL_PARAMS.get("imageBase") || DATA.meta?.public_image_base_url || "";
 const IS_LOCAL_APP = window.location.protocol === "file:" || ["", "localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
@@ -98,11 +98,11 @@ function updateImageSourceStatus() {
   if (!status) return;
   const uniqueCount = new Set(localImageFiles.values()).size;
   if (uniqueCount) {
-    status.textContent = `Images: ${uniqueCount} loaded`;
+    status.textContent = `Images loaded: ${uniqueCount}`;
   } else if (PUBLIC_IMAGE_BASE) {
     status.textContent = "Images: imageBase";
   } else if (USE_LOCAL_IMAGES) {
-    status.textContent = "Images: local assets";
+    status.textContent = "Images: local folder";
   } else {
     status.textContent = "Images: not loaded";
   }
@@ -211,12 +211,12 @@ function visibleAnnos(item) {
 
 function renderSummary() {
   const marked = Object.values(review).filter((entry) => entry.status).length;
-  const reviewedCases = DATA.cases.filter((item) => !caseIsOpen(item)).length;
+  const openCases = DATA.cases.filter((item) => caseIsOpen(item)).length;
   const problemCount = Object.values(review).filter((entry) => entry.status === "problem").length;
   const unsureCount = Object.values(review).filter((entry) => entry.status === "unsure").length;
-  $("summary").textContent = `${DATA.cases.length} cases · ${DATA.meta.total_items} GT items · ${DATA.meta.items_with_bbox} boxed · ${DATA.meta.items_unmatched} no bbox · ${DATA.meta.items_low_similarity} low sim · ${reviewedCases} cases reviewed · ${marked} marks · ${problemCount} problem / ${unsureCount} unsure`;
-  $("dataVersion").textContent = `data ${PUBLIC_VERSION_LABEL}`;
-  $("dataVersion").title = INTERNAL_VERSION === PUBLIC_VERSION ? "" : `internal token ${INTERNAL_VERSION}`;
+  $("summary").textContent = `${DATA.cases.length} cases · ${DATA.meta.total_items} annotations · ${openCases} open cases · ${marked} marks · ${problemCount} problem · ${unsureCount} unsure`;
+  $("dataVersion").textContent = `Release: ${PUBLIC_VERSION_LABEL}`;
+  $("dataVersion").title = PUBLIC_VERSION_LABEL;
 }
 
 function renderFilters() {
@@ -285,7 +285,9 @@ function renderCaseList() {
     const meta = document.createElement("div");
     meta.className = "case-meta";
     const open = item.annotations.filter((anno) => !annoStatus(item, anno)).length;
-    meta.textContent = `${item.category} / ${item.subcategory} · ${item.items_with_bbox}/${item.items_total} boxed · ${item.items_unmatched} no bbox · ${open} open`;
+    const category = item.category.replace(/^\d+_/, "");
+    const subcategory = item.subcategory.replace(/^\d+_/, "");
+    meta.textContent = `${category} / ${subcategory} · ${item.items_total} items · ${open} open`;
     button.append(top, meta);
     root.append(button);
   });
@@ -540,7 +542,7 @@ function renderDetails() {
   const item = currentCase();
   const anno = selectedAnno();
   if (!anno) {
-    $("selectedDetails").innerHTML = "<h2>No GT Item</h2>";
+    $("selectedDetails").innerHTML = "<p>No annotation selected.</p>";
     $("noteInput").value = review[caseKey(item)]?.note || "";
     return;
   }
@@ -550,14 +552,13 @@ function renderDetails() {
   const adjusted = validBbox(review[key]?.bbox);
   const quality = anno.quality === "ok" ? "ok" : anno.quality;
   $("selectedDetails").innerHTML = `
-    <h2>GT Item #${anno.index}</h2>
     <dl>
-      <dt>type</dt><dd><span class="type-badge">${anno.category_type}</span></dd>
-      <dt>quality</dt><dd><span class="quality-badge ${qualityClass(anno)}">${quality}</span></dd>
-      <dt>score</dt><dd>${anno.score ?? ""} ${anno.method || ""}</dd>
-      <dt>bbox</dt><dd data-bbox>${validBbox(bbox) ? `[${bbox.join(", ")}]${adjusted ? " edited" : ""}` : "no bbox"}</dd>
-      <dt>case</dt><dd>${item.items_with_bbox}/${item.items_total} boxed, ${item.items_unmatched} no bbox</dd>
-      <dt>status</dt><dd>${status || "open"}</dd>
+      <dt>Item</dt><dd>#${anno.index}</dd>
+      <dt>Type</dt><dd><span class="type-badge">${anno.category_type}</span></dd>
+      <dt>Quality</dt><dd><span class="quality-badge ${qualityClass(anno)}">${quality}</span></dd>
+      <dt>Box</dt><dd data-bbox>${validBbox(bbox) ? `[${bbox.join(", ")}]${adjusted ? " edited" : ""}` : "no bbox"}</dd>
+      <dt>Case</dt><dd>${item.items_with_bbox}/${item.items_total} boxed, ${item.items_unmatched} no bbox</dd>
+      <dt>Status</dt><dd>${status || "open"}</dd>
     </dl>
     <div class="text">${escapeHtml(anno.text || "")}</div>
   `;
@@ -752,7 +753,7 @@ function correctionPatchCases() {
 function exportCorrectionPatch() {
   const cases = correctionPatchCases();
   if (!cases.length) {
-    window.alert("No correction patch to export. Edit a box, mark an item, or add a correction note first.");
+    window.alert("No correction patch to export. Drag a bbox, mark an item Problem/Unsure, or add a correction note first. / 暂无可导出的修正。请先移动框、标记问题，或填写修正说明。");
     return;
   }
   const updateCount = cases.reduce(
@@ -787,7 +788,7 @@ function exportCorrectionPatch() {
     cases,
     submission: {
       github_repo: "https://github.com/zhihengli-casia/PureDocBench",
-      instruction: "Submit this JSON through the GT annotation correction issue template or a pull request."
+      instruction: "Submit this JSON as a GitHub issue or pull request attachment. Maintainers will validate the correction against the HTML and clean image before the next PureDocBench release."
     }
   };
   const stamp = new Date().toISOString().replace(/[:.]/g, "").replace("T", "_").slice(0, 17);

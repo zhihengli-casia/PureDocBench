@@ -4,16 +4,15 @@ This page defines the correction workflow for PureDocBench GT annotations.
 
 ## Current Public Release
 
-- The current release version is `puredocbench-v1.1`.
-- The dataset layout remains `images/`, `html/`, and `gt/`.
-- This release adds bbox annotations and includes GT fixes inside `gt/`.
-- For bbox-related results, write `PureDocBench = puredocbench-v1.1` in the experimental setup.
+Current release: `puredocbench-v1.1`.
+
+This release updates GT annotations and opens the correction workflow for community review.
 
 ## Review App
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_local_images)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
@@ -30,13 +29,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_v1_1_local_images
+http://127.0.0.1:8767/index.html?cb=puredocbench_v1_1_review_simple
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_local_images
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple
 ```
 
 ## Correction Flow
@@ -59,7 +58,7 @@ The review app exports this schema:
 
 ```json
 {
-  "schema_version": "puredocbench-gt-correction-patch-v1",
+  "schema_version": "puredocbench-annotation-correction-patch-v1",
   "base_annotation_version": "puredocbench-v1.1",
   "summary": {
     "case_count": 1,
@@ -88,13 +87,13 @@ The review app exports this schema:
 }
 ```
 
-For missing or duplicate annotations, use the case-level correction note. Accepted notes are converted into explicit `add_annotation`, `delete_annotation`, `update_type`, `update_text`, or `update_reading_order` changes in the next release.
+For missing or duplicate annotations, use the case-level correction note. Maintainers will convert accepted notes into explicit `add_annotation`, `delete_annotation`, `update_type`, `update_text`, or `update_reading_order` changes in the next release log.
 
-## Release Flow
+## Maintainer Release Flow
 
 1. Review correction patches visually.
 2. Apply accepted patches to `review_data.json`.
-3. Update `review_data.js` and `index.html` cache tags.
+3. Update `review_data.js`, `index.html` cache tags, and `GT_REPAIR_LOG.md`.
 4. Generate cover/outline previews for changed cases.
 5. Run validation.
 6. Package the HF release:
@@ -121,14 +120,3 @@ huggingface-cli upload zhihengli-casia/puredocbench \
   --repo-type dataset \
   --commit-message "Update latest GT manifest"
 ```
-
-## Evaluation Rule
-
-Every public score should record:
-
-- dataset version
-- GT version
-- evaluation script version
-- model output version
-
-For this release, use `PureDocBench = puredocbench-v1.1`; do not report benchmark results against an implicit `latest` release.
