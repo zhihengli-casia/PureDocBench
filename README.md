@@ -28,6 +28,14 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 - **2026-06-14**: Updated GT annotations and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. Release ID: `puredocbench-2026-06-14`.
 - **2026-05-08**: Initial public release of PureDocBench, including the paper PDF and full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench). Release ID: `puredocbench-2026-05-08`.
 
+## GT Annotation Examples
+
+The examples below show colored coordinate boxes over clean rendered pages from an academic paper, a slide deck, and a syllabus.
+
+<p align="center">
+  <img src="assets/figures/gt_coordinate_overlay_examples.png" alt="PureDocBench GT coordinate annotation examples" width="98%">
+</p>
+
 <p align="center">
   <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
 </p>
