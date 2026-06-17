@@ -30,7 +30,7 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 
 ## GT Annotation Examples
 
-The examples below show colored coordinate boxes over clean rendered pages from an academic paper, a slide deck, and a syllabus.
+The examples below show colored coordinate boxes over clean rendered pages from an academic paper, a patent form, and a tuition invoice.
 
 <p align="center">
   <img src="assets/figures/gt_coordinate_overlay_examples.png" alt="PureDocBench GT coordinate annotation examples" width="98%">
