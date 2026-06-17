@@ -25,8 +25,8 @@ PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 H
 
 ## Updates
 
-- **2026-06-14**: Released `puredocbench-v1.1` with updated GT annotations and a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections.
-- **2026-05-08**: Released `puredocbench-v1.0`, including the PureDocBench paper PDF and the initial full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench).
+- **2026-06-14**: Updated GT annotations and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections. Release ID: `puredocbench-2026-06-14`.
+- **2026-05-08**: Initial public release of PureDocBench, including the paper PDF and full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench). Release ID: `puredocbench-2026-05-08`.
 
 <p align="center">
   <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
@@ -123,17 +123,17 @@ Verify the split archive and reconstructed release:
 python scripts/verify_split_archive.py /path/to/downloaded/files
 
 python scripts/validate_release_manifest.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv
 ```
 
 ## GT Review
 
-Current release version: `puredocbench-v1.1`.
+Current release ID: `puredocbench-2026-06-14`.
 Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
 - Repository file:
   [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
 - Correction guide:
@@ -145,20 +145,20 @@ Local launch:
 
 ```bash
 mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench-v1.1/images/clean review/gt_case_compare_all_fixed7/assets/images
+ln -s /path/to/puredocbench-2026-06-14/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_v1_1_review_simple
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 The GitHub repository does not include the full image release. For visual
@@ -172,7 +172,7 @@ HTML/CSS sources:
 
 ```bash
 python scripts/add_gt_coordinates.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --in-place \
   --include-bbox \
@@ -180,7 +180,7 @@ python scripts/add_gt_coordinates.py \
   --report coordinate_report.json
 
 python scripts/validate_release_manifest.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --require-coordinates \
   --require-bbox
@@ -203,12 +203,12 @@ PureDocBench includes a public CLI for model-agnostic inference, lightweight sco
 pip install -e .
 
 puredocbench infer \
-  --images /path/to/puredocbench-v1.1/images/clean \
+  --images /path/to/puredocbench-2026-06-14/images/clean \
   --output-dir predictions/my_model_clean \
   --command-template 'python my_model_infer.py --image {image} --out {output}'
 
 puredocbench score \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --pred-dir predictions/my_model_clean \
   --track clean \

@@ -12,9 +12,9 @@ body:
   - type: input
     id: annotation_version
     attributes:
-      label: Base release version / 基础 release 版本
-      description: Copy this from the review app data version. / 请从 review app 顶部的 data version 复制。
-      placeholder: "puredocbench-v1.1"
+      label: Base release ID / 基础 release ID
+      description: Copy this from the review app release ID. / 请从 review app 顶部的 release ID 复制。
+      placeholder: "puredocbench-2026-06-14"
     validations:
       required: true
   - type: input

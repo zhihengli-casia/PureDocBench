@@ -16,8 +16,8 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 ## 更新
 
-- **2026-06-14**：发布 `puredocbench-v1.1`，更新 GT 标注，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。
-- **2026-05-08**：发布 `puredocbench-v1.0`，包括 PureDocBench 论文 PDF 和初始完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
+- **2026-06-14**：更新 GT 标注，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。Release ID：`puredocbench-2026-06-14`。
+- **2026-05-08**：首次开源 PureDocBench，包括论文 PDF 和完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。Release ID：`puredocbench-2026-05-08`。
 
 <p align="center">
   <img src="../assets/figures/fig3_data_overview_final.png" alt="PureDocBench 数据概览" width="92%">
@@ -113,16 +113,16 @@ cat pdb_full.tar.part-* | tar -xf -
 python scripts/verify_split_archive.py /path/to/downloaded/files
 
 python scripts/validate_release_manifest.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv
 ```
 
 ## GT 标注 Review
 
-当前 release 版本：`puredocbench-v1.1`。可以使用 review app 检查标注并导出 correction patch。
+当前 release ID：`puredocbench-2026-06-14`。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
 - 仓库文件：
   [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - 修正说明：
@@ -134,20 +134,20 @@ python scripts/validate_release_manifest.py \
 
 ```bash
 mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench-v1.1/images/clean review/gt_case_compare_all_fixed7/assets/images
+ln -s /path/to/puredocbench-2026-06-14/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 打开：
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_v1_1_review_simple
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 静态 app URL：
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Images`，
@@ -159,7 +159,7 @@ GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Ima
 
 ```bash
 python scripts/add_gt_coordinates.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --in-place \
   --include-bbox \
@@ -167,7 +167,7 @@ python scripts/add_gt_coordinates.py \
   --report coordinate_report.json
 
 python scripts/validate_release_manifest.py \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --require-coordinates \
   --require-bbox
@@ -189,12 +189,12 @@ Chrome。
 pip install -e .
 
 puredocbench infer \
-  --images /path/to/puredocbench-v1.1/images/clean \
+  --images /path/to/puredocbench-2026-06-14/images/clean \
   --output-dir predictions/my_model_clean \
   --command-template 'python my_model_infer.py --image {image} --out {output}'
 
 puredocbench score \
-  --release-root /path/to/puredocbench-v1.1 \
+  --release-root /path/to/puredocbench-2026-06-14 \
   --manifest manifests/release_manifest_candidate_1475.csv \
   --pred-dir predictions/my_model_clean \
   --track clean \

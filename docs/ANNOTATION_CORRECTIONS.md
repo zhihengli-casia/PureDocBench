@@ -4,15 +4,15 @@ This page defines the correction workflow for PureDocBench GT annotations.
 
 ## Current Public Release
 
-Current release: `puredocbench-v1.1`.
+Current release ID: `puredocbench-2026-06-14`.
 
-This release updates GT annotations and opens the correction workflow for community review.
+This update refreshes GT annotations and opens the correction workflow for community review.
 
 ## Review App
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
@@ -22,20 +22,20 @@ Local launch:
 
 ```bash
 mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench-v1.1/images/clean review/gt_case_compare_all_fixed7/assets/images
+ln -s /path/to/puredocbench-2026-06-14/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_v1_1_review_simple
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_v1_1_review_simple
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
 ```
 
 ## Correction Flow
@@ -59,7 +59,7 @@ The review app exports this schema:
 ```json
 {
   "schema_version": "puredocbench-annotation-correction-patch-v1",
-  "base_annotation_version": "puredocbench-v1.1",
+  "base_annotation_version": "puredocbench-2026-06-14",
   "summary": {
     "case_count": 1,
     "bbox_update_count": 1,
@@ -109,10 +109,10 @@ python scripts/package_hf_gt_release.py \
 
 ```bash
 huggingface-cli upload zhihengli-casia/puredocbench \
-  dist/hf_gt/puredocbench-v1.1 \
-  gt/versions/puredocbench-v1.1 \
+  dist/hf_gt/puredocbench-2026-06-14 \
+  gt/versions/puredocbench-2026-06-14 \
   --repo-type dataset \
-  --commit-message "Add GT puredocbench-v1.1"
+  --commit-message "Add GT puredocbench-2026-06-14"
 
 huggingface-cli upload zhihengli-casia/puredocbench \
   dist/hf_gt/latest \
