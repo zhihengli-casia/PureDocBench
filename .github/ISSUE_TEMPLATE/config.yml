@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: Open GT Review App / 打开 GT Review App
-    url: https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
+    url: https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui
     about: Inspect public GT annotations and export a correction patch. / 检查公开 GT 标注并导出修正 patch。
   - name: Read GT Correction Guide / 阅读 GT 修正说明
     url: https://github.com/zhihengli-casia/PureDocBench/blob/main/docs/ANNOTATION_CORRECTIONS.md

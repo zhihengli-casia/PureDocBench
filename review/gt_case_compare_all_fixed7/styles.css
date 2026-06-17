@@ -70,41 +70,14 @@ summary { cursor: pointer; }
   background: #e9f1ff;
   color: #0b4cb8;
 }
-.advanced-menu {
-  position: relative;
-  flex: 0 0 auto;
-}
-.advanced-menu > summary {
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #cbd3df;
-  border-radius: 6px;
-  padding: 6px 10px;
-  background: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  list-style: none;
-}
-.advanced-menu > summary::-webkit-details-marker,
-.filter-section > summary::-webkit-details-marker,
-.view-options > summary::-webkit-details-marker,
-.advanced-annotations > summary::-webkit-details-marker {
+.filter-section > summary::-webkit-details-marker {
   display: none;
 }
-.advanced-popover {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 8px);
-  z-index: 20;
-  width: 260px;
-  display: grid;
-  gap: 8px;
-  padding: 10px;
-  border: 1px solid #cbd3df;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 12px 28px rgba(20, 31, 46, 0.14);
+.release-line {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
 }
 .data-version {
   max-width: 100%;
@@ -125,7 +98,7 @@ summary { cursor: pointer; }
 .layout {
   height: calc(100vh - 68px);
   display: grid;
-  grid-template-columns: 300px minmax(520px, 1fr) 350px;
+  grid-template-columns: 300px minmax(520px, 1fr) 330px;
 }
 .case-panel,
 .anno-panel {
@@ -154,8 +127,7 @@ summary { cursor: pointer; }
   flex: 0 0 auto;
   border-bottom: 1px solid #e4e8ef;
 }
-.filter-section > summary,
-.advanced-annotations > summary {
+.filter-section > summary {
   padding: 9px 10px;
   color: #465366;
   font-size: 12px;
@@ -273,53 +245,6 @@ summary { cursor: pointer; }
   color: #465366;
 }
 .viewer-controls input[type="range"] { width: 120px; vertical-align: middle; }
-.view-options {
-  position: relative;
-}
-.view-options > summary {
-  min-height: 30px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #d5dce7;
-  border-radius: 6px;
-  padding: 5px 8px;
-  background: #fff;
-  color: #465366;
-  font-size: 12px;
-  font-weight: 700;
-  list-style: none;
-}
-.view-options > div {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 8px);
-  z-index: 12;
-  width: 220px;
-  display: grid;
-  gap: 8px;
-  padding: 10px;
-  border: 1px solid #cbd3df;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 12px 28px rgba(20, 31, 46, 0.14);
-}
-.review-steps {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 12px;
-  border-bottom: 1px solid #d7dee8;
-  background: #f8fafc;
-  color: #465366;
-  font-size: 12px;
-  font-weight: 650;
-}
-.review-steps span {
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: #eef4ff;
-  color: #0b4cb8;
-}
 .stage-scroll {
   flex: 1 1 0;
   overflow: auto;
@@ -469,27 +394,8 @@ summary { cursor: pointer; }
 }
 .quality-badge.low { background: #fff6df; color: #9a6700; }
 .quality-badge.unmatched { background: #fff0ed; color: #b42318; }
-.review-actions {
-  flex: 0 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 0;
-}
-#clearStatus { grid-column: 1 / 2; }
-#resetBox { grid-column: 2 / -1; }
-#noteInput {
-  width: 100%;
-  margin: 9px 0 8px;
-  min-height: 68px;
-  resize: vertical;
-  border: 1px solid #cbd3df;
-  border-radius: 6px;
-  padding: 8px;
-}
-#markCaseOk { width: 100%; }
 .correction-panel {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   margin: 0;
   background: #fff;
 }
@@ -502,7 +408,7 @@ summary { cursor: pointer; }
 }
 #caseIssueInput {
   width: 100%;
-  min-height: 56px;
+  min-height: 118px;
   resize: vertical;
   border: 1px solid #cbd3df;
   border-radius: 6px;
@@ -527,19 +433,6 @@ summary { cursor: pointer; }
   text-decoration: none;
 }
 .correction-actions a:hover { text-decoration: underline; }
-.advanced-annotations {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-.advanced-annotations[open] {
-  border-top: 1px solid #e4e8ef;
-}
-.advanced-annotations .anno-list {
-  flex: 1 1 auto;
-  min-height: 0;
-}
 .image-warning {
   position: absolute;
   left: 50%;

@@ -133,7 +133,7 @@ Current release ID: `puredocbench-2026-06-14`.
 Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui)
 - Repository file:
   [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
 - Correction guide:
@@ -152,13 +152,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 The GitHub repository does not include the full image release. For visual

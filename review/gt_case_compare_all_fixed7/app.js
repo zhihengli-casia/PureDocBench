@@ -17,7 +17,6 @@ let selectedId = null;
 let activeCategories = new Set();
 let activeTypes = new Set();
 let query = "";
-let onlyOpen = false;
 let review = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 let suppressNextBoxClick = false;
 let boxEdit = null;
@@ -99,10 +98,10 @@ function updateImageSourceStatus() {
   const uniqueCount = new Set(localImageFiles.values()).size;
   if (uniqueCount) {
     status.textContent = `Images loaded: ${uniqueCount}`;
+  } else if (USE_LOCAL_IMAGES) {
+    status.textContent = "Images: not loaded";
   } else if (PUBLIC_IMAGE_BASE) {
     status.textContent = "Images: imageBase";
-  } else if (USE_LOCAL_IMAGES) {
-    status.textContent = "Images: local folder";
   } else {
     status.textContent = "Images: not loaded";
   }
@@ -195,8 +194,7 @@ function matchesQuery(item) {
 function visibleCases() {
   return DATA.cases.filter((item) =>
     activeCategories.has(item.category) &&
-    matchesQuery(item) &&
-    (!onlyOpen || caseIsOpen(item))
+    matchesQuery(item)
   );
 }
 
@@ -210,11 +208,7 @@ function visibleAnnos(item) {
 }
 
 function renderSummary() {
-  const marked = Object.values(review).filter((entry) => entry.status).length;
-  const openCases = DATA.cases.filter((item) => caseIsOpen(item)).length;
-  const problemCount = Object.values(review).filter((entry) => entry.status === "problem").length;
-  const unsureCount = Object.values(review).filter((entry) => entry.status === "unsure").length;
-  $("summary").textContent = `${DATA.cases.length} cases · ${DATA.meta.total_items} annotations · ${openCases} open cases · ${marked} marks · ${problemCount} problem · ${unsureCount} unsure`;
+  $("summary").textContent = `${DATA.cases.length} cases · ${DATA.meta.total_items} annotations · ${DATA.meta.items_with_bbox} boxed · ${DATA.meta.items_unmatched} no bbox`;
   $("dataVersion").textContent = `Release: ${PUBLIC_VERSION_LABEL}`;
   $("dataVersion").title = PUBLIC_VERSION_LABEL;
 }
@@ -245,6 +239,7 @@ function renderFilters() {
 
 function renderTypeFilters() {
   const root = $("typeFilters");
+  if (!root) return;
   const types = Object.keys(DATA.meta.type_counts).sort();
   if (!activeTypes.size) types.forEach((type) => activeTypes.add(type));
   root.innerHTML = "";
@@ -278,16 +273,13 @@ function renderCaseList() {
     top.className = "case-name";
     const name = document.createElement("strong");
     name.textContent = item.page_id.split("/").pop();
-    const dot = document.createElement("span");
-    dot.className = `status-dot ${statusClass(caseStatus(item))}`;
-    top.append(name, dot);
+    top.append(name);
 
     const meta = document.createElement("div");
     meta.className = "case-meta";
-    const open = item.annotations.filter((anno) => !annoStatus(item, anno)).length;
     const category = item.category.replace(/^\d+_/, "");
     const subcategory = item.subcategory.replace(/^\d+_/, "");
-    meta.textContent = `${category} / ${subcategory} · ${item.items_total} items · ${open} open`;
+    meta.textContent = `${category} / ${subcategory} · ${item.items_with_bbox}/${item.items_total} boxed · ${item.items_unmatched} no bbox`;
     button.append(top, meta);
     root.append(button);
   });
@@ -357,8 +349,8 @@ function renderViewer() {
   svg.setAttribute("viewBox", `0 0 ${item.width} ${item.height}`);
   svg.innerHTML = "";
   const showLabels = $("showLabels").checked;
-  const selectedOnly = $("showOnlySelected").checked;
-  const coverBoxes = $("coverBoxes").checked;
+  const selectedOnly = $("showOnlySelected")?.checked || false;
+  const coverBoxes = $("coverBoxes")?.checked || false;
 
   visibleAnnos(item).forEach((anno) => {
     const isSelected = annoKey(anno) === String(selectedId);
@@ -449,12 +441,13 @@ function clampBbox(bbox, item) {
 
 function setEditedBbox(item, anno, bbox) {
   const key = keyFor(item.page_id, annoKey(anno));
+  const noteInput = $("noteInput");
   review[key] = {
     ...(review[key] || {}),
     bbox,
     poly: bboxToPoly(bbox),
     bbox_version: STORAGE_VERSION,
-    note: $("noteInput").value || review[key]?.note || ""
+    note: noteInput?.value || review[key]?.note || ""
   };
   saveReview();
 }
@@ -543,34 +536,30 @@ function renderDetails() {
   const anno = selectedAnno();
   if (!anno) {
     $("selectedDetails").innerHTML = "<p>No annotation selected.</p>";
-    $("noteInput").value = review[caseKey(item)]?.note || "";
+    const noteInput = $("noteInput");
+    if (noteInput) noteInput.value = review[caseKey(item)]?.note || "";
     return;
   }
   const key = keyFor(item.page_id, annoKey(anno));
-  const status = annoStatus(item, anno);
   const bbox = displayBbox(item, anno);
   const adjusted = validBbox(review[key]?.bbox);
-  const quality = anno.quality === "ok" ? "ok" : anno.quality;
   $("selectedDetails").innerHTML = `
     <dl>
       <dt>Item</dt><dd>#${anno.index}</dd>
       <dt>Type</dt><dd><span class="type-badge">${anno.category_type}</span></dd>
-      <dt>Quality</dt><dd><span class="quality-badge ${qualityClass(anno)}">${quality}</span></dd>
       <dt>Box</dt><dd data-bbox>${validBbox(bbox) ? `[${bbox.join(", ")}]${adjusted ? " edited" : ""}` : "no bbox"}</dd>
       <dt>Case</dt><dd>${item.items_with_bbox}/${item.items_total} boxed, ${item.items_unmatched} no bbox</dd>
-      <dt>Status</dt><dd>${status || "open"}</dd>
     </dl>
     <div class="text">${escapeHtml(anno.text || "")}</div>
   `;
-  $("noteInput").value = review[key]?.note || "";
-  document.querySelectorAll(".review-actions button[data-status]").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.status === status);
-  });
+  const noteInput = $("noteInput");
+  if (noteInput) noteInput.value = review[key]?.note || "";
 }
 
 function renderAnnoList() {
   const item = currentCase();
   const root = $("annoList");
+  if (!root) return;
   root.innerHTML = "";
   visibleAnnos(item).forEach((anno) => {
     const button = document.createElement("button");
@@ -610,64 +599,6 @@ function renderCaseIssue() {
   const input = $("caseIssueInput");
   if (!input) return;
   input.value = review[caseKey(currentCase())]?.correction_note || "";
-}
-
-function setAnnoStatus(status) {
-  const item = currentCase();
-  const anno = selectedAnno();
-  if (!anno) return;
-  const key = keyFor(item.page_id, annoKey(anno));
-  review[key] = { ...(review[key] || {}), status, note: $("noteInput").value };
-  saveReview();
-  renderAll();
-}
-
-function clearAnnoStatus() {
-  const item = currentCase();
-  const anno = selectedAnno();
-  if (!anno) return;
-  const key = keyFor(item.page_id, annoKey(anno));
-  const entry = { ...(review[key] || {}) };
-  delete entry.status;
-  delete entry.note;
-  if (Object.keys(entry).length) review[key] = entry;
-  else delete review[key];
-  saveReview();
-  renderAll();
-}
-
-function resetSelectedBox() {
-  const item = currentCase();
-  const anno = selectedAnno();
-  if (!anno) return;
-  const key = keyFor(item.page_id, annoKey(anno));
-  const entry = { ...(review[key] || {}) };
-  delete entry.bbox;
-  delete entry.poly;
-  if (Object.keys(entry).length) review[key] = entry;
-  else delete review[key];
-  saveReview();
-  renderAll();
-}
-
-function markCaseOk() {
-  const item = currentCase();
-  review[caseKey(item)] = { ...(review[caseKey(item)] || {}), status: "ok", note: review[caseKey(item)]?.note || "" };
-  item.annotations.forEach((anno) => {
-    const key = keyFor(item.page_id, annoKey(anno));
-    review[key] = { ...(review[key] || {}), status: review[key]?.status || "ok" };
-  });
-  saveReview();
-  renderAll();
-}
-
-function exportReview() {
-  const payload = {
-    exported_at: new Date().toISOString(),
-    meta: DATA.meta,
-    review
-  };
-  downloadJson("puredocbench_full_gt_case_compare_review.json", payload);
 }
 
 function downloadJson(filename, payload) {
@@ -753,7 +684,7 @@ function correctionPatchCases() {
 function exportCorrectionPatch() {
   const cases = correctionPatchCases();
   if (!cases.length) {
-    window.alert("No correction patch to export. Drag a bbox, mark an item Problem/Unsure, or add a correction note first. / 暂无可导出的修正。请先移动框、标记问题，或填写修正说明。");
+    window.alert("No correction patch to export. Drag a bbox or add a correction note first. / 暂无可导出的修正。请先移动标注框，或填写修正说明。");
     return;
   }
   const updateCount = cases.reduce(
@@ -821,44 +752,32 @@ function bindStagePan() {
 }
 
 function bindEvents() {
-  $("caseSearch").addEventListener("input", (event) => {
+  const bind = (id, event, handler) => {
+    const node = $(id);
+    if (node) node.addEventListener(event, handler);
+  };
+  bind("caseSearch", "input", (event) => {
     query = event.target.value.trim();
     renderCaseList();
   });
-  $("onlyOpen").addEventListener("change", (event) => {
-    onlyOpen = event.target.checked;
-    renderCaseList();
-  });
-  $("prevCase").addEventListener("click", () => stepVisibleCase(-1));
-  $("nextCase").addEventListener("click", () => stepVisibleCase(1));
-  $("exportReview").addEventListener("click", exportReview);
-  $("exportCorrectionPatch").addEventListener("click", exportCorrectionPatch);
-  $("loadLocalImages").addEventListener("click", () => $("localImageDir").click());
-  $("localImageDir").addEventListener("change", (event) => setLocalImages(event.target.files));
-  $("clearLocalEdits").addEventListener("click", () => {
-    review = {};
-    localStorage.removeItem(STORAGE_KEY);
-    renderAll();
-  });
-  $("showLabels").addEventListener("change", renderViewer);
-  $("showOnlySelected").addEventListener("change", renderViewer);
-  $("coverBoxes").addEventListener("change", renderViewer);
-  $("showProblemOnly").addEventListener("change", () => { renderViewer(); renderAnnoList(); });
-  $("zoom").addEventListener("input", renderViewer);
-  document.querySelectorAll(".review-actions button[data-status]").forEach((button) => {
-    button.addEventListener("click", () => setAnnoStatus(button.dataset.status));
-  });
-  $("clearStatus").addEventListener("click", clearAnnoStatus);
-  $("resetBox").addEventListener("click", resetSelectedBox);
-  $("markCaseOk").addEventListener("click", markCaseOk);
-  $("caseIssueInput").addEventListener("input", () => {
+  bind("prevCase", "click", () => stepVisibleCase(-1));
+  bind("nextCase", "click", () => stepVisibleCase(1));
+  bind("exportCorrectionPatch", "click", exportCorrectionPatch);
+  bind("loadLocalImages", "click", () => $("localImageDir").click());
+  bind("localImageDir", "change", (event) => setLocalImages(event.target.files));
+  bind("showLabels", "change", renderViewer);
+  bind("showOnlySelected", "change", renderViewer);
+  bind("coverBoxes", "change", renderViewer);
+  bind("showProblemOnly", "change", () => { renderViewer(); renderAnnoList(); });
+  bind("zoom", "input", renderViewer);
+  bind("caseIssueInput", "input", () => {
     const item = currentCase();
     const key = caseKey(item);
     review[key] = { ...(review[key] || {}), correction_note: $("caseIssueInput").value };
     if (!review[key].correction_note && !review[key].status && !review[key].note) delete review[key];
     saveReview();
   });
-  $("noteInput").addEventListener("input", () => {
+  bind("noteInput", "input", () => {
     const item = currentCase();
     const anno = selectedAnno();
     const key = anno ? keyFor(item.page_id, annoKey(anno)) : caseKey(item);
@@ -869,9 +788,6 @@ function bindEvents() {
     if (event.target.matches("input, textarea")) return;
     if (event.key === "ArrowLeft") stepVisibleCase(-1);
     if (event.key === "ArrowRight") stepVisibleCase(1);
-    if (event.key === "1") setAnnoStatus("ok");
-    if (event.key === "2") setAnnoStatus("problem");
-    if (event.key === "3") setAnnoStatus("unsure");
   });
   window.addEventListener("pointermove", updateBoxEdit);
   window.addEventListener("pointerup", finishBoxEdit);

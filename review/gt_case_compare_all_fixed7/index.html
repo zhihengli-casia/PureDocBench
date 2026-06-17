@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store">
   <title>PureDocBench Annotation Review</title>
-  <link rel="stylesheet" href="styles.css?puredocbench_2026_06_14_review">
+  <link rel="stylesheet" href="styles.css?puredocbench_2026_06_14_clean_ui">
 </head>
 <body>
   <header class="topbar">
     <div class="top-title">
       <h1>PureDocBench Annotation Review</h1>
       <p id="summary">Loading...</p>
+      <p class="release-line"><span id="dataVersion"></span><span id="imageSourceStatus">Images: not loaded</span></p>
     </div>
     <div class="top-actions">
       <button id="loadLocalImages" class="primary-button" type="button">Load Images / 加载图片</button>
@@ -20,16 +21,6 @@
       <a class="action-link" href="../../docs/ANNOTATION_CORRECTIONS.md" target="_blank" rel="noopener">Guide / 指南</a>
       <button id="prevCase" type="button">Prev</button>
       <button id="nextCase" type="button">Next</button>
-      <details class="advanced-menu">
-        <summary>Advanced</summary>
-        <div class="advanced-popover">
-          <span id="dataVersion" class="data-version"></span>
-          <span id="imageSourceStatus" class="image-source-status">Images: not loaded</span>
-          <a class="action-link" href="../../README.md#updates" target="_blank" rel="noopener">Updates</a>
-          <button id="exportReview" type="button">Export Review JSON</button>
-          <button id="clearLocalEdits" type="button">Clear Local Edits</button>
-        </div>
-      </details>
     </div>
   </header>
 
@@ -37,7 +28,6 @@
     <aside class="case-panel">
       <div class="toolbar">
         <input id="caseSearch" type="search" placeholder="Search case, text, category / 搜索页面、文本、类别">
-        <label><input id="onlyOpen" type="checkbox"> Open only / 只看未处理</label>
       </div>
       <details class="filter-section">
         <summary>Categories / 类别筛选</summary>
@@ -52,20 +42,7 @@
         <div class="viewer-controls">
           <label><input id="showLabels" type="checkbox" checked> Labels / 编号</label>
           <label>Zoom <input id="zoom" type="range" min="35" max="190" value="78"></label>
-          <details class="view-options">
-            <summary>View options</summary>
-            <div>
-              <label><input id="showOnlySelected" type="checkbox"> Selected only / 只看选中</label>
-              <label><input id="showProblemOnly" type="checkbox"> Problem boxes / 只看问题</label>
-              <label><input id="coverBoxes" type="checkbox"> Cover / 遮盖框</label>
-            </div>
-          </details>
         </div>
-      </div>
-      <div class="review-steps">
-        <span>1. Load images / 加载图片</span>
-        <span>2. Check boxes / 检查标注框</span>
-        <span>3. Export patch or submit issue / 导出修正或提交 Issue</span>
       </div>
       <div id="stageScroll" class="stage-scroll">
         <div id="stage" class="stage">
@@ -83,36 +60,19 @@
         <h2>Selected Annotation / 当前标注</h2>
         <div id="selectedDetails" class="details"></div>
       </section>
-      <section class="side-section">
-        <h2>Mark Item / 标记当前项</h2>
-        <div class="review-actions">
-          <button data-status="ok" type="button">OK</button>
-          <button data-status="problem" type="button">Problem</button>
-          <button data-status="unsure" type="button">Unsure</button>
-          <button id="clearStatus" type="button">Clear</button>
-          <button id="resetBox" type="button">Reset Box</button>
-        </div>
-        <textarea id="noteInput" placeholder="Optional note for selected item / 当前标注备注，可选"></textarea>
-        <button id="markCaseOk" type="button">Mark This Page OK / 本页无误</button>
-      </section>
       <section class="side-section correction-panel">
-        <h2>Submit Correction / 提交修正</h2>
-        <label for="caseIssueInput">Correction note / 标注修正说明</label>
-        <textarea id="caseIssueInput" placeholder="Describe the issue: missing annotation, shifted box, wrong type, reading order, etc. 可用中文说明漏标、框偏移、类型错误、阅读顺序错误等。"></textarea>
+        <h2>Submit Correction / 提交标注修正</h2>
+        <label for="caseIssueInput">Issue description / 问题说明</label>
+        <textarea id="caseIssueInput" placeholder="Missing annotation, shifted box, wrong type, reading order, etc. 可用中文说明漏标、框偏移、类型错误、阅读顺序错误等。"></textarea>
         <div class="correction-actions">
           <button id="exportCorrectionPatch" type="button">Export Patch / 导出 Patch</button>
           <a class="action-link primary-link" href="https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml" target="_blank" rel="noopener">Submit Issue / 提交 Issue</a>
         </div>
       </section>
-      <details class="advanced-annotations">
-        <summary>Annotation list and type filters / 标注列表与类型筛选</summary>
-        <div id="typeFilters" class="type-filters"></div>
-        <div id="annoList" class="anno-list"></div>
-      </details>
     </aside>
   </main>
 
-  <script src="review_data.js?puredocbench_2026_06_14_review"></script>
-  <script src="app.js?puredocbench_2026_06_14_review"></script>
+  <script src="review_data.js?puredocbench_2026_06_14_clean_ui"></script>
+  <script src="app.js?puredocbench_2026_06_14_clean_ui"></script>
 </body>
 </html>

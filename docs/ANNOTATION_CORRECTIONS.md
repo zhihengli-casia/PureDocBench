@@ -12,7 +12,7 @@ This update refreshes GT annotations and opens the correction workflow for commu
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
@@ -29,13 +29,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 ## Correction Flow

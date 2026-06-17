@@ -122,7 +122,7 @@ python scripts/validate_release_manifest.py \
 当前 release ID：`puredocbench-2026-06-14`。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui)
 - 仓库文件：
   [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - 修正说明：
@@ -141,13 +141,13 @@ python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 打开：
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_review
+http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 静态 app URL：
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_review
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui
 ```
 
 GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Images`，
