@@ -44,6 +44,16 @@ def _write_yaml(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def _ensure_omnidocbench_relation(gt_payload: dict[str, Any]) -> None:
+    extra = gt_payload.get("extra")
+    if not isinstance(extra, dict):
+        extra = {}
+        gt_payload["extra"] = extra
+
+    if not isinstance(extra.get("relation"), list):
+        extra["relation"] = []
+
+
 def export_omnidocbench(
     release_root: Path,
     manifest_path: Path,
@@ -68,6 +78,7 @@ def export_omnidocbench(
     for row in rows:
         gt_payload = read_json(release_root / "gt" / row["gt_rel"])
         gt_payload.setdefault("page_info", {})["image_path"] = row[column]
+        _ensure_omnidocbench_relation(gt_payload)
         gt_out.append(gt_payload)
 
         pred_name = Path(row[column]).with_suffix(".md").name
