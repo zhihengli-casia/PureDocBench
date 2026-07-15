@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive sortable leaderboard for PureDocBench.">
+  <title>PureDocBench Interactive Leaderboard</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #637083;
+      --border: #d9e0ea;
+      --accent: #3157d5;
+      --accent-soft: #edf1ff;
+      --pipeline: #e9f2ff;
+      --e2e: #fff0ef;
+      --vlm: #ecf8ef;
+      --shadow: 0 18px 50px rgba(29, 44, 79, 0.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1420;
+        --panel: #171e2c;
+        --text: #edf2ff;
+        --muted: #aab4c6;
+        --border: #303a4d;
+        --accent: #8ca5ff;
+        --accent-soft: #242f55;
+        --pipeline: #1d314b;
+        --e2e: #45272a;
+        --vlm: #203c2a;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1880px, calc(100% - 32px)); margin: 34px auto 54px; }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-end;
+      margin-bottom: 22px;
+    }
+    h1 { margin: 0 0 6px; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.035em; }
+    .subtitle { margin: 0; color: var(--muted); max-width: 800px; }
+    .back-link { color: var(--accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .back-link:hover { text-decoration: underline; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) minmax(180px, 260px) auto;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    input, select, .reset {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--text);
+      padding: 9px 12px;
+      font: inherit;
+    }
+    input:focus, select:focus, .reset:focus, th button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      outline-offset: 1px;
+    }
+    .reset { width: auto; cursor: pointer; font-weight: 700; color: var(--accent); }
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 16px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .table-wrap { overflow: auto; max-height: calc(100vh - 260px); }
+    table { width: 100%; min-width: 1850px; border-collapse: separate; border-spacing: 0; }
+    th, td {
+      padding: 9px 10px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    th:last-child, td:last-child { border-right: 0; }
+    thead th {
+      position: sticky;
+      z-index: 3;
+      background: var(--panel);
+      color: var(--text);
+      font-size: 12px;
+    }
+    thead tr:first-child th { top: 0; height: 42px; }
+    thead tr:nth-child(2) th { top: 42px; }
+    thead .track { text-align: center; color: var(--muted); letter-spacing: 0.02em; }
+    th button {
+      width: 100%;
+      padding: 3px 16px 3px 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: 750;
+      text-align: right;
+      cursor: pointer;
+      position: relative;
+    }
+    th.left button { text-align: left; }
+    th button::after { content: "↕"; position: absolute; right: 0; color: var(--muted); }
+    th[aria-sort="ascending"] button,
+    th[aria-sort="descending"] button { color: var(--accent); }
+    th[aria-sort="ascending"] button::after { content: "↑"; color: var(--accent); }
+    th[aria-sort="descending"] button::after { content: "↓"; color: var(--accent); }
+    tbody tr:hover td { background: var(--accent-soft); }
+    td.rank { color: var(--muted); text-align: center; width: 54px; }
+    td.model, th.left { text-align: left; }
+    td.model a { color: var(--accent); font-weight: 750; text-decoration: none; }
+    td.model a:hover { text-decoration: underline; }
+    td.family { text-align: left; }
+    .pill { display: inline-block; border-radius: 999px; padding: 3px 8px; font-size: 12px; font-weight: 700; }
+    .pipeline { background: var(--pipeline); }
+    .e2e { background: var(--e2e); }
+    .vlm { background: var(--vlm); }
+    .avg3 { font-weight: 800; background: color-mix(in srgb, var(--accent-soft) 65%, transparent); }
+    .notes { margin: 16px 2px 0; color: var(--muted); font-size: 13px; }
+    .notes a { color: var(--accent); }
+    @media (max-width: 760px) {
+      main { width: min(100% - 18px, 1880px); margin-top: 20px; }
+      .hero { align-items: flex-start; flex-direction: column; }
+      .controls { grid-template-columns: 1fr; }
+      .reset { width: 100%; }
+      .status-bar { flex-direction: column; gap: 3px; }
+      .table-wrap { max-height: calc(100vh - 340px); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div>
+        <h1>PureDocBench Leaderboard</h1>
+        <p class="subtitle">Search or filter models, then click any metric header to sort. The first click follows the metric direction: descending for ↑ and ascending for ↓.</p>
+      </div>
+      <a class="back-link" href="https://github.com/zhihengli-casia/PureDocBench#main-leaderboard">README leaderboard →</a>
+    </header>
+
+    <section class="panel" aria-label="Interactive PureDocBench leaderboard">
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search model or parameter size…" aria-label="Search models">
+        <select id="family" aria-label="Filter by architecture family">
+          <option value="">All architecture families</option>
+          <option value="Pipeline">Pipeline / Multi-stage</option>
+          <option value="End-to-End">End-to-End Specialists</option>
+          <option value="General VLM">General VLMs</option>
+        </select>
+        <button class="reset" id="reset" type="button">Reset to Avg₃</button>
+      </div>
+      <div class="status-bar">
+        <span id="status" aria-live="polite"></span>
+        <span>Overall / FormulaCDM / TableTEDS / Avg₃: higher is better · TextEdit / ROEdit: lower is better</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2" class="track">Rank</th>
+              <th rowspan="2" class="left" data-sort-index="0"><button type="button">Model</button></th>
+              <th rowspan="2" class="track">Architecture</th>
+              <th rowspan="2" class="track">Params</th>
+              <th colspan="5" class="track">Clean</th>
+              <th colspan="5" class="track">Digital Degraded</th>
+              <th colspan="5" class="track">Real Degraded</th>
+              <th rowspan="2" data-sort-index="19" data-default-direction="desc"><button type="button">Avg<sub>3</sub>↑</button></th>
+            </tr>
+            <tr>
+              <th data-sort-index="4" data-default-direction="desc"><button type="button">Overall↑</button></th>
+              <th data-sort-index="5" data-default-direction="asc"><button type="button">Text<sup>Edit</sup>↓</button></th>
+              <th data-sort-index="6" data-default-direction="desc"><button type="button">Formula<sup>CDM</sup>↑</button></th>
+              <th data-sort-index="7" data-default-direction="desc"><button type="button">Table<sup>TEDS</sup>↑</button></th>
+              <th data-sort-index="8" data-default-direction="asc"><button type="button">RO<sup>Edit</sup>↓</button></th>
+              <th data-sort-index="9" data-default-direction="desc"><button type="button">Overall↑</button></th>
+              <th data-sort-index="10" data-default-direction="asc"><button type="button">Text<sup>Edit</sup>↓</button></th>
+              <th data-sort-index="11" data-default-direction="desc"><button type="button">Formula<sup>CDM</sup>↑</button></th>
+              <th data-sort-index="12" data-default-direction="desc"><button type="button">Table<sup>TEDS</sup>↑</button></th>
+              <th data-sort-index="13" data-default-direction="asc"><button type="button">RO<sup>Edit</sup>↓</button></th>
+              <th data-sort-index="14" data-default-direction="desc"><button type="button">Overall↑</button></th>
+              <th data-sort-index="15" data-default-direction="asc"><button type="button">Text<sup>Edit</sup>↓</button></th>
+              <th data-sort-index="16" data-default-direction="desc"><button type="button">Formula<sup>CDM</sup>↑</button></th>
+              <th data-sort-index="17" data-default-direction="desc"><button type="button">Table<sup>TEDS</sup>↑</button></th>
+              <th data-sort-index="18" data-default-direction="asc"><button type="button">RO<sup>Edit</sup>↓</button></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="notes">All model names link to an official GitHub repository. Kimi K2.6 links to the official Kimi K2 family repository; Gemini 3.1 Pro links to Google's official Gen AI SDK because those API models do not have standalone model-code repositories. Scores reproduce Table 2 of the PureDocBench paper.</p>
+  </main>
+
+  <script>
+    const models = [
+      ["DotsMOCR", "Pipeline", "3B", "https://github.com/rednote-hilab/dots.mocr", 76.27, 0.151, 66.23, 77.65, 0.273, 73.16, 0.198, 64.32, 74.95, 0.309, 61.73, 0.312, 54.39, 61.97, 0.393, 70.39],
+      ["Dolphin-v2", "Pipeline", "3B", "https://github.com/bytedance/Dolphin", 65.90, 0.342, 59.80, 72.12, 0.429, 60.24, 0.393, 52.20, 67.86, 0.461, 44.92, 0.553, 39.98, 50.04, 0.558, 57.02],
+      ["MonkeyOCR-pro-3B", "Pipeline", "3B", "https://github.com/Yuliang-Liu/MonkeyOCR", 62.23, 0.346, 48.46, 72.83, 0.492, 57.40, 0.397, 45.57, 66.32, 0.526, 46.49, 0.511, 38.18, 52.43, 0.600, 55.37],
+      ["YouTu-Parsing", "Pipeline", "2B", "https://github.com/TencentCloudADP/youtu-parsing", 75.02, 0.230, 67.34, 80.74, 0.358, 69.66, 0.270, 61.44, 74.49, 0.388, 60.29, 0.360, 52.20, 64.69, 0.430, 68.32],
+      ["MinerU2.5-Pro", "Pipeline", "1.2B", "https://github.com/opendatalab/MinerU", 75.87, 0.222, 65.14, 84.68, 0.346, 71.77, 0.272, 61.79, 80.73, 0.378, 62.56, 0.375, 52.70, 72.47, 0.446, 70.07],
+      ["MinerU2.5", "Pipeline", "1.2B", "https://github.com/opendatalab/MinerU", 74.90, 0.184, 62.08, 81.04, 0.327, 68.92, 0.245, 56.99, 74.24, 0.374, 59.15, 0.370, 49.01, 65.41, 0.446, 67.66],
+      ["MonkeyOCR-pro-1.2B", "Pipeline", "1.2B", "https://github.com/Yuliang-Liu/MonkeyOCR", 61.09, 0.358, 47.43, 71.60, 0.498, 55.72, 0.416, 43.91, 64.83, 0.529, 43.82, 0.556, 36.94, 50.07, 0.609, 53.54],
+      ["PaddleOCR-VL-1.5", "Pipeline", "0.9B", "https://github.com/PaddlePaddle/PaddleOCR", 73.01, 0.266, 63.53, 82.12, 0.428, 66.73, 0.339, 58.03, 76.07, 0.478, 60.50, 0.398, 54.00, 67.33, 0.510, 66.75],
+      ["GLM-OCR", "Pipeline", "0.9B", "https://github.com/zai-org/GLM-OCR", 68.65, 0.314, 57.89, 79.44, 0.470, 63.06, 0.383, 53.23, 74.21, 0.520, 58.31, 0.433, 50.34, 67.83, 0.543, 63.34],
+      ["OpenOCR", "Pipeline", "0.1B", "https://github.com/Topdu/OpenOCR", 32.70, 0.354, 33.50, 0.00, 0.507, 30.03, 0.410, 31.09, 0.00, 0.541, 25.73, 0.486, 25.81, 0.00, 0.591, 29.49],
+      ["olmOCR-2-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 69.36, 0.284, 56.89, 79.59, 0.358, 65.87, 0.318, 54.57, 74.81, 0.378, 56.10, 0.417, 48.79, 61.25, 0.439, 63.78],
+      ["olmOCR-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 62.56, 0.388, 58.69, 67.77, 0.466, 57.84, 0.436, 55.44, 61.66, 0.499, 47.30, 0.542, 46.26, 49.80, 0.568, 55.90],
+      ["FD-RL", "End-to-End", "4B", "https://github.com/DocTron-hub/FD-RL", 78.38, 0.193, 68.21, 86.22, 0.334, 76.33, 0.214, 67.16, 83.22, 0.350, 67.04, 0.298, 58.82, 72.08, 0.391, 73.92],
+      ["Logics-Parsing-v2", "End-to-End", "4B", "https://github.com/alibaba/Logics-Parsing", 76.35, 0.213, 67.67, 82.67, 0.342, 73.85, 0.248, 67.33, 79.02, 0.375, 67.64, 0.304, 61.65, 71.64, 0.416, 72.61],
+      ["OCRVerse", "End-to-End", "4B", "https://github.com/DocTron-hub/OCRVerse", 73.18, 0.273, 63.78, 83.09, 0.393, 71.36, 0.302, 63.95, 80.36, 0.415, 63.66, 0.363, 57.03, 70.30, 0.452, 69.40],
+      ["Qianfan-OCR", "End-to-End", "4B", "https://github.com/baidubce/Qianfan-VL", 57.22, 0.370, 49.79, 58.83, 0.443, 50.85, 0.438, 44.41, 51.96, 0.485, 45.06, 0.494, 39.08, 45.53, 0.509, 51.04],
+      ["Nanonets-OCR2", "End-to-End", "3B", "https://github.com/NanoNets/Nanonets-OCR2", 64.83, 0.254, 44.98, 74.94, 0.377, 61.23, 0.307, 45.40, 68.97, 0.408, 49.03, 0.435, 35.50, 55.09, 0.468, 58.36],
+      ["DeepSeek-OCR-2", "End-to-End", "3B", "https://github.com/deepseek-ai/DeepSeek-OCR-2", 55.53, 0.354, 46.00, 56.01, 0.466, 49.41, 0.412, 40.78, 48.67, 0.493, 43.60, 0.486, 37.30, 42.06, 0.533, 49.51],
+      ["OCRFlux-3B", "End-to-End", "3B", "https://github.com/chatdoc-com/OCRFlux", 47.14, 0.454, 38.35, 48.46, 0.424, 41.82, 0.486, 31.90, 42.17, 0.437, 37.21, 0.559, 32.65, 34.87, 0.491, 42.06],
+      ["DeepSeek-OCR", "End-to-End", "3B", "https://github.com/deepseek-ai/DeepSeek-OCR", 53.50, 0.419, 45.39, 57.06, 0.514, 46.95, 0.478, 39.99, 48.64, 0.548, 40.48, 0.537, 34.04, 41.12, 0.575, 46.98],
+      ["dots.ocr", "End-to-End", "2.9B", "https://github.com/rednote-hilab/dots.ocr", 72.01, 0.248, 61.37, 79.51, 0.379, 65.95, 0.307, 56.67, 71.86, 0.417, 55.68, 0.403, 47.70, 59.63, 0.467, 64.55],
+      ["FireRed-OCR", "End-to-End", "2B", "https://github.com/FireRedTeam/FireRed-OCR", 70.81, 0.287, 63.86, 77.23, 0.396, 68.49, 0.319, 62.64, 74.77, 0.422, 57.42, 0.415, 51.60, 62.16, 0.474, 65.57],
+      ["HunyuanOCR", "End-to-End", "1B", "https://github.com/Tencent-Hunyuan/HunyuanOCR", 65.61, 0.269, 55.74, 68.02, 0.382, 61.49, 0.308, 51.62, 63.68, 0.400, 54.58, 0.421, 48.30, 57.54, 0.459, 60.56],
+      ["UniRec-0.1B", "End-to-End", "0.1B", "https://github.com/Topdu/OpenOCR", 58.91, 0.422, 51.31, 67.60, 0.526, 52.42, 0.501, 48.37, 59.04, 0.578, 34.44, 0.658, 30.97, 38.16, 0.685, 48.59],
+      ["OpenDoc-0.1B", "End-to-End", "0.1B", "https://github.com/Topdu/OpenOCR", 60.28, 0.411, 53.09, 68.86, 0.519, 52.46, 0.501, 48.41, 59.04, 0.577, 44.27, 0.547, 38.46, 49.06, 0.603, 52.00],
+      ["Qwen3.5-397B-A17B", "General VLM", "397B/17B", "https://github.com/QwenLM/Qwen3.5", 69.12, 0.233, 65.26, 65.40, 0.366, 68.34, 0.244, 63.91, 65.53, 0.376, 62.70, 0.287, 60.70, 56.12, 0.399, 66.72],
+      ["Qwen3.5-122B-A10B", "General VLM", "122B/10B", "https://github.com/QwenLM/Qwen3.5", 76.14, 0.226, 67.96, 83.03, 0.375, 76.34, 0.220, 67.82, 83.21, 0.366, 69.85, 0.281, 62.19, 75.44, 0.401, 74.11],
+      ["Qwen3.5-35B-A3B", "General VLM", "35B/3B", "https://github.com/QwenLM/Qwen3.5", 68.40, 0.232, 64.94, 63.45, 0.374, 68.04, 0.245, 64.78, 63.86, 0.379, 60.59, 0.310, 59.68, 53.07, 0.419, 65.68],
+      ["Qwen3.5-27B", "General VLM", "27B", "https://github.com/QwenLM/Qwen3.5", 72.07, 0.227, 66.36, 72.51, 0.362, 70.73, 0.236, 64.61, 71.17, 0.367, 65.92, 0.283, 61.23, 64.82, 0.390, 69.57],
+      ["Qwen3.5-9B", "General VLM", "9B", "https://github.com/QwenLM/Qwen3.5", 73.87, 0.254, 67.60, 79.39, 0.388, 73.34, 0.260, 67.00, 79.01, 0.396, 65.45, 0.332, 60.91, 68.59, 0.437, 70.89],
+      ["Qwen3.5-4B", "General VLM", "4B", "https://github.com/QwenLM/Qwen3.5", 73.45, 0.276, 69.96, 78.02, 0.410, 72.53, 0.281, 68.88, 76.78, 0.412, 63.47, 0.380, 61.27, 67.17, 0.477, 69.82],
+      ["Qwen3.5-2B", "General VLM", "2B", "https://github.com/QwenLM/Qwen3.5", 66.24, 0.348, 62.84, 70.70, 0.473, 65.22, 0.350, 58.30, 72.36, 0.477, 55.92, 0.440, 50.99, 60.79, 0.521, 62.46],
+      ["Qwen3.5-0.8B", "General VLM", "0.8B", "https://github.com/QwenLM/Qwen3.5", 60.77, 0.376, 54.39, 65.54, 0.500, 59.28, 0.386, 54.22, 62.22, 0.510, 47.93, 0.498, 44.60, 48.98, 0.557, 55.99],
+      ["Qwen3-VL-8B", "General VLM", "8B", "https://github.com/QwenLM/Qwen3-VL", 72.44, 0.261, 65.10, 78.35, 0.411, 72.03, 0.266, 64.88, 77.82, 0.409, 62.73, 0.342, 55.55, 66.81, 0.448, 69.07],
+      ["Qwen3-VL-4B", "General VLM", "4B", "https://github.com/QwenLM/Qwen3-VL", 72.04, 0.262, 65.10, 77.17, 0.418, 70.84, 0.272, 63.54, 76.13, 0.425, 59.61, 0.378, 55.15, 61.47, 0.480, 67.50],
+      ["Qwen3-VL-2B", "General VLM", "2B", "https://github.com/QwenLM/Qwen3-VL", 66.37, 0.300, 59.04, 70.03, 0.439, 65.81, 0.314, 60.25, 68.52, 0.448, 54.09, 0.428, 51.05, 53.99, 0.511, 62.09],
+      ["Kimi K2.6", "General VLM", "1T/32B", "https://github.com/MoonshotAI/Kimi-K2", 72.32, 0.303, 66.93, 80.30, 0.466, 69.95, 0.322, 64.69, 77.31, 0.475, 68.02, 0.335, 62.44, 75.14, 0.481, 70.10],
+      ["Step3-VL", "General VLM", "10B", "https://github.com/stepfun-ai/Step3-VL-10B", 53.65, 0.496, 53.41, 57.16, 0.509, 52.74, 0.516, 53.62, 56.15, 0.529, 45.06, 0.579, 45.42, 47.66, 0.573, 50.48],
+      ["MiniCPM-V-4.5", "General VLM", "8B", "https://github.com/OpenBMB/MiniCPM-V", 51.81, 0.439, 45.97, 53.36, 0.481, 49.38, 0.461, 42.79, 51.50, 0.489, 37.59, 0.583, 32.01, 39.06, 0.552, 46.26],
+      ["Gemini-3.1-Pro", "General VLM", "—", "https://github.com/googleapis/python-genai", 70.04, 0.306, 65.63, 75.08, 0.409, 69.28, 0.322, 65.81, 74.24, 0.417, 71.98, 0.300, 68.62, 77.26, 0.386, 70.43]
+    ];
+
+    const metricNames = {
+      0: "Model",
+      4: "Clean Overall", 5: "Clean TextEdit", 6: "Clean FormulaCDM", 7: "Clean TableTEDS", 8: "Clean ROEdit",
+      9: "Digital Overall", 10: "Digital TextEdit", 11: "Digital FormulaCDM", 12: "Digital TableTEDS", 13: "Digital ROEdit",
+      14: "Real Overall", 15: "Real TextEdit", 16: "Real FormulaCDM", 17: "Real TableTEDS", 18: "Real ROEdit",
+      19: "Avg₃"
+    };
+    const search = document.querySelector("#search");
+    const family = document.querySelector("#family");
+    const reset = document.querySelector("#reset");
+    const rows = document.querySelector("#rows");
+    const status = document.querySelector("#status");
+    const headers = [...document.querySelectorAll("th[data-sort-index]")];
+    let sortIndex = 19;
+    let direction = "desc";
+
+    function formatScore(value, index) {
+      return [5, 8, 10, 13, 15, 18].includes(index) ? value.toFixed(3) : value.toFixed(2);
+    }
+
+    function familyClass(value) {
+      return value === "Pipeline" ? "pipeline" : value === "End-to-End" ? "e2e" : "vlm";
+    }
+
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const selectedFamily = family.value;
+      const filtered = models
+        .filter(row => (!selectedFamily || row[1] === selectedFamily) && (!query || `${row[0]} ${row[2]}`.toLowerCase().includes(query)))
+        .sort((a, b) => {
+          const comparison = sortIndex === 0
+            ? a[0].localeCompare(b[0])
+            : a[sortIndex] - b[sortIndex];
+          return (direction === "asc" ? comparison : -comparison) || a[0].localeCompare(b[0]);
+        });
+
+      rows.innerHTML = filtered.map((row, rank) => `
+        <tr>
+          <td class="rank">${rank + 1}</td>
+          <td class="model"><a href="${row[3]}" target="_blank" rel="noopener noreferrer" title="Open GitHub for ${row[0]}">${row[0]} ↗</a></td>
+          <td class="family"><span class="pill ${familyClass(row[1])}">${row[1]}</span></td>
+          <td>${row[2]}</td>
+          ${row.slice(4, 19).map((value, offset) => `<td>${formatScore(value, offset + 4)}</td>`).join("")}
+          <td class="avg3">${row[19].toFixed(2)}</td>
+        </tr>`).join("");
+
+      headers.forEach(header => {
+        const active = Number(header.dataset.sortIndex) === sortIndex;
+        header.setAttribute("aria-sort", active ? (direction === "asc" ? "ascending" : "descending") : "none");
+      });
+      status.textContent = `${filtered.length} of ${models.length} models · sorted by ${metricNames[sortIndex]} ${direction === "asc" ? "ascending" : "descending"}`;
+    }
+
+    headers.forEach(header => {
+      header.querySelector("button").addEventListener("click", () => {
+        const nextIndex = Number(header.dataset.sortIndex);
+        if (nextIndex === sortIndex) {
+          direction = direction === "asc" ? "desc" : "asc";
+        } else {
+          sortIndex = nextIndex;
+          direction = header.dataset.defaultDirection || "asc";
+        }
+        render();
+      });
+    });
+    search.addEventListener("input", render);
+    family.addEventListener("change", render);
+    reset.addEventListener("click", () => {
+      search.value = "";
+      family.value = "";
+      sortIndex = 19;
+      direction = "desc";
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>

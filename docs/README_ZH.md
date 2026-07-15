@@ -40,7 +40,8 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 主榜单已改为可复制、可搜索的原生 HTML 表格，并统一维护在
 [Main Leaderboard](../README.md#main-leaderboard)；其中粗体表示该列最优，
-下划线表示该列次优。
+下划线表示该列次优。需要按任意指标升序或降序排列时，请打开
+[交互式可排序榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)。
 
 ## 诊断结果
 
