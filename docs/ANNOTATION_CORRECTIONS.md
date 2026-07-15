@@ -2,17 +2,20 @@
 
 This page defines the correction workflow for PureDocBench GT annotations.
 
-## Current Public Release
+## Stable Public Identifiers
 
-Current release ID: `puredocbench-2026-06-14`.
+- GT archive alias: `puredocbench-gt-latest`
+- Review UI version: `puredocbench-review-v1`
+- Exact GT revision: [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json)
 
-This update refreshes GT annotations and opens the correction workflow for community review.
+Dates are retained in revision metadata and the changelog for provenance, but
+they are not part of public URLs, directory examples, or display labels.
 
 ## Review App
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html)
 - Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
@@ -22,20 +25,20 @@ Local launch:
 
 ```bash
 mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench-2026-06-14/images/clean review/gt_case_compare_all_fixed7/assets/images
+ln -s /path/to/puredocbench/images/clean review/gt_case_compare_all_fixed7/assets/images
 python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8767/index.html?cb=puredocbench_2026_06_14_clean_ui
+http://127.0.0.1:8767/index.html
 ```
 
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html?cb=puredocbench_2026_06_14_clean_ui
+https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html
 ```
 
 ## Correction Flow
@@ -59,7 +62,7 @@ The review app exports this schema:
 ```json
 {
   "schema_version": "puredocbench-annotation-correction-patch-v1",
-  "base_annotation_version": "puredocbench-2026-06-14",
+  "base_annotation_version": "puredocbench-review-v1",
   "summary": {
     "case_count": 1,
     "bbox_update_count": 1,
@@ -109,10 +112,10 @@ python scripts/package_hf_gt_release.py \
 
 ```bash
 huggingface-cli upload zhihengli-casia/puredocbench \
-  dist/hf_gt/puredocbench-2026-06-14 \
-  gt/versions/puredocbench-2026-06-14 \
+  dist/hf_gt/puredocbench-gt-v1 \
+  gt/versions/puredocbench-gt-v1 \
   --repo-type dataset \
-  --commit-message "Add GT puredocbench-2026-06-14"
+  --commit-message "Add GT puredocbench-gt-v1"
 
 huggingface-cli upload zhihengli-casia/puredocbench \
   dist/hf_gt/latest \

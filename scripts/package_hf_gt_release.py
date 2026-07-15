@@ -212,8 +212,8 @@ def main() -> None:
     parser.add_argument("--review-dir", type=Path, default=DEFAULT_REVIEW_DIR)
     parser.add_argument("--out-root", type=Path, default=Path("dist/hf_gt"))
     parser.add_argument("--token", help="Internal repair/build token. Defaults to review_data.json meta.")
-    parser.add_argument("--public-version", help="Community-facing release ID, e.g. puredocbench-2026-06-14.")
-    parser.add_argument("--dataset-version", default="puredocbench-2026-06-14")
+    parser.add_argument("--public-version", help="Community-facing release ID, e.g. puredocbench-review-v1.")
+    parser.add_argument("--dataset-version", default="puredocbench-gt-v1")
     parser.add_argument("--write-latest", action="store_true")
     args = parser.parse_args()
 
