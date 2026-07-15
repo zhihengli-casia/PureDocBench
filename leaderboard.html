@@ -215,7 +215,7 @@
       </div>
     </section>
 
-    <p class="notes">All model names link to an official GitHub repository. Kimi K2.6 links to the official Kimi K2 family repository; Gemini 3.1 Pro links to Google's official Gen AI SDK because those API models do not have standalone model-code repositories. Scores reproduce Table 2 of the PureDocBench paper.</p>
+    <p class="notes">Model names link to an official GitHub repository. Kimi K2.6 links to the Kimi K2 family repository; Gemini 3.1 Pro links to Google's Gen AI SDK. Scores for the original 40 models reproduce Table 2 of the PureDocBench paper. OvisOCR2 is an <a href="https://huggingface.co/ATH-MaaS/OvisOCR2">author-reported post-publication result</a>; its model card publishes only per-track Overall and Avg₃, so unreported component metrics are shown as —.</p>
   </main>
 
   <script>
@@ -230,6 +230,7 @@
       ["PaddleOCR-VL-1.5", "Pipeline", "0.9B", "https://github.com/PaddlePaddle/PaddleOCR", 73.01, 0.266, 63.53, 82.12, 0.428, 66.73, 0.339, 58.03, 76.07, 0.478, 60.50, 0.398, 54.00, 67.33, 0.510, 66.75],
       ["GLM-OCR", "Pipeline", "0.9B", "https://github.com/zai-org/GLM-OCR", 68.65, 0.314, 57.89, 79.44, 0.470, 63.06, 0.383, 53.23, 74.21, 0.520, 58.31, 0.433, 50.34, 67.83, 0.543, 63.34],
       ["OpenOCR", "Pipeline", "0.1B", "https://github.com/Topdu/OpenOCR", 32.70, 0.354, 33.50, 0.00, 0.507, 30.03, 0.410, 31.09, 0.00, 0.541, 25.73, 0.486, 25.81, 0.00, 0.591, 29.49],
+      ["OvisOCR2", "End-to-End", "0.8B", "https://github.com/AIDC-AI/Ovis", 81.55, null, null, null, null, 77.09, null, null, null, null, 66.56, null, null, null, null, 75.06],
       ["olmOCR-2-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 69.36, 0.284, 56.89, 79.59, 0.358, 65.87, 0.318, 54.57, 74.81, 0.378, 56.10, 0.417, 48.79, 61.25, 0.439, 63.78],
       ["olmOCR-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 62.56, 0.388, 58.69, 67.77, 0.466, 57.84, 0.436, 55.44, 61.66, 0.499, 47.30, 0.542, 46.26, 49.80, 0.568, 55.90],
       ["FD-RL", "End-to-End", "4B", "https://github.com/DocTron-hub/FD-RL", 78.38, 0.193, 68.21, 86.22, 0.334, 76.33, 0.214, 67.16, 83.22, 0.350, 67.04, 0.298, 58.82, 72.08, 0.391, 73.92],
@@ -279,6 +280,7 @@
     let direction = "desc";
 
     function formatScore(value, index) {
+      if (value === null) return "—";
       return [5, 8, 10, 13, 15, 18].includes(index) ? value.toFixed(3) : value.toFixed(2);
     }
 
@@ -292,6 +294,11 @@
       const filtered = models
         .filter(row => (!selectedFamily || row[1] === selectedFamily) && (!query || `${row[0]} ${row[2]}`.toLowerCase().includes(query)))
         .sort((a, b) => {
+          if (sortIndex !== 0) {
+            if (a[sortIndex] === null && b[sortIndex] === null) return a[0].localeCompare(b[0]);
+            if (a[sortIndex] === null) return 1;
+            if (b[sortIndex] === null) return -1;
+          }
           const comparison = sortIndex === 0
             ? a[0].localeCompare(b[0])
             : a[sortIndex] - b[sortIndex];
@@ -305,7 +312,7 @@
           <td class="family"><span class="pill ${familyClass(row[1])}">${row[1]}</span></td>
           <td>${row[2]}</td>
           ${row.slice(4, 19).map((value, offset) => `<td>${formatScore(value, offset + 4)}</td>`).join("")}
-          <td class="avg3">${row[19].toFixed(2)}</td>
+          <td class="avg3">${formatScore(row[19], 19)}</td>
         </tr>`).join("");
 
       headers.forEach(header => {

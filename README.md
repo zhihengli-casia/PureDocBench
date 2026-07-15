@@ -53,14 +53,14 @@ The examples below show colored coordinate boxes over clean rendered pages from 
 
 ## Main Leaderboard
 
-The paper evaluates 40 systems across pipeline specialists, end-to-end document parsers, and general-purpose VLMs. Table 2 is the main leaderboard: each track reports Overall, TextEdit, FormulaCDM, TableTEDS, and ROEdit; Avg3 averages the three track Overall scores.
+The paper evaluates 40 systems across pipeline specialists, end-to-end document parsers, and general-purpose VLMs. The live leaderboard additionally tracks public post-publication results. Each track reports Overall, TextEdit, FormulaCDM, TableTEDS, and ROEdit; Avg3 averages the three track Overall scores.
 
 <p align="center">
   <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><strong>Open the interactive sortable leaderboard ↗</strong></a>
 </p>
 
 <table style="width:100%; border-collapse: collapse;">
-  <caption>Table 2: Three-track leaderboard on PureDocBench</caption>
+  <caption>Three-track leaderboard on PureDocBench</caption>
   <thead>
     <tr>
       <th rowspan="2">Model</th>
@@ -101,10 +101,11 @@ The paper evaluates 40 systems across pipeline specialists, end-to-end document 
     <tr><td><a href="https://github.com/zai-org/GLM-OCR">GLM-OCR</a></td><td>0.9B</td><td>68.65</td><td>0.314</td><td>57.89</td><td>79.44</td><td>0.470</td><td>63.06</td><td>0.383</td><td>53.23</td><td>74.21</td><td>0.520</td><td>58.31</td><td>0.433</td><td>50.34</td><td>67.83</td><td>0.543</td><td>63.34</td></tr>
     <tr><td><a href="https://github.com/Topdu/OpenOCR">OpenOCR</a></td><td>0.1B</td><td>32.70</td><td>0.354</td><td>33.50</td><td>0.00</td><td>0.507</td><td>30.03</td><td>0.410</td><td>31.09</td><td>0.00</td><td>0.541</td><td>25.73</td><td>0.486</td><td>25.81</td><td>0.00</td><td>0.591</td><td>29.49</td></tr>
     <tr><th colspan="18" align="left"><em>End-to-End Specialists</em></th></tr>
+    <tr><td><a href="https://github.com/AIDC-AI/Ovis">OvisOCR2</a><sup>*</sup></td><td>0.8B</td><td><strong>81.55</strong></td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td><strong>77.09</strong></td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>66.56</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td><strong>75.06</strong></td></tr>
     <tr><td><a href="https://github.com/allenai/olmocr">olmOCR-2-7B</a></td><td>7B</td><td>69.36</td><td>0.284</td><td>56.89</td><td>79.59</td><td>0.358</td><td>65.87</td><td>0.318</td><td>54.57</td><td>74.81</td><td>0.378</td><td>56.10</td><td>0.417</td><td>48.79</td><td>61.25</td><td>0.439</td><td>63.78</td></tr>
     <tr><td><a href="https://github.com/allenai/olmocr">olmOCR-7B</a></td><td>7B</td><td>62.56</td><td>0.388</td><td>58.69</td><td>67.77</td><td>0.466</td><td>57.84</td><td>0.436</td><td>55.44</td><td>61.66</td><td>0.499</td><td>47.30</td><td>0.542</td><td>46.26</td><td>49.80</td><td>0.568</td><td>55.90</td></tr>
-    <tr><td><a href="https://github.com/DocTron-hub/FD-RL">FD-RL</a></td><td>4B</td><td><strong>78.38</strong></td><td>0.193</td><td><ins>68.21</ins></td><td><strong>86.22</strong></td><td>0.334</td><td><ins>76.33</ins></td><td><ins>0.214</ins></td><td>67.16</td><td><strong>83.22</strong></td><td><ins>0.350</ins></td><td>67.04</td><td>0.298</td><td>58.82</td><td>72.08</td><td>0.391</td><td><ins>73.92</ins></td></tr>
-    <tr><td><a href="https://github.com/alibaba/Logics-Parsing">Logics-Parsing-v2</a></td><td>4B</td><td><ins>76.35</ins></td><td>0.213</td><td>67.67</td><td>82.67</td><td>0.342</td><td>73.85</td><td>0.248</td><td>67.33</td><td>79.02</td><td>0.375</td><td>67.64</td><td>0.304</td><td>61.65</td><td>71.64</td><td>0.416</td><td>72.61</td></tr>
+    <tr><td><a href="https://github.com/DocTron-hub/FD-RL">FD-RL</a></td><td>4B</td><td><ins>78.38</ins></td><td>0.193</td><td><ins>68.21</ins></td><td><strong>86.22</strong></td><td>0.334</td><td>76.33</td><td><ins>0.214</ins></td><td>67.16</td><td><strong>83.22</strong></td><td><ins>0.350</ins></td><td>67.04</td><td>0.298</td><td>58.82</td><td>72.08</td><td>0.391</td><td>73.92</td></tr>
+    <tr><td><a href="https://github.com/alibaba/Logics-Parsing">Logics-Parsing-v2</a></td><td>4B</td><td>76.35</td><td>0.213</td><td>67.67</td><td>82.67</td><td>0.342</td><td>73.85</td><td>0.248</td><td>67.33</td><td>79.02</td><td>0.375</td><td>67.64</td><td>0.304</td><td>61.65</td><td>71.64</td><td>0.416</td><td>72.61</td></tr>
     <tr><td><a href="https://github.com/DocTron-hub/OCRVerse">OCRVerse</a></td><td>4B</td><td>73.18</td><td>0.273</td><td>63.78</td><td>83.09</td><td>0.393</td><td>71.36</td><td>0.302</td><td>63.95</td><td>80.36</td><td>0.415</td><td>63.66</td><td>0.363</td><td>57.03</td><td>70.30</td><td>0.452</td><td>69.40</td></tr>
     <tr><td><a href="https://github.com/baidubce/Qianfan-VL">Qianfan-OCR</a></td><td>4B</td><td>57.22</td><td>0.370</td><td>49.79</td><td>58.83</td><td>0.443</td><td>50.85</td><td>0.438</td><td>44.41</td><td>51.96</td><td>0.485</td><td>45.06</td><td>0.494</td><td>39.08</td><td>45.53</td><td>0.509</td><td>51.04</td></tr>
     <tr><td><a href="https://github.com/NanoNets/Nanonets-OCR2">Nanonets-OCR2</a></td><td>3B</td><td>64.83</td><td>0.254</td><td>44.98</td><td>74.94</td><td>0.377</td><td>61.23</td><td>0.307</td><td>45.40</td><td>68.97</td><td>0.408</td><td>49.03</td><td>0.435</td><td>35.50</td><td>55.09</td><td>0.468</td><td>58.36</td></tr>
@@ -118,7 +119,7 @@ The paper evaluates 40 systems across pipeline specialists, end-to-end document 
     <tr><td><a href="https://github.com/Topdu/OpenOCR">OpenDoc-0.1B</a></td><td>0.1B</td><td>60.28</td><td>0.411</td><td>53.09</td><td>68.86</td><td>0.519</td><td>52.46</td><td>0.501</td><td>48.41</td><td>59.04</td><td>0.577</td><td>44.27</td><td>0.547</td><td>38.46</td><td>49.06</td><td>0.603</td><td>52.00</td></tr>
     <tr><th colspan="18" align="left"><em>General VLMs: Qwen3.5</em></th></tr>
     <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-397B-A17B</a></td><td>397B/17B</td><td>69.12</td><td>0.233</td><td>65.26</td><td>65.40</td><td>0.366</td><td>68.34</td><td>0.244</td><td>63.91</td><td>65.53</td><td>0.376</td><td>62.70</td><td>0.287</td><td>60.70</td><td>56.12</td><td>0.399</td><td>66.72</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-122B-A10B</a></td><td>122B/10B</td><td>76.14</td><td>0.226</td><td>67.96</td><td>83.03</td><td>0.375</td><td><strong>76.34</strong></td><td>0.220</td><td><ins>67.82</ins></td><td><ins>83.21</ins></td><td>0.366</td><td><ins>69.85</ins></td><td><strong>0.281</strong></td><td>62.19</td><td><ins>75.44</ins></td><td>0.401</td><td><strong>74.11</strong></td></tr>
+    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-122B-A10B</a></td><td>122B/10B</td><td>76.14</td><td>0.226</td><td>67.96</td><td>83.03</td><td>0.375</td><td><ins>76.34</ins></td><td>0.220</td><td><ins>67.82</ins></td><td><ins>83.21</ins></td><td>0.366</td><td><ins>69.85</ins></td><td><strong>0.281</strong></td><td>62.19</td><td><ins>75.44</ins></td><td>0.401</td><td><ins>74.11</ins></td></tr>
     <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-35B-A3B</a></td><td>35B/3B</td><td>68.40</td><td>0.232</td><td>64.94</td><td>63.45</td><td>0.374</td><td>68.04</td><td>0.245</td><td>64.78</td><td>63.86</td><td>0.379</td><td>60.59</td><td>0.310</td><td>59.68</td><td>53.07</td><td>0.419</td><td>65.68</td></tr>
     <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-27B</a></td><td>27B</td><td>72.07</td><td>0.227</td><td>66.36</td><td>72.51</td><td>0.362</td><td>70.73</td><td>0.236</td><td>64.61</td><td>71.17</td><td>0.367</td><td>65.92</td><td><ins>0.283</ins></td><td>61.23</td><td>64.82</td><td><ins>0.390</ins></td><td>69.57</td></tr>
     <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-9B</a></td><td>9B</td><td>73.87</td><td>0.254</td><td>67.60</td><td>79.39</td><td>0.388</td><td>73.34</td><td>0.260</td><td>67.00</td><td>79.01</td><td>0.396</td><td>65.45</td><td>0.332</td><td>60.91</td><td>68.59</td><td>0.437</td><td>70.89</td></tr>
@@ -137,7 +138,9 @@ The paper evaluates 40 systems across pipeline specialists, end-to-end document 
   </tbody>
 </table>
 
-<strong>Bold</strong> marks the best score in each column; <ins>underlined</ins> marks the runner-up. GitHub README tables cannot run sorting scripts, so use the <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html">interactive leaderboard</a> to sort any metric in either direction.
+<sup>*</sup> OvisOCR2 scores are author-reported post-publication results from its <a href="https://huggingface.co/ATH-MaaS/OvisOCR2">official model card</a>. Only per-track Overall and Avg<sub>3</sub> were published; unreported component metrics are shown as &mdash;.
+
+<strong>Bold</strong> marks the best reported score in each column; <ins>underlined</ins> marks the runner-up. GitHub README tables cannot run sorting scripts, so use the <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html">interactive leaderboard</a> to sort any metric in either direction.
 
 ## Diagnostics
 
