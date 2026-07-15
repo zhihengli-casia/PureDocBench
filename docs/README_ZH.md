@@ -38,9 +38,9 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 论文主表评测了 40 个系统，包括 pipeline 专家模型、端到端文档解析模型和通用 VLM。每条轨道报告 Overall、TextEdit、FormulaCDM、TableTEDS 和 ROEdit；Avg3 是三条轨道 Overall 的平均。
 
-<p align="center">
-  <img src="../assets/figures/table_main_leaderboard.png" alt="PureDocBench 三轨 leaderboard 主表" width="98%">
-</p>
+主榜单已改为可复制、可搜索的原生 HTML 表格，并统一维护在
+[Main Leaderboard](../README.md#main-leaderboard)；其中粗体表示该列最优，
+下划线表示该列次优。
 
 ## 诊断结果
 
