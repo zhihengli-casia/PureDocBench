@@ -126,9 +126,9 @@ python scripts/validate_release_manifest.py \
 不再写入公开 URL 或目录名。可以使用 review app 检查标注并导出 correction patch。
 
 - 公开 Review app：
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/)
 - 仓库文件：
-  [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
+  [`review/index.html`](../review/index.html)
 - 修正说明：
   [docs/ANNOTATION_CORRECTIONS.md](ANNOTATION_CORRECTIONS.md)
 - 提交修正：
@@ -137,9 +137,9 @@ python scripts/validate_release_manifest.py \
 本地启动：
 
 ```bash
-mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench/images/clean review/gt_case_compare_all_fixed7/assets/images
-python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
+mkdir -p review/assets
+ln -s /path/to/puredocbench/images/clean review/assets/images
+python3 -m http.server 8767 --directory review
 ```
 
 打开：
@@ -151,7 +151,7 @@ http://127.0.0.1:8767/index.html
 静态 app URL：
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html
+https://zhihengli-casia.github.io/PureDocBench/review/
 ```
 
 GitHub 仓库不包含完整图片。网页端视觉检查时，点击 `Load Images`，

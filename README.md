@@ -227,9 +227,9 @@ the Hugging Face metadata and changelog rather than public URLs or directory nam
 Use the review app to inspect annotations and export correction patches.
 
 - Public review app:
-  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html)
+  [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/)
 - Repository file:
-  [`review/gt_case_compare_all_fixed7/index.html`](review/gt_case_compare_all_fixed7/index.html)
+  [`review/index.html`](review/index.html)
 - Correction guide:
   [docs/ANNOTATION_CORRECTIONS.md](docs/ANNOTATION_CORRECTIONS.md)
 - Submit a correction:
@@ -238,9 +238,9 @@ Use the review app to inspect annotations and export correction patches.
 Local launch:
 
 ```bash
-mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench/images/clean review/gt_case_compare_all_fixed7/assets/images
-python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
+mkdir -p review/assets
+ln -s /path/to/puredocbench/images/clean review/assets/images
+python3 -m http.server 8767 --directory review
 ```
 
 Open:
@@ -252,7 +252,7 @@ http://127.0.0.1:8767/index.html
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html
+https://zhihengli-casia.github.io/PureDocBench/review/
 ```
 
 The GitHub repository does not include the full image release. For visual

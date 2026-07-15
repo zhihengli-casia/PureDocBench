@@ -703,7 +703,7 @@ function exportCorrectionPatch() {
     schema_version: CORRECTION_SCHEMA_VERSION,
     base_annotation_version: PUBLIC_VERSION,
     exported_at: new Date().toISOString(),
-    source: "review/gt_case_compare_all_fixed7",
+    source: "review",
     contributor: {
       name: "",
       contact: ""

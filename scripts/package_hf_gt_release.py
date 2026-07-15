@@ -13,9 +13,8 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_REVIEW_DIR = Path(
-    "/Users/lizhiheng/Desktop/科研/nips2026/puredocbench-open-source/review/gt_case_compare_all_fixed7"
-)
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_REVIEW_DIR = REPO_ROOT / "review"
 
 
 def sha256_file(path: Path) -> str:

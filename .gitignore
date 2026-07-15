@@ -15,9 +15,11 @@ SHA256SUMS.local
 
 # Local GT bbox review/audit artifacts. These are generated during visual QA
 # and can grow to tens of GB; publish only curated review app files and HF packages.
-review/gt_case_compare_all_fixed7/cover_audit_*/
-review/gt_case_compare_all_fixed7/outline_audit_*/
-review/gt_case_compare_all_fixed7/cover_residual_*/
-review/gt_case_compare_all_fixed7/tmp_*/
-review/gt_case_compare_all_fixed7/review_data.before_*.json
-review/gt_case_compare_all_fixed7/GT_REPAIR_LOG.md
+review/assets/
+review/review_data.json
+review/cover_audit_*/
+review/outline_audit_*/
+review/cover_residual_*/
+review/tmp_*/
+review/review_data.before_*.json
+review/GT_REPAIR_LOG.md

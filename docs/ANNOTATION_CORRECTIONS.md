@@ -15,8 +15,8 @@ they are not part of public URLs, directory examples, or display labels.
 
 The review app is a static HTML app for inspecting the GT annotations visually:
 
-- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html)
-- Repository file: [`review/gt_case_compare_all_fixed7/index.html`](../review/gt_case_compare_all_fixed7/index.html)
+- Public review app: [Open GT Review App](https://zhihengli-casia.github.io/PureDocBench/review/)
+- Repository file: [`review/index.html`](../review/index.html)
 - GitHub issue template: [New GT annotation correction issue](https://github.com/zhihengli-casia/PureDocBench/issues/new?template=annotation_error.yml)
 
 The GitHub repository does not include the full image release. For visual review, download the Hugging Face release, open the public review app, click `Load Images`, and select the extracted `images/clean` folder. The app uses `review_data.json` as a compact inspection view of the GT annotations.
@@ -24,9 +24,9 @@ The GitHub repository does not include the full image release. For visual review
 Local launch:
 
 ```bash
-mkdir -p review/gt_case_compare_all_fixed7/assets
-ln -s /path/to/puredocbench/images/clean review/gt_case_compare_all_fixed7/assets/images
-python3 -m http.server 8767 --directory review/gt_case_compare_all_fixed7
+mkdir -p review/assets
+ln -s /path/to/puredocbench/images/clean review/assets/images
+python3 -m http.server 8767 --directory review
 ```
 
 Open:
@@ -38,7 +38,7 @@ http://127.0.0.1:8767/index.html
 Static app URL:
 
 ```text
-https://zhihengli-casia.github.io/PureDocBench/review/gt_case_compare_all_fixed7/index.html
+https://zhihengli-casia.github.io/PureDocBench/review/
 ```
 
 ## Correction Flow
@@ -103,7 +103,7 @@ For missing or duplicate annotations, use the case-level correction note. Mainta
 
 ```bash
 python scripts/package_hf_gt_release.py \
-  --review-dir review/gt_case_compare_all_fixed7 \
+  --review-dir review \
   --out-root dist/hf_gt \
   --write-latest
 ```
