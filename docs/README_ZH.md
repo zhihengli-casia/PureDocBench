@@ -16,6 +16,7 @@ PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同
 
 ## 更新
 
+- **2026-09-21**：新增作者报告的 [WeVisDoc-2B / WeVisDoc-4B](https://github.com/Tencent/WeVisDoc) 结果及[分项、分领域明细](../data/wevisdoc_results.tsv)，在线榜单增至 44 个模型；[来源与评测说明](../data/README.md)。
 - **当前 GT**：稳定别名为 `puredocbench-gt-latest`；精确修订版本和更新时间记录在 [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json) 中。
 - **2026-06-14**：更新 GT 标注，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。
 - **2026-05-08**：首次开源 PureDocBench，包括论文 PDF 和完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。

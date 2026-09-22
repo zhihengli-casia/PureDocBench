@@ -215,7 +215,7 @@
       </div>
     </section>
 
-    <p class="notes">Model names link to an official GitHub repository. Kimi K2.6 links to the Kimi K2 family repository; Gemini 3.1 Pro links to Google's Gen AI SDK. Scores for the original 40 models reproduce Table 2 of the PureDocBench paper. OvisOCR2 and NaviDC-OCR are author-reported post-publication results from their official <a href="https://huggingface.co/ATH-MaaS/OvisOCR2">model card</a> and <a href="https://github.com/caipeng328/NaviDC-OCR#puredocbench">repository</a>, respectively. Unreported component metrics are shown as —.</p>
+    <p class="notes">Model names link to an official GitHub repository. Kimi K2.6 links to the Kimi K2 family repository; Gemini 3.1 Pro links to Google's Gen AI SDK. Scores for the original 40 models reproduce Table 2 of the PureDocBench paper. OvisOCR2 and NaviDC-OCR are author-reported post-publication results from their official <a href="https://huggingface.co/ATH-MaaS/OvisOCR2">model card</a> and <a href="https://github.com/caipeng328/NaviDC-OCR#puredocbench">repository</a>, respectively. WeVisDoc-2B and WeVisDoc-4B are author-reported results from their official <a href="https://huggingface.co/tencent/WeVisDoc-2B">2B</a> and <a href="https://huggingface.co/tencent/WeVisDoc-4B">4B</a> model cards and <a href="https://arxiv.org/html/2609.20423v1#S4.T3">paper (Table 3)</a>, averaged over three inference runs, with <a href="data/wevisdoc_results.tsv">component and per-domain results</a> and <a href="data/README.md">evaluation notes</a>. Unreported component metrics are shown as —.</p>
   </main>
 
   <script>
@@ -231,6 +231,8 @@
       ["PaddleOCR-VL-1.5", "Pipeline", "0.9B", "https://github.com/PaddlePaddle/PaddleOCR", 73.01, 0.266, 63.53, 82.12, 0.428, 66.73, 0.339, 58.03, 76.07, 0.478, 60.50, 0.398, 54.00, 67.33, 0.510, 66.75],
       ["GLM-OCR", "Pipeline", "0.9B", "https://github.com/zai-org/GLM-OCR", 68.65, 0.314, 57.89, 79.44, 0.470, 63.06, 0.383, 53.23, 74.21, 0.520, 58.31, 0.433, 50.34, 67.83, 0.543, 63.34],
       ["OpenOCR", "Pipeline", "0.1B", "https://github.com/Topdu/OpenOCR", 32.70, 0.354, 33.50, 0.00, 0.507, 30.03, 0.410, 31.09, 0.00, 0.541, 25.73, 0.486, 25.81, 0.00, 0.591, 29.49],
+      ["WeVisDoc-4B", "End-to-End", "4B", "https://github.com/Tencent/WeVisDoc", 79.81, 0.213, 71.9, 88.81, 0.34, 77.74, 0.241, 71.31, 85.99, 0.361, 69.08, 0.336, 63.14, 77.64, 0.416, 75.54],
+      ["WeVisDoc-2B", "End-to-End", "2B", "https://github.com/Tencent/WeVisDoc", 79.36, 0.214, 71.63, 87.79, 0.347, 76.62, 0.247, 70.74, 83.84, 0.37, 65.6, 0.361, 58.9, 74.05, 0.437, 73.86],
       ["OvisOCR2", "End-to-End", "0.8B", "https://github.com/AIDC-AI/Ovis", 81.55, null, null, null, null, 77.09, null, null, null, null, 66.56, null, null, null, null, 75.06],
       ["olmOCR-2-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 69.36, 0.284, 56.89, 79.59, 0.358, 65.87, 0.318, 54.57, 74.81, 0.378, 56.10, 0.417, 48.79, 61.25, 0.439, 63.78],
       ["olmOCR-7B", "End-to-End", "7B", "https://github.com/allenai/olmocr", 62.56, 0.388, 58.69, 67.77, 0.466, 57.84, 0.436, 55.44, 61.66, 0.499, 47.30, 0.542, 46.26, 49.80, 0.568, 55.90],

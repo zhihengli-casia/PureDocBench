@@ -1,0 +1,67 @@
+Model	Domain	Track	Overall	TextEdit	FormulaCDM	TableTEDS	ROEdit
+2B	Academic	clean	94.00	0.094	94.82	96.54	0.158
+2B	Academic	digital	93.16	0.102	93.74	95.90	0.163
+2B	Academic	real	86.16	0.163	86.26	88.51	0.220
+4B	Academic	clean	92.64	0.090	91.56	95.38	0.158
+4B	Academic	digital	93.15	0.098	93.52	95.73	0.160
+4B	Academic	real	88.54	0.145	89.84	90.30	0.198
+2B	Education	clean	86.33	0.173	85.98	90.30	0.287
+2B	Education	digital	82.25	0.216	83.41	84.94	0.317
+2B	Education	real	65.84	0.385	66.65	69.39	0.436
+4B	Education	clean	86.15	0.182	86.79	89.86	0.294
+4B	Education	digital	83.06	0.208	84.57	85.42	0.322
+4B	Education	real	69.79	0.342	70.69	72.91	0.394
+2B	Legal / Gov	clean	89.97	0.154	92.50	92.78	0.269
+2B	Legal / Gov	digital	88.87	0.168	94.03	89.39	0.283
+2B	Legal / Gov	real	57.33	0.211	6.25	86.81	0.301
+4B	Legal / Gov	clean	89.66	0.163	92.50	92.73	0.269
+4B	Legal / Gov	digital	89.36	0.161	92.50	91.71	0.264
+4B	Legal / Gov	real	66.34	0.180	26.77	90.20	0.263
+2B	Business	clean	73.65	0.181	46.46	92.60	0.304
+2B	Business	digital	70.14	0.225	45.31	87.60	0.339
+2B	Business	real	56.67	0.322	26.76	75.47	0.397
+4B	Business	clean	75.63	0.156	49.78	92.74	0.273
+4B	Business	digital	72.17	0.198	47.12	89.20	0.315
+4B	Business	real	61.28	0.287	33.30	79.28	0.371
+2B	Finance	clean	65.75	0.332	48.97	81.48	0.475
+2B	Finance	digital	62.49	0.384	49.21	76.70	0.498
+2B	Finance	real	55.84	0.485	45.94	70.03	0.565
+4B	Finance	clean	67.83	0.313	50.44	84.33	0.443
+4B	Finance	digital	64.78	0.356	48.68	81.27	0.476
+4B	Finance	real	59.41	0.436	47.21	74.63	0.541
+2B	Medical	clean	73.69	0.270	67.90	80.11	0.410
+2B	Medical	digital	70.59	0.300	65.60	76.13	0.422
+2B	Medical	real	64.18	0.424	67.62	67.35	0.502
+4B	Medical	clean	71.01	0.213	53.58	80.70	0.360
+4B	Medical	digital	71.12	0.280	63.66	77.70	0.408
+4B	Medical	real	63.83	0.391	60.83	69.76	0.469
+2B	Publishing	clean	86.08	0.207	89.56	89.39	0.311
+2B	Publishing	digital	82.92	0.258	89.33	85.25	0.362
+2B	Publishing	real	77.20	0.326	90.41	73.77	0.412
+4B	Publishing	clean	83.73	0.220	81.36	91.80	0.334
+4B	Publishing	digital	84.58	0.240	90.54	87.24	0.344
+4B	Publishing	real	78.82	0.313	90.42	77.29	0.401
+2B	Technical	clean	67.75	0.205	31.82	91.89	0.335
+2B	Technical	digital	68.13	0.224	37.65	89.12	0.351
+2B	Technical	real	57.41	0.333	30.96	74.55	0.392
+4B	Technical	clean	73.09	0.202	45.19	94.29	0.313
+4B	Technical	digital	70.03	0.217	41.07	90.73	0.328
+4B	Technical	real	64.57	0.303	43.83	80.14	0.364
+2B	Logistics	clean	68.59	0.249	53.58	77.10	0.481
+2B	Logistics	digital	65.27	0.302	56.42	69.61	0.515
+2B	Logistics	real	51.01	0.490	43.19	58.84	0.582
+4B	Logistics	clean	69.48	0.308	59.43	79.78	0.519
+4B	Logistics	digital	65.91	0.333	52.69	78.32	0.534
+4B	Logistics	real	51.55	0.501	40.68	64.08	0.609
+2B	Certificate	clean	59.03	0.237	30.93	69.89	0.445
+2B	Certificate	digital	56.08	0.260	30.93	63.27	0.466
+2B	Certificate	real	39.52	0.497	30.91	37.39	0.590
+4B	Certificate	clean	63.43	0.317	40.42	81.54	0.506
+4B	Certificate	digital	58.91	0.322	39.47	69.48	0.493
+4B	Certificate	real	49.14	0.511	54.05	44.44	0.598
+2B	ALL	clean	79.36	0.214	71.63	87.79	0.347
+2B	ALL	digital	76.62	0.247	70.74	83.84	0.370
+2B	ALL	real	65.60	0.361	58.90	74.05	0.437
+4B	ALL	clean	79.81	0.213	71.90	88.81	0.340
+4B	ALL	digital	77.74	0.241	71.31	85.99	0.361
+4B	ALL	real	69.08	0.336	63.14	77.64	0.416
