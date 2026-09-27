@@ -1,105 +1,82 @@
 # PureDocBench 中文说明
 
 <p align="center">
-  <strong>文档解析离真正解决还有多远？</strong><br>
-  PureDocBench 是一个面向 OCR 与文档解析的源可追踪 benchmark，覆盖 clean、digital-degraded、real-degraded 三条评测轨道。
+  <strong>源标注可追溯的文档解析评测基准</strong><br>
+  1,475 个页面 · 10 个领域 · 66 个子类 · 4,425 张 Clean / Digital / Real 配对图像
 </p>
 
 <p align="center">
-  <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench">Hugging Face Dataset</a> |
-  <a href="../paper/PureDocBench-paper.pdf">Paper PDF</a> |
+  <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench">数据集</a> |
+  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html">交互榜单</a> |
+  <a href="../results/">结果文件</a> |
   <a href="ANNOTATION_CORRECTIONS.md">GT 标注 Review</a> |
   <a href="../README.md">English README</a>
 </p>
 
-PureDocBench 的文档图像由 HTML/CSS 源文件渲染生成，GT 标注从同一份结构化源中抽取。这样可以减少后验人工标注噪声，并让文本、公式、表格、阅读顺序等结构化元素都能被稳定评测。
+PureDocBench 评测文本、公式、表格和阅读顺序。文档图像由 HTML/CSS 源文件生成，结构化标注也从同一份源文件中提取。Clean、Digital、Real 三轨共享页面内容和参考标注，用于比较不同图像条件下的解析表现。
+
+<p align="center">
+  <a href="../assets/figures/teaser.png"><img src="../assets/figures/teaser.png" alt="PureDocBench 十类文档与三轨配对图像概览" width="100%"></a>
+</p>
 
 ## 更新
 
-- **2026-09-21**：新增作者报告的 [WeVisDoc-2B / WeVisDoc-4B](https://github.com/Tencent/WeVisDoc) 结果及[分项、分领域明细](../data/wevisdoc_results.tsv)，在线榜单增至 44 个模型；[来源与评测说明](../data/README.md)。
-- **当前 GT**：稳定别名为 `puredocbench-gt-latest`；精确修订版本和更新时间记录在 [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json) 中。
-- **2026-06-14**：更新 GT 标注，并开放 [GT 标注 Review](ANNOTATION_CORRECTIONS.md) 供社区检查和提交修正。
-- **2026-05-08**：首次开源 PureDocBench，包括论文 PDF 和完整数据集，数据托管在 [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench)。
+- **2026-09-26**：更新为 **58 个模型**的三轨结果与四项组件指标，提供 53 个模型的十领域结果；同步新版概览、数据构造、模型比较、组件分析和七个错误案例图。[结果文件](../results/) · [交互榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)。
+- **2026-09-21**：收录 WeVisDoc 作者提交的结果，原始文件保留在[社区结果归档](../data/README.md)。
+- **当前 GT**：稳定别名为 `puredocbench-gt-latest`，精确版本记录在 [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json)。
+
+## 模型结果
+
+当前结果覆盖 **13 个多阶段专用模型、19 个端到端专用模型和 26 个通用视觉语言模型**，包括截至 2026 年 9 月的近期发布模型。[完整主表](../README.md#main-leaderboard)展示 Clean、Digital、Real 的 Overall 及三轨均值 Avg₃，并为模型提供官方链接和发布日期。
+
+[交互榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)支持按模型搜索、类别筛选和各项指标排序，默认展示上述 58 个模型。社区筛选项另保留 NaviDC-OCR 的作者报告结果。[三轨结果](../results/leaderboard.csv)、[组件指标](../results/components.csv)和[领域指标](../results/category_components.csv)均可下载。
+
+Overall = [100 × (1 − TextEdit) + FormulaCDM + TableTEDS] / 3；阅读顺序单独评测。历史提交及来源说明保留在 [data/](../data/README.md)。
+
+### 准确率与鲁棒性
+
+三轨均分与相对 Clean 的分数损失展示各模型在不同图像条件下的表现，负损失表示分数提升。
 
 <p align="center">
-  <img src="../assets/figures/fig3_data_overview_final.png" alt="PureDocBench 数据概览" width="92%">
+  <a href="../assets/figures/model_rankings.png"><img src="../assets/figures/model_rankings.png" alt="58 模型的准确率与三轨鲁棒性比较" width="100%"></a>
 </p>
 
-## 数据概览
+### 组件表现
 
-| 项目 | 数量 |
-|---|---:|
-| 官方页面 | 1,475 |
-| 官方图像 | 4,425 |
-| 文档大类 | 10 |
-| 细粒度子类 | 66 |
-| 图像轨道 | clean / digital-degraded / real-degraded |
-| 评分结构 | 文本、公式、表格、阅读顺序 |
-
-## 论文主表
-
-论文主表评测了 40 个系统，包括 pipeline 专家模型、端到端文档解析模型和通用 VLM；在线榜单还会收录正式发布后公开的模型结果。每条轨道报告 Overall、TextEdit、FormulaCDM、TableTEDS 和 ROEdit；Avg3 是三条轨道 Overall 的平均。
-
-主榜单已改为可复制、可搜索的原生 HTML 表格，并统一维护在
-[Main Leaderboard](../README.md#main-leaderboard)；其中粗体表示该列最优，
-下划线表示该列次优。需要按任意指标升序或降序排列时，请打开
-[交互式可排序榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)。
-
-## 诊断结果
-
-诊断图展示了当前模型的主要瓶颈：公式识别仍然是最大缺口，真实退化会比数字退化更明显地改变模型排序。
+各项指标取三轨平均。文本和阅读顺序转换为 100 × (1 − Edit)，公式使用 CDM，表格使用 TEDS，数值越高表示表现越好。不同模型在不同组件上具有优势。
 
 <p align="center">
-  <img src="../assets/figures/fig_diagnostic_panels.png" alt="诊断图" width="96%">
+  <a href="../assets/figures/component_profiles.png"><img src="../assets/figures/component_profiles.png" alt="58 模型的文本、公式、表格及阅读顺序表现" width="100%"></a>
 </p>
 
-## Case Studies
+## 数据构造
 
-以下四个 case study 均来自论文原图，覆盖学术、商务、金融和证照场景。它们展示了聚合分数容易隐藏的问题，包括公式语义丢失、阅读顺序错误、批注污染、表格结构错误、字符级错误和印章区域遗漏。
-
-### Case 1：学术文档
+HTML/CSS 源文档同时提供页面图像和结构化标注。渲染、数字变换与物理重拍构成三轨配对输入，自动检查与人工交叉复核用于检查标注质量。
 
 <p align="center">
-  <img src="../assets/figures/fig_case_study_academic.png" alt="学术 case study" width="96%">
+  <a href="../assets/figures/data_construction.png"><img src="../assets/figures/data_construction.png" alt="PureDocBench 数据构造与源标注流程" width="100%"></a>
 </p>
 
-### Case 2：商务表格
+## 错误案例
+
+七个案例展示配料遗漏、图版标签缺失、百分比篡改、金额表述不一致、表格单元格缺失、下标误写为除法，以及希腊符号误识别为数字。原始页面与局部放大图定位错误，并对照参考内容和模型输出。
 
 <p align="center">
-  <img src="../assets/figures/fig_case_study_business.png" alt="商务 case study" width="96%">
+  <a href="../assets/figures/case_studies.png"><img src="../assets/figures/case_studies.png" alt="七个典型解析错误及原图、放大细节、参考内容和模型输出" width="100%"></a>
 </p>
 
-### Case 3：金融精算报告
+<details>
+<summary><strong>退化设计与标注示例</strong></summary>
+
+15 种退化操作涵盖打印、纸张、采集和数字处理，10 种场景组合模拟不同文档采集条件。
 
 <p align="center">
-  <img src="../assets/figures/fig_case_study_actuarial.png" alt="金融 case study" width="96%">
+  <a href="../assets/figures/fig_degradation_ops.png"><img src="../assets/figures/fig_degradation_ops.png" alt="15 种退化操作" width="100%"></a>
+  <a href="../assets/figures/fig_degradation_scenarios.png"><img src="../assets/figures/fig_degradation_scenarios.png" alt="10 种退化场景" width="100%"></a>
+  <a href="../assets/figures/gt_coordinate_overlay_examples.png"><img src="../assets/figures/gt_coordinate_overlay_examples.png" alt="学术文档、专利和学费单的 GT 坐标示例" width="100%"></a>
 </p>
 
-### Case 4：中文产品质量证书
-
-<p align="center">
-  <img src="../assets/figures/fig_case_study_certificate.png" alt="证照 case study" width="96%">
-</p>
-
-## 附录精选图
-
-附录中保留了退化设计、分领域表现和 source-validity 检查，用于说明 benchmark 的可控性与可复现性。
-
-<p align="center">
-  <img src="../assets/figures/fig_degradation_ops.png" alt="退化算子" width="96%">
-</p>
-
-<p align="center">
-  <img src="../assets/figures/fig_degradation_scenarios.png" alt="退化场景" width="96%">
-</p>
-
-<p align="center">
-  <img src="../assets/figures/fig_per_category_overview.png" alt="分领域结果概览" width="92%">
-</p>
-
-<p align="center">
-  <img src="../assets/figures/fig_source_validity_dashboard.png" alt="Source validity dashboard" width="96%">
-</p>
+</details>
 
 ## 数据下载
 

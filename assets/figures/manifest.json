@@ -1,0 +1,82 @@
+{
+  "paper_revision": "2026-09-26",
+  "description": "Web previews rendered directly from the current paper figures. The ranking preview applies the same 35-point bottom trim as the manuscript.",
+  "figures": [
+    {
+      "file": "teaser.png",
+      "source_pdf": "fig_teaser.pdf",
+      "source_sha256": "1f078783983d3c2398e395869498204bdee81a643d03f768bb496413aa9b13d1",
+      "sha256": "a3abc5dc07d11dccc8a4a25a167d04c6bc8acfabb172002da7e03938d2355128",
+      "width": 2800,
+      "height": 1788,
+      "bytes": 2186689,
+      "trim_bottom_bp": 0
+    },
+    {
+      "file": "data_construction.png",
+      "source_pdf": "fig_overview_bc.pdf",
+      "source_sha256": "3d5da281e93b8c62d5541462b37982e2a2a0f840261154b053eb5e0d9fc7ba80",
+      "sha256": "4c74ca7b72c4defc5a409d2b1043e1ff0b7a2e6672ece4e87a010379db5e6052",
+      "width": 2800,
+      "height": 2016,
+      "bytes": 939285,
+      "trim_bottom_bp": 0
+    },
+    {
+      "file": "model_rankings.png",
+      "source_pdf": "fig_rankings.pdf",
+      "source_sha256": "71811fe5bfeb11b991c25b55ce824bf84513d555e6509371c704e2d36e1389a5",
+      "sha256": "a0f7648df741ffcfd45889ad51045f0ff3bfe6805df040c5ee7ee3d8a39cc653",
+      "width": 2800,
+      "height": 3230,
+      "bytes": 954927,
+      "trim_bottom_bp": 35
+    },
+    {
+      "file": "component_profiles.png",
+      "source_pdf": "fig_component_heatmap.pdf",
+      "source_sha256": "79ddb180b18c7dceb3823c97a159ea65663cdbdda94dcda4f6803f663077665e",
+      "sha256": "c1addea2a21a713e033d647f81229b5dec8aca7deacf6e26676e222a8cfaed80",
+      "width": 2800,
+      "height": 2144,
+      "bytes": 1169768,
+      "trim_bottom_bp": 0
+    },
+    {
+      "file": "case_studies.png",
+      "source_pdf": "fig_case_study_main.pdf",
+      "source_sha256": "fbec11ce43b5c885c35e07cbd5c909f46e40dc052697e97448941570af562f6b",
+      "sha256": "4f552ba866ec21c3429e522d0cd32ff7f05559a11ba8d12c1d31cca9f3c95479",
+      "width": 2480,
+      "height": 3138,
+      "bytes": 1510527,
+      "trim_bottom_bp": 0
+    },
+    {
+      "file": "fig_degradation_ops.png",
+      "source_pdf": "fig_degradation_ops.pdf",
+      "source_sha256": "6e7c669089250934f882ec46159c2789471b8d2338f1956f659346874a1a89d0",
+      "sha256": "31913ddc4a698808da479c336ba7645c30d3f2bad843bff1cbe530f1e5fa74e3",
+      "width": 2400,
+      "height": 1475,
+      "bytes": 285035,
+      "trim_bottom_bp": 0
+    },
+    {
+      "file": "fig_degradation_scenarios.png",
+      "source_pdf": "fig_degradation_scenarios.pdf",
+      "source_sha256": "8e954c2e3c3c53ffce308592d89ee852b0ac66ea59adc5f52773e42e0e355da3",
+      "sha256": "90a21134f6ff8b17a6f7522e814fbe86742b962393df6b0e0c79c2567e39c7ab",
+      "width": 2400,
+      "height": 1230,
+      "bytes": 259886,
+      "trim_bottom_bp": 0
+    }
+  ],
+  "retained_legacy_assets": [
+    {
+      "file": "gt_coordinate_overlay_examples.png",
+      "purpose": "Coordinate-overlay examples used in the ground-truth review documentation."
+    }
+  ]
+}

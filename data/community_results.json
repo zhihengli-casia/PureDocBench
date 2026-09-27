@@ -1,0 +1,40 @@
+{
+  "snapshot_source_commit": "1d4abd6",
+  "entries": [
+    {
+      "key": "navidc-ocr",
+      "name": "NaviDC-OCR",
+      "architecture": "Pipeline",
+      "params": "1.2B",
+      "url": "https://github.com/caipeng328/NaviDC-OCR",
+      "release_month": null,
+      "source": "community",
+      "source_url": "https://github.com/caipeng328/NaviDC-OCR#puredocbench",
+      "provenance": "Author-reported results preserved from the public leaderboard before the current-results update. The source does not report Reading Edit. Exact ground-truth and evaluator revisions are unspecified.",
+      "scores": {
+        "clean": {
+          "overall": "86.9",
+          "text_edit": "0.111",
+          "formula_cdm": "81.01",
+          "table_teds": "91.09",
+          "reading_edit": null
+        },
+        "digital": {
+          "overall": "77.47",
+          "text_edit": "0.206",
+          "formula_cdm": "72.59",
+          "table_teds": "80.45",
+          "reading_edit": null
+        },
+        "real": {
+          "overall": "70.85",
+          "text_edit": "0.302",
+          "formula_cdm": "65.11",
+          "table_teds": "77.66",
+          "reading_edit": null
+        }
+      },
+      "avg3": "78.41"
+    }
+  ]
+}

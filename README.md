@@ -1,211 +1,166 @@
 # PureDocBench
 
 <p align="center">
-  <strong>How far is document parsing from solved?</strong><br>
-  A source-traceable benchmark for OCR and document parsing across clean, digitally degraded, and real-degraded document settings.
+  <strong>A source-traceable benchmark for document parsing</strong><br>
+  1,475 pages · 10 domains · 66 subcategories · 4,425 matched Clean / Digital / Real images
 </p>
 
 <p align="center">
   <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench"><img alt="Hugging Face Dataset" src="https://img.shields.io/badge/Dataset-Hugging%20Face-yellow"></a>
+  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><img alt="Interactive leaderboard" src="https://img.shields.io/badge/Leaderboard-58%20models-blue"></a>
   <a href="LICENSE_DATA"><img alt="Data License" src="https://img.shields.io/badge/Data-CC%20BY%204.0-lightgrey"></a>
   <a href="LICENSE"><img alt="Code License" src="https://img.shields.io/badge/Code-MIT-green"></a>
-  <a href="paper/PureDocBench-paper.pdf"><img alt="Paper" src="https://img.shields.io/badge/Paper-PDF-red"></a>
 </p>
 
 <p align="center">
   <a href="docs/README_ZH.md">中文说明</a> |
   <a href="https://huggingface.co/datasets/zhihengli-casia/puredocbench">Dataset</a> |
-  <a href="paper/PureDocBench-paper.pdf">Paper</a> |
+  <a href="#main-leaderboard">Results</a> |
+  <a href="#data-construction">Paper figures</a> |
   <a href="docs/ANNOTATION_CORRECTIONS.md">GT Review & Corrections</a>
 </p>
 
-PureDocBench uses HTML/CSS document sources as hidden anchors: each page is rendered into images and annotated from the same structured source. This gives a benchmark where text, tables, formulas, captions, and reading order can be scored with less post-hoc annotation noise.
+PureDocBench evaluates text, formulas, tables, and reading order across matched document images. Each page is created from an HTML/CSS source, which also provides its structured annotations. Clean, Digital, and Real inputs share the same content and references, enabling comparisons across image conditions.
 
-PureDocBench 是一个源可追踪的 OCR / 文档解析 benchmark。数据由 HTML/CSS 源文件渲染而来，GT 标注从同源结构中抽取，覆盖 clean、digital-degraded、real-degraded 三条图像轨道。
+<p align="center">
+  <a href="assets/figures/teaser.png"><img src="assets/figures/teaser.png" alt="PureDocBench: ten document domains and three matched image tracks" width="100%"></a>
+</p>
 
 ## Updates
 
-- **2026-09-21**: Added author-reported [WeVisDoc-2B and WeVisDoc-4B](https://github.com/Tencent/WeVisDoc) results, including component metrics and per-domain results. The live leaderboard now includes 44 models.
-- **Current GT**: The stable alias is `puredocbench-gt-latest`; the exact revision and timestamp are recorded in [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json).
-- **2026-06-14**: Updated GT annotations and opened a [GT Review app](docs/ANNOTATION_CORRECTIONS.md) for community corrections.
-- **2026-05-08**: Initial public release of PureDocBench, including the paper PDF and full dataset on [Hugging Face](https://huggingface.co/datasets/zhihengli-casia/puredocbench).
-
-## GT Annotation Examples
-
-The examples below show colored coordinate boxes over clean rendered pages from an academic paper, a patent form, and a tuition invoice.
-
-<p align="center">
-  <img src="assets/figures/gt_coordinate_overlay_examples.png" alt="PureDocBench GT coordinate annotation examples" width="98%">
-</p>
-
-<p align="center">
-  <img src="assets/figures/fig3_data_overview_final.png" alt="PureDocBench overview" width="92%">
-</p>
-
-## At A Glance
-
-| Item | Count |
-|---|---:|
-| Official pages | 1,475 |
-| Official images | 4,425 |
-| Top-level domains | 10 |
-| Fine-grained subcategories | 66 |
-| Image tracks | clean, digital-degraded, real-degraded |
-| Scored structures | text, formulas, tables, reading order |
+- **2026-09-26**: Updated the current benchmark results to **58 models**, with all four component metrics and per-domain results for 53 models. Refreshed the overview, construction, model comparison, component, and seven-case figures. [Results files](results/) · [Interactive leaderboard](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html).
+- **2026-09-21**: Added the authors' WeVisDoc submissions, retained in the [community result archive](data/README.md).
+- **Current GT**: The stable alias is `puredocbench-gt-latest`; its exact revision is recorded in [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json).
 
 ## Main Leaderboard
 
-The paper evaluates 40 systems across pipeline specialists, end-to-end document parsers, and general-purpose VLMs. The live leaderboard additionally tracks public post-publication results. Each track reports Overall, TextEdit, FormulaCDM, TableTEDS, and ROEdit; Avg3 averages the three track Overall scores.
+The current evaluation covers **13 pipeline / multi-stage specialists, 19 end-to-end specialists, and 26 general-purpose VLMs**, including recent releases through September 2026. The table reports Overall on each track and their mean, Avg₃. Model names link to official resources; release months follow each name. **Bold** marks the best result in each column.
 
 <p align="center">
-  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><strong>Open the interactive sortable leaderboard ↗</strong></a>
+  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><strong>Open the interactive leaderboard: search, filter, and sort all component metrics ↗</strong></a>
 </p>
 
-<table style="width:100%; border-collapse: collapse;">
-  <caption>Three-track leaderboard on PureDocBench</caption>
-  <thead>
-    <tr>
-      <th rowspan="2">Model</th>
-      <th rowspan="2">Params</th>
-      <th colspan="5">Clean</th>
-      <th colspan="5">Digital Degraded</th>
-      <th colspan="5">Real Degraded</th>
-      <th rowspan="2">Avg<sub>3</sub>&#x2191;</th>
-    </tr>
-    <tr>
-      <th>Overall&#x2191;</th>
-      <th>Text<sup>Edit</sup>&#x2193;</th>
-      <th>Formula<sup>CDM</sup>&#x2191;</th>
-      <th>Table<sup>TEDS</sup>&#x2191;</th>
-      <th>RO<sup>Edit</sup>&#x2193;</th>
-      <th>Overall&#x2191;</th>
-      <th>Text<sup>Edit</sup>&#x2193;</th>
-      <th>Formula<sup>CDM</sup>&#x2191;</th>
-      <th>Table<sup>TEDS</sup>&#x2191;</th>
-      <th>RO<sup>Edit</sup>&#x2193;</th>
-      <th>Overall&#x2191;</th>
-      <th>Text<sup>Edit</sup>&#x2193;</th>
-      <th>Formula<sup>CDM</sup>&#x2191;</th>
-      <th>Table<sup>TEDS</sup>&#x2191;</th>
-      <th>RO<sup>Edit</sup>&#x2193;</th>
-    </tr>
-  </thead>
+<table>
+  <thead><tr><th align="left">Model (release)</th><th align="right">Clean ↑</th><th align="right">Digital ↑</th><th align="right">Real ↑</th><th align="right">Avg<sub>3</sub> ↑</th></tr></thead>
   <tbody>
-    <tr><th colspan="18" align="left"><em>Pipeline / Multi-stage Specialists</em></th></tr>
-    <tr><td><a href="https://github.com/caipeng328/NaviDC-OCR">NaviDC-OCR</a><sup>&dagger;</sup></td><td>1.2B</td><td><strong>86.90</strong></td><td><strong>0.111</strong></td><td><strong>81.01</strong></td><td><strong>91.09</strong></td><td>&mdash;</td><td><ins>77.47</ins></td><td><ins>0.206</ins></td><td><strong>72.59</strong></td><td>80.45</td><td>&mdash;</td><td><ins>70.85</ins></td><td>0.302</td><td><ins>65.11</ins></td><td><strong>77.66</strong></td><td>&mdash;</td><td><strong>78.41</strong></td></tr>
-    <tr><td><a href="https://github.com/rednote-hilab/dots.mocr">DotsMOCR</a></td><td>3B</td><td>76.27</td><td><ins>0.151</ins></td><td>66.23</td><td>77.65</td><td><strong>0.273</strong></td><td>73.16</td><td><strong>0.198</strong></td><td>64.32</td><td>74.95</td><td><strong>0.309</strong></td><td>61.73</td><td>0.312</td><td>54.39</td><td>61.97</td><td>0.393</td><td>70.39</td></tr>
-    <tr><td><a href="https://github.com/bytedance/Dolphin">Dolphin-v2</a></td><td>3B</td><td>65.90</td><td>0.342</td><td>59.80</td><td>72.12</td><td>0.429</td><td>60.24</td><td>0.393</td><td>52.20</td><td>67.86</td><td>0.461</td><td>44.92</td><td>0.553</td><td>39.98</td><td>50.04</td><td>0.558</td><td>57.02</td></tr>
-    <tr><td><a href="https://github.com/Yuliang-Liu/MonkeyOCR">MonkeyOCR-pro-3B</a></td><td>3B</td><td>62.23</td><td>0.346</td><td>48.46</td><td>72.83</td><td>0.492</td><td>57.40</td><td>0.397</td><td>45.57</td><td>66.32</td><td>0.526</td><td>46.49</td><td>0.511</td><td>38.18</td><td>52.43</td><td>0.600</td><td>55.37</td></tr>
-    <tr><td><a href="https://github.com/TencentCloudADP/youtu-parsing">YouTu-Parsing</a></td><td>2B</td><td>75.02</td><td>0.230</td><td>67.34</td><td>80.74</td><td>0.358</td><td>69.66</td><td>0.270</td><td>61.44</td><td>74.49</td><td>0.388</td><td>60.29</td><td>0.360</td><td>52.20</td><td>64.69</td><td>0.430</td><td>68.32</td></tr>
-    <tr><td><a href="https://github.com/opendatalab/MinerU">MinerU2.5-Pro</a></td><td>1.2B</td><td>75.87</td><td>0.222</td><td>65.14</td><td>84.68</td><td>0.346</td><td>71.77</td><td>0.272</td><td>61.79</td><td>80.73</td><td>0.378</td><td>62.56</td><td>0.375</td><td>52.70</td><td>72.47</td><td>0.446</td><td>70.07</td></tr>
-    <tr><td><a href="https://github.com/opendatalab/MinerU">MinerU2.5</a></td><td>1.2B</td><td>74.90</td><td>0.184</td><td>62.08</td><td>81.04</td><td><ins>0.327</ins></td><td>68.92</td><td>0.245</td><td>56.99</td><td>74.24</td><td>0.374</td><td>59.15</td><td>0.370</td><td>49.01</td><td>65.41</td><td>0.446</td><td>67.66</td></tr>
-    <tr><td><a href="https://github.com/Yuliang-Liu/MonkeyOCR">MonkeyOCR-pro-1.2B</a></td><td>1.2B</td><td>61.09</td><td>0.358</td><td>47.43</td><td>71.60</td><td>0.498</td><td>55.72</td><td>0.416</td><td>43.91</td><td>64.83</td><td>0.529</td><td>43.82</td><td>0.556</td><td>36.94</td><td>50.07</td><td>0.609</td><td>53.54</td></tr>
-    <tr><td><a href="https://github.com/PaddlePaddle/PaddleOCR">PaddleOCR-VL-1.5</a></td><td>0.9B</td><td>73.01</td><td>0.266</td><td>63.53</td><td>82.12</td><td>0.428</td><td>66.73</td><td>0.339</td><td>58.03</td><td>76.07</td><td>0.478</td><td>60.50</td><td>0.398</td><td>54.00</td><td>67.33</td><td>0.510</td><td>66.75</td></tr>
-    <tr><td><a href="https://github.com/zai-org/GLM-OCR">GLM-OCR</a></td><td>0.9B</td><td>68.65</td><td>0.314</td><td>57.89</td><td>79.44</td><td>0.470</td><td>63.06</td><td>0.383</td><td>53.23</td><td>74.21</td><td>0.520</td><td>58.31</td><td>0.433</td><td>50.34</td><td>67.83</td><td>0.543</td><td>63.34</td></tr>
-    <tr><td><a href="https://github.com/Topdu/OpenOCR">OpenOCR</a></td><td>0.1B</td><td>32.70</td><td>0.354</td><td>33.50</td><td>0.00</td><td>0.507</td><td>30.03</td><td>0.410</td><td>31.09</td><td>0.00</td><td>0.541</td><td>25.73</td><td>0.486</td><td>25.81</td><td>0.00</td><td>0.591</td><td>29.49</td></tr>
-    <tr><th colspan="18" align="left"><em>End-to-End Specialists</em></th></tr>
-    <tr><td><a href="https://github.com/Tencent/WeVisDoc">WeVisDoc-4B</a><sup>&Dagger;</sup></td><td>4B</td><td>79.81</td><td>0.213</td><td><ins>71.90</ins></td><td><ins>88.81</ins></td><td>0.340</td><td><strong>77.74</strong></td><td>0.241</td><td><ins>71.31</ins></td><td><strong>85.99</strong></td><td>0.361</td><td>69.08</td><td>0.336</td><td>63.14</td><td><ins>77.64</ins></td><td>0.416</td><td><ins>75.54</ins></td></tr>
-    <tr><td><a href="https://github.com/Tencent/WeVisDoc">WeVisDoc-2B</a><sup>&Dagger;</sup></td><td>2B</td><td>79.36</td><td>0.214</td><td>71.63</td><td>87.79</td><td>0.347</td><td>76.62</td><td>0.247</td><td>70.74</td><td><ins>83.84</ins></td><td>0.370</td><td>65.60</td><td>0.361</td><td>58.90</td><td>74.05</td><td>0.437</td><td>73.86</td></tr>
-    <tr><td><a href="https://github.com/AIDC-AI/Ovis">OvisOCR2</a><sup>*</sup></td><td>0.8B</td><td><ins>81.55</ins></td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>77.09</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>66.56</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>75.06</td></tr>
-    <tr><td><a href="https://github.com/allenai/olmocr">olmOCR-2-7B</a></td><td>7B</td><td>69.36</td><td>0.284</td><td>56.89</td><td>79.59</td><td>0.358</td><td>65.87</td><td>0.318</td><td>54.57</td><td>74.81</td><td>0.378</td><td>56.10</td><td>0.417</td><td>48.79</td><td>61.25</td><td>0.439</td><td>63.78</td></tr>
-    <tr><td><a href="https://github.com/allenai/olmocr">olmOCR-7B</a></td><td>7B</td><td>62.56</td><td>0.388</td><td>58.69</td><td>67.77</td><td>0.466</td><td>57.84</td><td>0.436</td><td>55.44</td><td>61.66</td><td>0.499</td><td>47.30</td><td>0.542</td><td>46.26</td><td>49.80</td><td>0.568</td><td>55.90</td></tr>
-    <tr><td><a href="https://github.com/DocTron-hub/FD-RL">FD-RL</a></td><td>4B</td><td>78.38</td><td>0.193</td><td>68.21</td><td>86.22</td><td>0.334</td><td>76.33</td><td>0.214</td><td>67.16</td><td>83.22</td><td><ins>0.350</ins></td><td>67.04</td><td>0.298</td><td>58.82</td><td>72.08</td><td>0.391</td><td>73.92</td></tr>
-    <tr><td><a href="https://github.com/alibaba/Logics-Parsing">Logics-Parsing-v2</a></td><td>4B</td><td>76.35</td><td>0.213</td><td>67.67</td><td>82.67</td><td>0.342</td><td>73.85</td><td>0.248</td><td>67.33</td><td>79.02</td><td>0.375</td><td>67.64</td><td>0.304</td><td>61.65</td><td>71.64</td><td>0.416</td><td>72.61</td></tr>
-    <tr><td><a href="https://github.com/DocTron-hub/OCRVerse">OCRVerse</a></td><td>4B</td><td>73.18</td><td>0.273</td><td>63.78</td><td>83.09</td><td>0.393</td><td>71.36</td><td>0.302</td><td>63.95</td><td>80.36</td><td>0.415</td><td>63.66</td><td>0.363</td><td>57.03</td><td>70.30</td><td>0.452</td><td>69.40</td></tr>
-    <tr><td><a href="https://github.com/baidubce/Qianfan-VL">Qianfan-OCR</a></td><td>4B</td><td>57.22</td><td>0.370</td><td>49.79</td><td>58.83</td><td>0.443</td><td>50.85</td><td>0.438</td><td>44.41</td><td>51.96</td><td>0.485</td><td>45.06</td><td>0.494</td><td>39.08</td><td>45.53</td><td>0.509</td><td>51.04</td></tr>
-    <tr><td><a href="https://github.com/NanoNets/Nanonets-OCR2">Nanonets-OCR2</a></td><td>3B</td><td>64.83</td><td>0.254</td><td>44.98</td><td>74.94</td><td>0.377</td><td>61.23</td><td>0.307</td><td>45.40</td><td>68.97</td><td>0.408</td><td>49.03</td><td>0.435</td><td>35.50</td><td>55.09</td><td>0.468</td><td>58.36</td></tr>
-    <tr><td><a href="https://github.com/deepseek-ai/DeepSeek-OCR-2">DeepSeek-OCR-2</a></td><td>3B</td><td>55.53</td><td>0.354</td><td>46.00</td><td>56.01</td><td>0.466</td><td>49.41</td><td>0.412</td><td>40.78</td><td>48.67</td><td>0.493</td><td>43.60</td><td>0.486</td><td>37.30</td><td>42.06</td><td>0.533</td><td>49.51</td></tr>
-    <tr><td><a href="https://github.com/chatdoc-com/OCRFlux">OCRFlux-3B</a></td><td>3B</td><td>47.14</td><td>0.454</td><td>38.35</td><td>48.46</td><td>0.424</td><td>41.82</td><td>0.486</td><td>31.90</td><td>42.17</td><td>0.437</td><td>37.21</td><td>0.559</td><td>32.65</td><td>34.87</td><td>0.491</td><td>42.06</td></tr>
-    <tr><td><a href="https://github.com/deepseek-ai/DeepSeek-OCR">DeepSeek-OCR</a></td><td>3B</td><td>53.50</td><td>0.419</td><td>45.39</td><td>57.06</td><td>0.514</td><td>46.95</td><td>0.478</td><td>39.99</td><td>48.64</td><td>0.548</td><td>40.48</td><td>0.537</td><td>34.04</td><td>41.12</td><td>0.575</td><td>46.98</td></tr>
-    <tr><td><a href="https://github.com/rednote-hilab/dots.ocr">dots.ocr</a></td><td>2.9B</td><td>72.01</td><td>0.248</td><td>61.37</td><td>79.51</td><td>0.379</td><td>65.95</td><td>0.307</td><td>56.67</td><td>71.86</td><td>0.417</td><td>55.68</td><td>0.403</td><td>47.70</td><td>59.63</td><td>0.467</td><td>64.55</td></tr>
-    <tr><td><a href="https://github.com/FireRedTeam/FireRed-OCR">FireRed-OCR</a></td><td>2B</td><td>70.81</td><td>0.287</td><td>63.86</td><td>77.23</td><td>0.396</td><td>68.49</td><td>0.319</td><td>62.64</td><td>74.77</td><td>0.422</td><td>57.42</td><td>0.415</td><td>51.60</td><td>62.16</td><td>0.474</td><td>65.57</td></tr>
-    <tr><td><a href="https://github.com/Tencent-Hunyuan/HunyuanOCR">HunyuanOCR</a></td><td>1B</td><td>65.61</td><td>0.269</td><td>55.74</td><td>68.02</td><td>0.382</td><td>61.49</td><td>0.308</td><td>51.62</td><td>63.68</td><td>0.400</td><td>54.58</td><td>0.421</td><td>48.30</td><td>57.54</td><td>0.459</td><td>60.56</td></tr>
-    <tr><td><a href="https://github.com/Topdu/OpenOCR">UniRec-0.1B</a></td><td>0.1B</td><td>58.91</td><td>0.422</td><td>51.31</td><td>67.60</td><td>0.526</td><td>52.42</td><td>0.501</td><td>48.37</td><td>59.04</td><td>0.578</td><td>34.44</td><td>0.658</td><td>30.97</td><td>38.16</td><td>0.685</td><td>48.59</td></tr>
-    <tr><td><a href="https://github.com/Topdu/OpenOCR">OpenDoc-0.1B</a></td><td>0.1B</td><td>60.28</td><td>0.411</td><td>53.09</td><td>68.86</td><td>0.519</td><td>52.46</td><td>0.501</td><td>48.41</td><td>59.04</td><td>0.577</td><td>44.27</td><td>0.547</td><td>38.46</td><td>49.06</td><td>0.603</td><td>52.00</td></tr>
-    <tr><th colspan="18" align="left"><em>General VLMs: Qwen3.5</em></th></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-397B-A17B</a></td><td>397B/17B</td><td>69.12</td><td>0.233</td><td>65.26</td><td>65.40</td><td>0.366</td><td>68.34</td><td>0.244</td><td>63.91</td><td>65.53</td><td>0.376</td><td>62.70</td><td>0.287</td><td>60.70</td><td>56.12</td><td>0.399</td><td>66.72</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-122B-A10B</a></td><td>122B/10B</td><td>76.14</td><td>0.226</td><td>67.96</td><td>83.03</td><td>0.375</td><td>76.34</td><td>0.220</td><td>67.82</td><td>83.21</td><td>0.366</td><td>69.85</td><td><strong>0.281</strong></td><td>62.19</td><td>75.44</td><td>0.401</td><td>74.11</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-35B-A3B</a></td><td>35B/3B</td><td>68.40</td><td>0.232</td><td>64.94</td><td>63.45</td><td>0.374</td><td>68.04</td><td>0.245</td><td>64.78</td><td>63.86</td><td>0.379</td><td>60.59</td><td>0.310</td><td>59.68</td><td>53.07</td><td>0.419</td><td>65.68</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-27B</a></td><td>27B</td><td>72.07</td><td>0.227</td><td>66.36</td><td>72.51</td><td>0.362</td><td>70.73</td><td>0.236</td><td>64.61</td><td>71.17</td><td>0.367</td><td>65.92</td><td><ins>0.283</ins></td><td>61.23</td><td>64.82</td><td><ins>0.390</ins></td><td>69.57</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-9B</a></td><td>9B</td><td>73.87</td><td>0.254</td><td>67.60</td><td>79.39</td><td>0.388</td><td>73.34</td><td>0.260</td><td>67.00</td><td>79.01</td><td>0.396</td><td>65.45</td><td>0.332</td><td>60.91</td><td>68.59</td><td>0.437</td><td>70.89</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-4B</a></td><td>4B</td><td>73.45</td><td>0.276</td><td>69.96</td><td>78.02</td><td>0.410</td><td>72.53</td><td>0.281</td><td>68.88</td><td>76.78</td><td>0.412</td><td>63.47</td><td>0.380</td><td>61.27</td><td>67.17</td><td>0.477</td><td>69.82</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-2B</a></td><td>2B</td><td>66.24</td><td>0.348</td><td>62.84</td><td>70.70</td><td>0.473</td><td>65.22</td><td>0.350</td><td>58.30</td><td>72.36</td><td>0.477</td><td>55.92</td><td>0.440</td><td>50.99</td><td>60.79</td><td>0.521</td><td>62.46</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3.5">Qwen3.5-0.8B</a></td><td>0.8B</td><td>60.77</td><td>0.376</td><td>54.39</td><td>65.54</td><td>0.500</td><td>59.28</td><td>0.386</td><td>54.22</td><td>62.22</td><td>0.510</td><td>47.93</td><td>0.498</td><td>44.60</td><td>48.98</td><td>0.557</td><td>55.99</td></tr>
-    <tr><th colspan="18" align="left"><em>General VLMs: Qwen3-VL</em></th></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL-8B</a></td><td>8B</td><td>72.44</td><td>0.261</td><td>65.10</td><td>78.35</td><td>0.411</td><td>72.03</td><td>0.266</td><td>64.88</td><td>77.82</td><td>0.409</td><td>62.73</td><td>0.342</td><td>55.55</td><td>66.81</td><td>0.448</td><td>69.07</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL-4B</a></td><td>4B</td><td>72.04</td><td>0.262</td><td>65.10</td><td>77.17</td><td>0.418</td><td>70.84</td><td>0.272</td><td>63.54</td><td>76.13</td><td>0.425</td><td>59.61</td><td>0.378</td><td>55.15</td><td>61.47</td><td>0.480</td><td>67.50</td></tr>
-    <tr><td><a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL-2B</a></td><td>2B</td><td>66.37</td><td>0.300</td><td>59.04</td><td>70.03</td><td>0.439</td><td>65.81</td><td>0.314</td><td>60.25</td><td>68.52</td><td>0.448</td><td>54.09</td><td>0.428</td><td>51.05</td><td>53.99</td><td>0.511</td><td>62.09</td></tr>
-    <tr><th colspan="18" align="left"><em>General VLMs: Other</em></th></tr>
-    <tr><td><a href="https://github.com/MoonshotAI/Kimi-K2">Kimi K2.6</a></td><td>1T/32B</td><td>72.32</td><td>0.303</td><td>66.93</td><td>80.30</td><td>0.466</td><td>69.95</td><td>0.322</td><td>64.69</td><td>77.31</td><td>0.475</td><td>68.02</td><td>0.335</td><td>62.44</td><td>75.14</td><td>0.481</td><td>70.10</td></tr>
-    <tr><td><a href="https://github.com/stepfun-ai/Step3-VL-10B">Step3-VL</a></td><td>10B</td><td>53.65</td><td>0.496</td><td>53.41</td><td>57.16</td><td>0.509</td><td>52.74</td><td>0.516</td><td>53.62</td><td>56.15</td><td>0.529</td><td>45.06</td><td>0.579</td><td>45.42</td><td>47.66</td><td>0.573</td><td>50.48</td></tr>
-    <tr><td><a href="https://github.com/OpenBMB/MiniCPM-V">MiniCPM-V-4.5</a></td><td>8B</td><td>51.81</td><td>0.439</td><td>45.97</td><td>53.36</td><td>0.481</td><td>49.38</td><td>0.461</td><td>42.79</td><td>51.50</td><td>0.489</td><td>37.59</td><td>0.583</td><td>32.01</td><td>39.06</td><td>0.552</td><td>46.26</td></tr>
-    <tr><td><a href="https://github.com/googleapis/python-genai">Gemini-3.1-Pro</a></td><td>---</td><td>70.04</td><td>0.306</td><td>65.63</td><td>75.08</td><td>0.409</td><td>69.28</td><td>0.322</td><td>65.81</td><td>74.24</td><td>0.417</td><td><strong>71.98</strong></td><td>0.300</td><td><strong>68.62</strong></td><td>77.26</td><td><strong>0.386</strong></td><td>70.43</td></tr>
+    <tr><th colspan="5" align="left">Pipeline / multi-stage specialists (13)</th></tr>
+    <tr><td><a href="https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6">PaddleOCR-VL-1.6</a> (2026-05)</td><td align="right">64.46</td><td align="right">59.29</td><td align="right">54.24</td><td align="right">59.33</td></tr>
+    <tr><td><a href="https://huggingface.co/tencent/Youtu-Parsing">YouTu-Parsing</a> (2026-01)</td><td align="right">75.02</td><td align="right">69.66</td><td align="right">60.29</td><td align="right">68.32</td></tr>
+    <tr><td><a href="https://huggingface.co/dots-studio/dots.mocr">DotsMOCR</a> (2026-03)</td><td align="right">76.27</td><td align="right">73.16</td><td align="right">61.73</td><td align="right">70.39</td></tr>
+    <tr><td><a href="https://huggingface.co/zai-org/GLM-OCR">GLM-OCR</a> (2026-02)</td><td align="right">68.65</td><td align="right">63.06</td><td align="right">58.31</td><td align="right">63.34</td></tr>
+    <tr><td><a href="https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B">MinerU2.5-Pro</a> (2026-04)</td><td align="right">75.87</td><td align="right">71.77</td><td align="right">62.56</td><td align="right">70.07</td></tr>
+    <tr><td><a href="https://huggingface.co/opendatalab/MinerU2.5-2509-1.2B">MinerU2.5</a> (2025-09)</td><td align="right">74.90</td><td align="right">68.92</td><td align="right">59.15</td><td align="right">67.66</td></tr>
+    <tr><td><a href="https://huggingface.co/zenosai/MonkeyOCRv2-B-Parsing">MonkeyOCRv2-B-Parsing</a> (2026-07)</td><td align="right">69.82</td><td align="right">66.08</td><td align="right">58.83</td><td align="right">64.91</td></tr>
+    <tr><td><a href="https://huggingface.co/echo840/MonkeyOCR-pro-3B">MonkeyOCR-pro-3B</a> (2025-08)</td><td align="right">62.23</td><td align="right">57.40</td><td align="right">46.49</td><td align="right">55.37</td></tr>
+    <tr><td><a href="https://huggingface.co/echo840/MonkeyOCR-pro-1.2B">MonkeyOCR-pro-1.2B</a> (2025-07)</td><td align="right">61.09</td><td align="right">55.72</td><td align="right">43.82</td><td align="right">53.54</td></tr>
+    <tr><td><a href="https://github.com/Topdu/OpenOCR/blob/main/docs/opendoc.md">OpenDoc-0.1B (UniRec)</a> (2025-12)</td><td align="right">60.28</td><td align="right">52.46</td><td align="right">44.27</td><td align="right">52.34</td></tr>
+    <tr><td><a href="https://huggingface.co/topdu/OpenOCR">OpenOCR</a> (2024-11)</td><td align="right">32.70</td><td align="right">30.03</td><td align="right">25.73</td><td align="right">29.49</td></tr>
+    <tr><td><a href="https://huggingface.co/ByteDance/Dolphin-v2">Dolphin-v2</a> (2025-12)</td><td align="right">65.90</td><td align="right">60.24</td><td align="right">44.92</td><td align="right">57.02</td></tr>
+    <tr><td><a href="https://huggingface.co/StarDoc-AI/TeleOCR">TeleOCR</a> (2026-08)</td><td align="right"><strong>87.16</strong></td><td align="right">79.40</td><td align="right">69.08</td><td align="right">78.55</td></tr>
+    <tr><th colspan="5" align="left">End-to-end specialists (19)</th></tr>
+    <tr><td><a href="https://huggingface.co/ATH-MaaS/OvisOCR2">OvisOCR2</a> (2026-07)</td><td align="right">81.53</td><td align="right">77.29</td><td align="right">66.49</td><td align="right">75.10</td></tr>
+    <tr><td><a href="https://huggingface.co/acvlab/ABot-OCR">ABot-OCR</a> (2026-05)</td><td align="right">76.92</td><td align="right">72.43</td><td align="right">61.77</td><td align="right">70.37</td></tr>
+    <tr><td><a href="https://huggingface.co/baidu/Qianfan-OCR">Qianfan-OCR</a> (2026-03)</td><td align="right">57.22</td><td align="right">50.85</td><td align="right">45.06</td><td align="right">51.04</td></tr>
+    <tr><td><a href="https://huggingface.co/baidu/Unlimited-OCR">Unlimited-OCR</a> (2026-06)</td><td align="right">72.05</td><td align="right">65.30</td><td align="right">53.71</td><td align="right">63.69</td></tr>
+    <tr><td><a href="https://huggingface.co/tencent/WeVisDoc-4B">WeVisDoc-4B</a> (2026-09)</td><td align="right">79.59</td><td align="right">77.99</td><td align="right">69.14</td><td align="right">75.57</td></tr>
+    <tr><td><a href="https://huggingface.co/tencent/WeVisDoc-2B">WeVisDoc-2B</a> (2026-09)</td><td align="right">79.08</td><td align="right">76.33</td><td align="right">65.68</td><td align="right">73.69</td></tr>
+    <tr><td><a href="https://huggingface.co/tencent/HunyuanOCR">HunyuanOCR-1.5</a> (2026-07)</td><td align="right">73.09</td><td align="right">69.36</td><td align="right">60.28</td><td align="right">67.58</td></tr>
+    <tr><td><a href="https://huggingface.co/tencent/HunyuanOCR/tree/main/v1.0">HunyuanOCR</a> (2025-11)</td><td align="right">65.61</td><td align="right">61.49</td><td align="right">54.58</td><td align="right">60.56</td></tr>
+    <tr><td><a href="https://huggingface.co/dots-studio/dots.ocr">dots.ocr</a> (2025-07)</td><td align="right">72.01</td><td align="right">65.95</td><td align="right">55.68</td><td align="right">64.55</td></tr>
+    <tr><td><a href="https://huggingface.co/FireRedTeam/FireRed-OCR">FireRed-OCR</a> (2026-02)</td><td align="right">70.81</td><td align="right">68.49</td><td align="right">57.42</td><td align="right">65.57</td></tr>
+    <tr><td><a href="https://huggingface.co/deepseek-ai/DeepSeek-OCR-2">DeepSeek-OCR-2</a> (2026-01)</td><td align="right">55.53</td><td align="right">49.41</td><td align="right">43.60</td><td align="right">49.51</td></tr>
+    <tr><td><a href="https://huggingface.co/deepseek-ai/DeepSeek-OCR">DeepSeek-OCR</a> (2025-10)</td><td align="right">53.50</td><td align="right">46.95</td><td align="right">40.48</td><td align="right">46.98</td></tr>
+    <tr><td><a href="https://huggingface.co/allenai/olmOCR-2-7B-1025">olmOCR-2-7B</a> (2025-10)</td><td align="right">69.36</td><td align="right">65.87</td><td align="right">56.10</td><td align="right">63.78</td></tr>
+    <tr><td><a href="https://huggingface.co/allenai/olmOCR-7B-0825">olmOCR-7B</a> (2025-08)</td><td align="right">62.56</td><td align="right">57.84</td><td align="right">47.30</td><td align="right">55.90</td></tr>
+    <tr><td><a href="https://huggingface.co/DocTron/OCRVerse">OCRVerse</a> (2026-01)</td><td align="right">73.18</td><td align="right">71.36</td><td align="right">63.66</td><td align="right">69.40</td></tr>
+    <tr><td><a href="https://huggingface.co/DocTron/FD-RL">FD-RL</a> (2025-11)</td><td align="right">78.38</td><td align="right">76.33</td><td align="right">67.04</td><td align="right">73.92</td></tr>
+    <tr><td><a href="https://huggingface.co/nanonets/Nanonets-OCR2-3B">Nanonets-OCR2</a> (2025-10)</td><td align="right">64.83</td><td align="right">61.23</td><td align="right">49.03</td><td align="right">58.36</td></tr>
+    <tr><td><a href="https://huggingface.co/ChatDOC/OCRFlux-3B">OCRFlux-3B</a> (2025-06)</td><td align="right">47.14</td><td align="right">41.82</td><td align="right">37.21</td><td align="right">42.06</td></tr>
+    <tr><td><a href="https://huggingface.co/Logics-MLLM/Logics-Parsing-v2">Logics-Parsing-v2</a> (2026-02)</td><td align="right">76.35</td><td align="right">73.85</td><td align="right">67.64</td><td align="right">72.61</td></tr>
+    <tr><th colspan="5" align="left">General-purpose VLMs (26)</th></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen3.8-27B</a> (2026-08)</td><td align="right">80.45</td><td align="right">78.86</td><td align="right">73.59</td><td align="right">77.63</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen3.8-Flash-Next</a> (2026-08)</td><td align="right">72.23</td><td align="right">70.96</td><td align="right">62.42</td><td align="right">68.54</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B">Qwen3.6-35B-A3B</a> (2026-04)</td><td align="right">72.14</td><td align="right">69.16</td><td align="right">60.12</td><td align="right">67.14</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.6-27B">Qwen3.6-27B</a> (2026-04)</td><td align="right">70.20</td><td align="right">67.49</td><td align="right">59.18</td><td align="right">65.62</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-397B-A17B">Qwen3.5-397B-A17B</a> (2026-02)</td><td align="right">69.12</td><td align="right">68.34</td><td align="right">62.70</td><td align="right">66.72</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-122B-A10B">Qwen3.5-122B-A10B</a> (2026-02)</td><td align="right">76.14</td><td align="right">76.34</td><td align="right">69.85</td><td align="right">74.11</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-35B-A3B">Qwen3.5-35B-A3B</a> (2026-02)</td><td align="right">68.40</td><td align="right">68.04</td><td align="right">60.59</td><td align="right">65.68</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-27B">Qwen3.5-27B</a> (2026-02)</td><td align="right">72.07</td><td align="right">70.73</td><td align="right">65.92</td><td align="right">69.57</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-9B">Qwen3.5-9B</a> (2026-03)</td><td align="right">73.87</td><td align="right">73.34</td><td align="right">65.45</td><td align="right">70.89</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-4B">Qwen3.5-4B</a> (2026-03)</td><td align="right">73.45</td><td align="right">72.53</td><td align="right">63.47</td><td align="right">69.82</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-2B">Qwen3.5-2B</a> (2026-03)</td><td align="right">66.24</td><td align="right">65.22</td><td align="right">55.92</td><td align="right">62.46</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3.5-0.8B">Qwen3.5-0.8B</a> (2026-03)</td><td align="right">60.77</td><td align="right">59.28</td><td align="right">47.93</td><td align="right">55.99</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct">Qwen3-VL-8B</a> (2025-10)</td><td align="right">72.44</td><td align="right">72.03</td><td align="right">62.73</td><td align="right">69.07</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct">Qwen3-VL-4B</a> (2025-10)</td><td align="right">72.04</td><td align="right">70.84</td><td align="right">59.61</td><td align="right">67.50</td></tr>
+    <tr><td><a href="https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct">Qwen3-VL-2B</a> (2025-10)</td><td align="right">66.37</td><td align="right">65.81</td><td align="right">54.09</td><td align="right">62.09</td></tr>
+    <tr><td><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp">DeepSeek-V4-Flash-Vision-Exp</a> (2026-08)</td><td align="right">54.69</td><td align="right">52.98</td><td align="right">42.68</td><td align="right">50.12</td></tr>
+    <tr><td><a href="https://huggingface.co/zai-org/GLM-5.3-Flash">GLM-5.3-Flash</a> (2026-08)</td><td align="right">83.04</td><td align="right"><strong>81.03</strong></td><td align="right">74.99</td><td align="right"><strong>79.69</strong></td></tr>
+    <tr><td><a href="https://huggingface.co/openbmb/MiniCPM-V-4.6">MiniCPM-V-4.6</a> (2026-05)</td><td align="right">64.47</td><td align="right">59.04</td><td align="right">48.01</td><td align="right">57.17</td></tr>
+    <tr><td><a href="https://huggingface.co/openbmb/MiniCPM-V-4_5">MiniCPM-V-4.5</a> (2025-08)</td><td align="right">51.81</td><td align="right">49.38</td><td align="right">37.59</td><td align="right">46.26</td></tr>
+    <tr><td><a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash">Gemini 3.6 Flash</a> (2026-07)</td><td align="right">79.97</td><td align="right">79.11</td><td align="right"><strong>75.73</strong></td><td align="right">78.27</td></tr>
+    <tr><td><a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview">Gemini-3.1-Pro</a> (2026-02)</td><td align="right">70.04</td><td align="right">69.28</td><td align="right">71.98</td><td align="right">70.43</td></tr>
+    <tr><td><a href="https://www.anthropic.com/news/claude-opus-5">Claude Opus 5</a> (2026-07)</td><td align="right">82.99</td><td align="right">72.94</td><td align="right">75.27</td><td align="right">77.07</td></tr>
+    <tr><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol">GPT-5.6 Sol</a> (2026-07)</td><td align="right">74.15</td><td align="right">71.73</td><td align="right">61.59</td><td align="right">69.16</td></tr>
+    <tr><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-M3">MiniMax-M3</a> (2026-06)</td><td align="right">55.78</td><td align="right">53.85</td><td align="right">42.54</td><td align="right">50.72</td></tr>
+    <tr><td><a href="https://huggingface.co/moonshotai/Kimi-K2.6">Kimi K2.6</a> (2026-04)</td><td align="right">72.32</td><td align="right">69.95</td><td align="right">68.02</td><td align="right">70.10</td></tr>
+    <tr><td><a href="https://huggingface.co/stepfun-ai/Step3-VL-10B">Step3-VL</a> (2026-01)</td><td align="right">53.65</td><td align="right">52.74</td><td align="right">45.06</td><td align="right">50.48</td></tr>
   </tbody>
 </table>
 
-<sup>*</sup> OvisOCR2 scores are author-reported post-publication results from its <a href="https://huggingface.co/ATH-MaaS/OvisOCR2">official model card</a>. Only per-track Overall and Avg<sub>3</sub> were published; unreported component metrics are shown as &mdash;.
 
-<sup>&dagger;</sup> NaviDC-OCR scores are author-reported post-publication results from its <a href="https://github.com/caipeng328/NaviDC-OCR#puredocbench">official repository</a>. The source reports TextEdit, FormulaCDM, and TableTEDS for each track, but not ROEdit; unreported ROEdit metrics are shown as &mdash;.
+Overall = [100 × (1 − TextEdit) + FormulaCDM + TableTEDS] / 3. Reading order is evaluated separately. [Download track scores](results/leaderboard.csv), [component metrics](results/components.csv), or [per-domain metrics](results/category_components.csv).
 
-<sup>&Dagger;</sup> WeVisDoc-2B and WeVisDoc-4B scores are author-reported post-publication results from their official <a href="https://huggingface.co/tencent/WeVisDoc-2B">2B</a> and <a href="https://huggingface.co/tencent/WeVisDoc-4B">4B</a> model cards and <a href="https://arxiv.org/html/2609.20423v1#S4.T3">paper (Table 3)</a>. Scores are means over three inference runs. The full component and per-domain scores are available in the <a href="data/wevisdoc_results.tsv">submitted results</a>; see <a href="data/README.md">source and evaluation notes</a>.
+The interactive leaderboard defaults to these 58 models. Its community filter also retains the separately reported NaviDC-OCR entry. Earlier submissions and their source notes remain in [data/](data/README.md).
 
-<strong>Bold</strong> marks the best reported score in each column; <ins>underlined</ins> marks the runner-up. GitHub README tables cannot run sorting scripts, so use the <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html">interactive leaderboard</a> to sort any metric in either direction.
+### Accuracy and robustness
 
-## Diagnostics
-
-The diagnostic panel shows where current systems still have headroom. Formula recognition is the largest single bottleneck, and real degradation changes rankings more sharply than digital degradation.
+Three-track mean scores and losses from Clean show how model accuracy changes across Digital and Real inputs. Negative losses indicate gains.
 
 <p align="center">
-  <img src="assets/figures/fig_diagnostic_panels.png" alt="Diagnostic panels" width="96%">
+  <a href="assets/figures/model_rankings.png"><img src="assets/figures/model_rankings.png" alt="Accuracy and robustness of 58 models across three architecture groups" width="100%"></a>
+</p>
+
+### Component profiles
+
+The component comparison averages each metric over the three tracks. Text and Reading use 100 × (1 − Edit), Formula uses CDM, and Table uses TEDS; higher scores indicate better performance. Different models lead different components.
+
+<p align="center">
+  <a href="assets/figures/component_profiles.png"><img src="assets/figures/component_profiles.png" alt="Text, formula, table, and reading-order profiles for 58 models" width="100%"></a>
+</p>
+
+## Data Construction
+
+Generated HTML/CSS provides a common source for page images and annotations. Rendering, digital transformations, and physical recapture produce the three matched image tracks. Automated checks and human review support annotation quality.
+
+<p align="center">
+  <a href="assets/figures/data_construction.png"><img src="assets/figures/data_construction.png" alt="PureDocBench document construction and source-linked annotation workflow" width="100%"></a>
 </p>
 
 ## Case Studies
 
-The four case studies below are all taken from the paper. They show failures that aggregate scores can hide: notation loss, reading-order mistakes, annotation contamination, table-structure errors, character-level corruption, and missing visual authentication cues.
-
-### Case 1: Academic
+Seven examples show omitted ingredients, missing panel labels, altered percentages, inconsistent amounts, a missing table cell, a subscript rewritten as division, and Greek symbols read as digits. Full pages and enlarged crops locate each error alongside the reference and model output.
 
 <p align="center">
-  <img src="assets/figures/fig_case_study_academic.png" alt="Case study 1: academic structured lab report" width="96%">
+  <a href="assets/figures/case_studies.png"><img src="assets/figures/case_studies.png" alt="Seven parsing failures with full-page context, enlarged evidence, references, and model outputs" width="100%"></a>
 </p>
 
-### Case 2: Business
+<details>
+<summary><strong>Degradation design and annotation examples</strong></summary>
+
+Fifteen degradation operations cover printing, paper, capture, and digital processing. Ten scene profiles combine operations to represent different acquisition conditions.
 
 <p align="center">
-  <img src="assets/figures/fig_case_study_business.png" alt="Case study 2: business product specification table" width="96%">
+  <a href="assets/figures/fig_degradation_ops.png"><img src="assets/figures/fig_degradation_ops.png" alt="Fifteen degradation operations" width="100%"></a>
+  <a href="assets/figures/fig_degradation_scenarios.png"><img src="assets/figures/fig_degradation_scenarios.png" alt="Ten degradation scenarios" width="100%"></a>
 </p>
 
-### Case 3: Finance
+The coordinate examples below illustrate spatial annotations on an academic paper, a patent form, and a tuition invoice.
 
 <p align="center">
-  <img src="assets/figures/fig_case_study_actuarial.png" alt="Case study 3: finance actuarial valuation report" width="96%">
+  <a href="assets/figures/gt_coordinate_overlay_examples.png"><img src="assets/figures/gt_coordinate_overlay_examples.png" alt="Ground-truth coordinate annotation examples" width="100%"></a>
 </p>
 
-### Case 4: Certificate
-
-<p align="center">
-  <img src="assets/figures/fig_case_study_certificate.png" alt="Case study 4: Chinese product quality certificate" width="96%">
-</p>
-
-## Appendix Highlights
-
-The appendix documents the degradation design, per-category behavior, and source-validity checks used to make the benchmark reproducible.
-
-<p align="center">
-  <img src="assets/figures/fig_degradation_ops.png" alt="Degradation operations" width="96%">
-</p>
-
-<p align="center">
-  <img src="assets/figures/fig_degradation_scenarios.png" alt="Degradation scenarios" width="96%">
-</p>
-
-<p align="center">
-  <img src="assets/figures/fig_per_category_overview.png" alt="Per-category overview" width="92%">
-</p>
-
-<p align="center">
-  <img src="assets/figures/fig_source_validity_dashboard.png" alt="Source-validity dashboard" width="96%">
-</p>
+</details>
 
 ## Download
 
@@ -328,8 +283,9 @@ scripts/                           Rendering, degradation, validation, leaderboa
 puredocbench/                      Public inference, scoring, and OmniDocBench export CLI
 model_inference/                   Sanitized model inference configs and runners
 supplemental_inference_scoring/    API/local inference and scoring utilities
-assets/figures/                    Figures from the paper
-paper/                             Paper PDF
+assets/figures/                    Current paper figures
+results/                          Current 58-model results and aggregation
+data/                             Community submissions and historical results
 ```
 
 ## Quick Start

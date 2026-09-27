@@ -6,7 +6,17 @@ __pycache__/
 dist/
 build/
 tmp/
-data/
+# Keep local datasets ignored; publish the curated leaderboard inputs.
+/data/*
+!/data/README.md
+!/data/wevisdoc_results.tsv
+!/data/leaderboard.js
+!/data/community_results.json
+!/data/model_parameters.json
+!/data/archive/
+/data/archive/*
+!/data/archive/leaderboard-2026-09-21.json
+!/data/archive/wevisdoc-2026-09-21.md
 *.tar
 *.tar.gz
 *.zip

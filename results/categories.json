@@ -1,0 +1,52 @@
+[
+  {
+    "key": "academic",
+    "name": "Academic",
+    "source_pages": 180
+  },
+  {
+    "key": "education",
+    "name": "Education",
+    "source_pages": 138
+  },
+  {
+    "key": "legal_gov",
+    "name": "Legal\\_Gov",
+    "source_pages": 151
+  },
+  {
+    "key": "business",
+    "name": "Business",
+    "source_pages": 160
+  },
+  {
+    "key": "finance",
+    "name": "Finance",
+    "source_pages": 212
+  },
+  {
+    "key": "medical",
+    "name": "Medical",
+    "source_pages": 200
+  },
+  {
+    "key": "publishing",
+    "name": "Publishing",
+    "source_pages": 100
+  },
+  {
+    "key": "technical",
+    "name": "Technical",
+    "source_pages": 110
+  },
+  {
+    "key": "logistics",
+    "name": "Logistics",
+    "source_pages": 120
+  },
+  {
+    "key": "certificate",
+    "name": "Certificate",
+    "source_pages": 104
+  }
+]

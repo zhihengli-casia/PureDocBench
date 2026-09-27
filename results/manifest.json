@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "tracks": [
+    "clean",
+    "digital",
+    "real"
+  ],
+  "architecture_counts": {
+    "Pipeline": 13,
+    "E2E": 19,
+    "General VLM": 26
+  },
+  "model_count": 58,
+  "component_rows": 174,
+  "category_model_count": 53,
+  "category_rows": 1590,
+  "source_pages": 1475,
+  "images": 4425,
+  "precision": "Decimal strings preserve the supplied reference values. Only display rounding is allowed.",
+  "score_definitions": {
+    "text_score": "100 * (1 - text_edit)",
+    "reading_score": "100 * (1 - reading_edit)",
+    "overall": "(100 * (1 - text_edit) + formula_cdm + table_teds) / 3",
+    "avg3": "(clean + digital + real) / 3"
+  },
+  "files": {
+    "leaderboard.csv": "051e708c3384264ed388f5d7d14e38ce20f22f8761b9cff26a6eadb1cf2728d0",
+    "components.csv": "a44a80319ff1136ada8460dc9d64b0f99615d3f8f3c911e07472caea2c8cac98",
+    "category_components.csv": "5ad9d661ffc85d3f1e3bf345097394559d759f3db4eb3cec46be99827f61dbe0",
+    "models.json": "7551238e7f0567f98fa0b79fa684534b20e9cc62bb996a77eed47ac0abd49c30",
+    "categories.json": "8083ac3f1c5de4ec3fa9e3ebce7320bdc1a29f3cef3b301cabab6fbc8c69a428"
+  }
+}

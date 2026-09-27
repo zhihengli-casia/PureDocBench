@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Build the public leaderboard from the released decimal-valued result tables."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import html
+import json
+from collections import Counter
+from decimal import Decimal, ROUND_HALF_UP
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+TRACKS = ("clean", "digital", "real")
+GROUPS = {"Pipeline": "Pipeline / multi-stage specialists", "E2E": "End-to-end specialists", "General VLM": "General-purpose VLMs"}
+
+
+def read_csv(name: str) -> list[dict[str, str]]:
+    with (ROOT / "results" / name).open(newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def load_data() -> list[dict]:
+    manifest = json.loads((ROOT / "results/manifest.json").read_text())
+    for name, expected in manifest["files"].items():
+        actual = hashlib.sha256((ROOT / "results" / name).read_bytes()).hexdigest()
+        if actual != expected:
+            raise ValueError(f"Reference checksum mismatch: {name}")
+    metadata = json.loads((ROOT / "results/models.json").read_text())
+    leaderboard_rows = read_csv("leaderboard.csv")
+    component_rows = read_csv("components.csv")
+    leaderboard = {row["model_key"]: row for row in leaderboard_rows}
+    components = {(row["model_key"], row["track"]): row for row in component_rows}
+    keys = {model["key"] for model in metadata}
+    if len(metadata) != 58 or len(keys) != 58 or set(leaderboard) != keys or len(leaderboard_rows) != 58:
+        raise ValueError("Current results must contain 58 unique and matching models")
+    if len(component_rows) != 174 or set(components) != {(key, track) for key in keys for track in TRACKS}:
+        raise ValueError("Expected exactly three component rows per current model")
+    if Counter(model["architecture"] for model in metadata) != manifest["architecture_counts"]:
+        raise ValueError("Architecture groups differ from the reference manifest")
+    parameters = json.loads((ROOT / "data/model_parameters.json").read_text())
+    models = []
+    for model in metadata:
+        row = leaderboard[model["key"]]
+        scores = {}
+        for track in TRACKS:
+            component = components[(model["key"], track)]
+            scores[track] = {name: component[name] for name in ("text_edit", "formula_cdm", "table_teds", "reading_edit")}
+            # Table 2 values and supplied Avg3 are authoritative; components can have
+            # greater precision or historical rounding and are never substituted.
+            scores[track]["overall"] = row[track]
+        models.append({**model, "params": parameters.get(model["name"]), "source": "paper", "scores": scores, "avg3": row["avg3"]})
+    community = json.loads((ROOT / "data/community_results.json").read_text())["entries"]
+    if any(model["key"] in keys for model in community):
+        raise ValueError("A community entry duplicates a current model")
+    return models + community
+
+
+def format_number(value: str) -> str:
+    return str(Decimal(value).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+
+
+def readme_table(models: list[dict]) -> str:
+    current = [model for model in models if model["source"] == "paper"]
+    winners = {metric: max(Decimal(model["avg3"] if metric == "avg3" else model["scores"][metric]["overall"]) for model in current) for metric in (*TRACKS, "avg3")}
+    lines = ['<table>', '  <thead><tr><th align="left">Model (release)</th><th align="right">Clean ↑</th><th align="right">Digital ↑</th><th align="right">Real ↑</th><th align="right">Avg<sub>3</sub> ↑</th></tr></thead>', '  <tbody>']
+    previous_group = None
+    for model in current:
+        group = model["architecture"]
+        if group != previous_group:
+            lines.append(f'    <tr><th colspan="5" align="left">{GROUPS[group]} ({sum(item["architecture"] == group for item in current)})</th></tr>')
+            previous_group = group
+        cells = []
+        for metric in (*TRACKS, "avg3"):
+            value = model["avg3"] if metric == "avg3" else model["scores"][metric]["overall"]
+            display = format_number(value)
+            if Decimal(value) == winners[metric]:
+                display = f"<strong>{display}</strong>"
+            cells.append(f'<td align="right">{display}</td>')
+        lines.append(f'    <tr><td><a href="{html.escape(model["url"], quote=True)}">{html.escape(model["name"])}</a> ({model["release_month"]})</td>{"".join(cells)}</tr>')
+    return "\n".join(lines + ['  </tbody>', '</table>', ''])
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--readme-table", type=Path, help="Write an HTML table fragment for the repository README")
+    parser.add_argument("--check", action="store_true", help="Check that the generated browser data is current")
+    args = parser.parse_args()
+    models = load_data()
+    payload = "// Generated by results/build_public_leaderboard.py; edit the source tables.\nconst leaderboardData = " + json.dumps(models, ensure_ascii=False, indent=2) + ";\n"
+    destination = ROOT / "data/leaderboard.js"
+    if args.check:
+        if not destination.exists() or destination.read_text() != payload:
+            raise SystemExit("Browser data is stale; run results/build_public_leaderboard.py")
+    else:
+        destination.write_text(payload)
+    if args.readme_table:
+        args.readme_table.write_text(readme_table(models))
+    print(f"Validated {len(models)} entries: 58 current results and {len(models) - 58} community entry.")
+
+
+if __name__ == "__main__":
+    main()

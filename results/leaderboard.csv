@@ -1,0 +1,59 @@
+model_key,model_name,architecture,clean,digital,real,avg3
+paddleocr-vl-1-6-layout-corrected,PaddleOCR-VL-1.6,Pipeline,64.46,59.29,54.24,59.33
+youtu-parsing,YouTu-Parsing,Pipeline,75.02,69.66,60.29,68.32
+dotsmocr,DotsMOCR,Pipeline,76.27,73.16,61.73,70.39
+glm-ocr,GLM-OCR,Pipeline,68.65,63.06,58.31,63.34
+mineru2-5-pro,MinerU2.5-Pro,Pipeline,75.87,71.77,62.56,70.07
+mineru2-5,MinerU2.5,Pipeline,74.90,68.92,59.15,67.66
+monkeyocr-v2-b-parsing,MonkeyOCRv2-B-Parsing,Pipeline,69.82,66.08,58.83,64.91
+monkeyocr-pro-3b,MonkeyOCR-pro-3B,Pipeline,62.23,57.40,46.49,55.37
+monkeyocr-pro-1-2b,MonkeyOCR-pro-1.2B,Pipeline,61.09,55.72,43.82,53.54
+opendoc-0-1b,OpenDoc-0.1B (UniRec),Pipeline,60.28,52.46,44.27,52.34
+openocr,OpenOCR,Pipeline,32.70,30.03,25.73,29.49
+dolphin-v2,Dolphin-v2,Pipeline,65.90,60.24,44.92,57.02
+teleocr,TeleOCR,Pipeline,87.16,79.4,69.08,78.55
+ovisocr2,OvisOCR2,E2E,81.53,77.29,66.49,75.1
+abot-ocr,ABot-OCR,E2E,76.92,72.43,61.77,70.37
+qianfan-ocr,Qianfan-OCR,E2E,57.22,50.85,45.06,51.04
+unlimited-ocr,Unlimited-OCR,E2E,72.05,65.3,53.71,63.69
+wevisdoc-4b,WeVisDoc-4B,E2E,79.58709626393424,77.98996290037151,69.1356183390842,75.57089250112999
+wevisdoc-2b,WeVisDoc-2B,E2E,79.07572051607762,76.32508646884193,65.68066103427365,73.6938226730644
+hunyuanocr-1-5,HunyuanOCR-1.5,E2E,73.09,69.36,60.28,67.58
+hunyuanocr,HunyuanOCR,E2E,65.61,61.49,54.58,60.56
+dots-ocr,dots.ocr,E2E,72.01,65.95,55.68,64.55
+firered-ocr,FireRed-OCR,E2E,70.81,68.49,57.42,65.57
+deepseek-ocr-2,DeepSeek-OCR-2,E2E,55.53,49.41,43.60,49.51
+deepseek-ocr,DeepSeek-OCR,E2E,53.50,46.95,40.48,46.98
+olmocr-2-7b,olmOCR-2-7B,E2E,69.36,65.87,56.10,63.78
+olmocr-7b,olmOCR-7B,E2E,62.56,57.84,47.30,55.90
+ocrverse,OCRVerse,E2E,73.18,71.36,63.66,69.40
+fd-rl,FD-RL,E2E,78.38,76.33,67.04,73.92
+nanonets-ocr2,Nanonets-OCR2,E2E,64.83,61.23,49.03,58.36
+ocrflux-3b,OCRFlux-3B,E2E,47.14,41.82,37.21,42.06
+logics-parsing-v2,Logics-Parsing-v2,E2E,76.35,73.85,67.64,72.61
+qwen3-8-27b,Qwen3.8-27B,General VLM,80.45,78.86,73.59,77.63
+qwen3-8-flash-next,Qwen3.8-Flash-Next,General VLM,72.23,70.96,62.42,68.54
+qwen3-6-35b-a3b,Qwen3.6-35B-A3B,General VLM,72.14,69.16,60.12,67.14
+qwen3-6-27b,Qwen3.6-27B,General VLM,70.2,67.49,59.18,65.62
+qwen3-5-397b-a17b,Qwen3.5-397B-A17B,General VLM,69.12,68.34,62.70,66.72
+qwen3-5-122b-a10b,Qwen3.5-122B-A10B,General VLM,76.14,76.34,69.85,74.11
+qwen3-5-35b-a3b,Qwen3.5-35B-A3B,General VLM,68.40,68.04,60.59,65.68
+qwen3-5-27b,Qwen3.5-27B,General VLM,72.07,70.73,65.92,69.57
+qwen3-5-9b,Qwen3.5-9B,General VLM,73.87,73.34,65.45,70.89
+qwen3-5-4b,Qwen3.5-4B,General VLM,73.45,72.53,63.47,69.82
+qwen3-5-2b,Qwen3.5-2B,General VLM,66.24,65.22,55.92,62.46
+qwen3-5-0-8b,Qwen3.5-0.8B,General VLM,60.77,59.28,47.93,55.99
+qwen3-vl-8b,Qwen3-VL-8B,General VLM,72.44,72.03,62.73,69.07
+qwen3-vl-4b,Qwen3-VL-4B,General VLM,72.04,70.84,59.61,67.50
+qwen3-vl-2b,Qwen3-VL-2B,General VLM,66.37,65.81,54.09,62.09
+deepseek-v4-flash-vision-exp,DeepSeek-V4-Flash-Vision-Exp,General VLM,54.69,52.98,42.68,50.12
+glm-5-3-flash,GLM-5.3-Flash,General VLM,83.04,81.03,74.99,79.69
+minicpm-v-4-6,MiniCPM-V-4.6,General VLM,64.47,59.04,48.01,57.17
+minicpm-v-4-5,MiniCPM-V-4.5,General VLM,51.81,49.38,37.59,46.26
+gemini-3-6-flash,Gemini 3.6 Flash,General VLM,79.97,79.11,75.73,78.27
+gemini-3-1-pro,Gemini-3.1-Pro,General VLM,70.04,69.28,71.98,70.43
+claude-opus-5,Claude Opus 5,General VLM,82.99,72.94,75.27,77.07
+gpt-5-6-sol,GPT-5.6 Sol,General VLM,74.15,71.73,61.59,69.16
+minimax-m3,MiniMax-M3,General VLM,55.78,53.85,42.54,50.72
+kimi-k2-6,Kimi K2.6,General VLM,72.32,69.95,68.02,70.10
+step3-vl,Step3-VL,General VLM,53.65,52.74,45.06,50.48

@@ -1,0 +1,466 @@
+[
+  {
+    "key": "paddleocr-vl-1-6-layout-corrected",
+    "name": "PaddleOCR-VL-1.6",
+    "architecture": "Pipeline",
+    "series": "PaddleOCR",
+    "release_month": "2026-05",
+    "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6"
+  },
+  {
+    "key": "youtu-parsing",
+    "name": "YouTu-Parsing",
+    "architecture": "Pipeline",
+    "series": "Youtu",
+    "release_month": "2026-01",
+    "url": "https://huggingface.co/tencent/Youtu-Parsing"
+  },
+  {
+    "key": "dotsmocr",
+    "name": "DotsMOCR",
+    "architecture": "Pipeline",
+    "series": "dots",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/dots-studio/dots.mocr"
+  },
+  {
+    "key": "glm-ocr",
+    "name": "GLM-OCR",
+    "architecture": "Pipeline",
+    "series": "GLM",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/zai-org/GLM-OCR"
+  },
+  {
+    "key": "mineru2-5-pro",
+    "name": "MinerU2.5-Pro",
+    "architecture": "Pipeline",
+    "series": "MinerU",
+    "release_month": "2026-04",
+    "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B"
+  },
+  {
+    "key": "mineru2-5",
+    "name": "MinerU2.5",
+    "architecture": "Pipeline",
+    "series": "MinerU",
+    "release_month": "2025-09",
+    "url": "https://huggingface.co/opendatalab/MinerU2.5-2509-1.2B"
+  },
+  {
+    "key": "monkeyocr-v2-b-parsing",
+    "name": "MonkeyOCRv2-B-Parsing",
+    "architecture": "Pipeline",
+    "series": "MonkeyOCR",
+    "release_month": "2026-07",
+    "url": "https://huggingface.co/zenosai/MonkeyOCRv2-B-Parsing"
+  },
+  {
+    "key": "monkeyocr-pro-3b",
+    "name": "MonkeyOCR-pro-3B",
+    "architecture": "Pipeline",
+    "series": "MonkeyOCR",
+    "release_month": "2025-08",
+    "url": "https://huggingface.co/echo840/MonkeyOCR-pro-3B"
+  },
+  {
+    "key": "monkeyocr-pro-1-2b",
+    "name": "MonkeyOCR-pro-1.2B",
+    "architecture": "Pipeline",
+    "series": "MonkeyOCR",
+    "release_month": "2025-07",
+    "url": "https://huggingface.co/echo840/MonkeyOCR-pro-1.2B"
+  },
+  {
+    "key": "opendoc-0-1b",
+    "name": "OpenDoc-0.1B (UniRec)",
+    "architecture": "Pipeline",
+    "series": "OpenOCR ecosystem",
+    "release_month": "2025-12",
+    "url": "https://github.com/Topdu/OpenOCR/blob/main/docs/opendoc.md"
+  },
+  {
+    "key": "openocr",
+    "name": "OpenOCR",
+    "architecture": "Pipeline",
+    "series": "OpenOCR ecosystem",
+    "release_month": "2024-11",
+    "url": "https://huggingface.co/topdu/OpenOCR"
+  },
+  {
+    "key": "dolphin-v2",
+    "name": "Dolphin-v2",
+    "architecture": "Pipeline",
+    "series": "Dolphin",
+    "release_month": "2025-12",
+    "url": "https://huggingface.co/ByteDance/Dolphin-v2"
+  },
+  {
+    "key": "teleocr",
+    "name": "TeleOCR",
+    "architecture": "Pipeline",
+    "series": "TeleOCR",
+    "release_month": "2026-08",
+    "url": "https://huggingface.co/StarDoc-AI/TeleOCR"
+  },
+  {
+    "key": "ovisocr2",
+    "name": "OvisOCR2",
+    "architecture": "E2E",
+    "series": "Ovis",
+    "release_month": "2026-07",
+    "url": "https://huggingface.co/ATH-MaaS/OvisOCR2"
+  },
+  {
+    "key": "abot-ocr",
+    "name": "ABot-OCR",
+    "architecture": "E2E",
+    "series": "ABot",
+    "release_month": "2026-05",
+    "url": "https://huggingface.co/acvlab/ABot-OCR"
+  },
+  {
+    "key": "qianfan-ocr",
+    "name": "Qianfan-OCR",
+    "architecture": "E2E",
+    "series": "Qianfan",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/baidu/Qianfan-OCR"
+  },
+  {
+    "key": "unlimited-ocr",
+    "name": "Unlimited-OCR",
+    "architecture": "E2E",
+    "series": "Unlimited",
+    "release_month": "2026-06",
+    "url": "https://huggingface.co/baidu/Unlimited-OCR"
+  },
+  {
+    "key": "wevisdoc-4b",
+    "name": "WeVisDoc-4B",
+    "architecture": "E2E",
+    "series": "WeVisDoc",
+    "release_month": "2026-09",
+    "url": "https://huggingface.co/tencent/WeVisDoc-4B"
+  },
+  {
+    "key": "wevisdoc-2b",
+    "name": "WeVisDoc-2B",
+    "architecture": "E2E",
+    "series": "WeVisDoc",
+    "release_month": "2026-09",
+    "url": "https://huggingface.co/tencent/WeVisDoc-2B"
+  },
+  {
+    "key": "hunyuanocr-1-5",
+    "name": "HunyuanOCR-1.5",
+    "architecture": "E2E",
+    "series": "HunyuanOCR",
+    "release_month": "2026-07",
+    "url": "https://huggingface.co/tencent/HunyuanOCR"
+  },
+  {
+    "key": "hunyuanocr",
+    "name": "HunyuanOCR",
+    "architecture": "E2E",
+    "series": "HunyuanOCR",
+    "release_month": "2025-11",
+    "url": "https://huggingface.co/tencent/HunyuanOCR/tree/main/v1.0"
+  },
+  {
+    "key": "dots-ocr",
+    "name": "dots.ocr",
+    "architecture": "E2E",
+    "series": "dots",
+    "release_month": "2025-07",
+    "url": "https://huggingface.co/dots-studio/dots.ocr"
+  },
+  {
+    "key": "firered-ocr",
+    "name": "FireRed-OCR",
+    "architecture": "E2E",
+    "series": "FireRed",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/FireRedTeam/FireRed-OCR"
+  },
+  {
+    "key": "deepseek-ocr-2",
+    "name": "DeepSeek-OCR-2",
+    "architecture": "E2E",
+    "series": "DeepSeek-OCR",
+    "release_month": "2026-01",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2"
+  },
+  {
+    "key": "deepseek-ocr",
+    "name": "DeepSeek-OCR",
+    "architecture": "E2E",
+    "series": "DeepSeek-OCR",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-OCR"
+  },
+  {
+    "key": "olmocr-2-7b",
+    "name": "olmOCR-2-7B",
+    "architecture": "E2E",
+    "series": "olmOCR",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/allenai/olmOCR-2-7B-1025"
+  },
+  {
+    "key": "olmocr-7b",
+    "name": "olmOCR-7B",
+    "architecture": "E2E",
+    "series": "olmOCR",
+    "release_month": "2025-08",
+    "url": "https://huggingface.co/allenai/olmOCR-7B-0825"
+  },
+  {
+    "key": "ocrverse",
+    "name": "OCRVerse",
+    "architecture": "E2E",
+    "series": "DocTron releases",
+    "release_month": "2026-01",
+    "url": "https://huggingface.co/DocTron/OCRVerse"
+  },
+  {
+    "key": "fd-rl",
+    "name": "FD-RL",
+    "architecture": "E2E",
+    "series": "DocTron releases",
+    "release_month": "2025-11",
+    "url": "https://huggingface.co/DocTron/FD-RL"
+  },
+  {
+    "key": "nanonets-ocr2",
+    "name": "Nanonets-OCR2",
+    "architecture": "E2E",
+    "series": "Nanonets-OCR",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/nanonets/Nanonets-OCR2-3B"
+  },
+  {
+    "key": "ocrflux-3b",
+    "name": "OCRFlux-3B",
+    "architecture": "E2E",
+    "series": "OCRFlux",
+    "release_month": "2025-06",
+    "url": "https://huggingface.co/ChatDOC/OCRFlux-3B"
+  },
+  {
+    "key": "logics-parsing-v2",
+    "name": "Logics-Parsing-v2",
+    "architecture": "E2E",
+    "series": "Logics-Parsing",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/Logics-MLLM/Logics-Parsing-v2"
+  },
+  {
+    "key": "qwen3-8-27b",
+    "name": "Qwen3.8-27B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-08",
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B"
+  },
+  {
+    "key": "qwen3-8-flash-next",
+    "name": "Qwen3.8-Flash-Next",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-08",
+    "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+  },
+  {
+    "key": "qwen3-6-35b-a3b",
+    "name": "Qwen3.6-35B-A3B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-04",
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+  },
+  {
+    "key": "qwen3-6-27b",
+    "name": "Qwen3.6-27B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-04",
+    "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+  },
+  {
+    "key": "qwen3-5-397b-a17b",
+    "name": "Qwen3.5-397B-A17B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B"
+  },
+  {
+    "key": "qwen3-5-122b-a10b",
+    "name": "Qwen3.5-122B-A10B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B"
+  },
+  {
+    "key": "qwen3-5-35b-a3b",
+    "name": "Qwen3.5-35B-A3B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
+  },
+  {
+    "key": "qwen3-5-27b",
+    "name": "Qwen3.5-27B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-02",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-27B"
+  },
+  {
+    "key": "qwen3-5-9b",
+    "name": "Qwen3.5-9B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-9B"
+  },
+  {
+    "key": "qwen3-5-4b",
+    "name": "Qwen3.5-4B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+  },
+  {
+    "key": "qwen3-5-2b",
+    "name": "Qwen3.5-2B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-2B"
+  },
+  {
+    "key": "qwen3-5-0-8b",
+    "name": "Qwen3.5-0.8B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2026-03",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+  },
+  {
+    "key": "qwen3-vl-8b",
+    "name": "Qwen3-VL-8B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct"
+  },
+  {
+    "key": "qwen3-vl-4b",
+    "name": "Qwen3-VL-4B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct"
+  },
+  {
+    "key": "qwen3-vl-2b",
+    "name": "Qwen3-VL-2B",
+    "architecture": "General VLM",
+    "series": "Qwen",
+    "release_month": "2025-10",
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct"
+  },
+  {
+    "key": "deepseek-v4-flash-vision-exp",
+    "name": "DeepSeek-V4-Flash-Vision-Exp",
+    "architecture": "General VLM",
+    "series": "DeepSeek-V4",
+    "release_month": "2026-08",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+  },
+  {
+    "key": "glm-5-3-flash",
+    "name": "GLM-5.3-Flash",
+    "architecture": "General VLM",
+    "series": "GLM",
+    "release_month": "2026-08",
+    "url": "https://huggingface.co/zai-org/GLM-5.3-Flash"
+  },
+  {
+    "key": "minicpm-v-4-6",
+    "name": "MiniCPM-V-4.6",
+    "architecture": "General VLM",
+    "series": "MiniCPM-V",
+    "release_month": "2026-05",
+    "url": "https://huggingface.co/openbmb/MiniCPM-V-4.6"
+  },
+  {
+    "key": "minicpm-v-4-5",
+    "name": "MiniCPM-V-4.5",
+    "architecture": "General VLM",
+    "series": "MiniCPM-V",
+    "release_month": "2025-08",
+    "url": "https://huggingface.co/openbmb/MiniCPM-V-4_5"
+  },
+  {
+    "key": "gemini-3-6-flash",
+    "name": "Gemini 3.6 Flash",
+    "architecture": "General VLM",
+    "series": "Gemini",
+    "release_month": "2026-07",
+    "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash"
+  },
+  {
+    "key": "gemini-3-1-pro",
+    "name": "Gemini-3.1-Pro",
+    "architecture": "General VLM",
+    "series": "Gemini",
+    "release_month": "2026-02",
+    "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview"
+  },
+  {
+    "key": "claude-opus-5",
+    "name": "Claude Opus 5",
+    "architecture": "General VLM",
+    "series": "Claude",
+    "release_month": "2026-07",
+    "url": "https://www.anthropic.com/news/claude-opus-5"
+  },
+  {
+    "key": "gpt-5-6-sol",
+    "name": "GPT-5.6 Sol",
+    "architecture": "General VLM",
+    "series": "GPT",
+    "release_month": "2026-07",
+    "url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
+  },
+  {
+    "key": "minimax-m3",
+    "name": "MiniMax-M3",
+    "architecture": "General VLM",
+    "series": "MiniMax",
+    "release_month": "2026-06",
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3"
+  },
+  {
+    "key": "kimi-k2-6",
+    "name": "Kimi K2.6",
+    "architecture": "General VLM",
+    "series": "Kimi",
+    "release_month": "2026-04",
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6"
+  },
+  {
+    "key": "step3-vl",
+    "name": "Step3-VL",
+    "architecture": "General VLM",
+    "series": "Step",
+    "release_month": "2026-01",
+    "url": "https://huggingface.co/stepfun-ai/Step3-VL-10B"
+  }
+]
