@@ -123,11 +123,14 @@ details.
 
 ```bibtex
 @article{li2026puredocbench,
-  title   = {How Far Is Document Parsing from Solved? PureDocBench: A Source-Traceable Benchmark across Clean, Degraded, and Real-World Settings},
-  author  = {Li, Zhiheng and Ma, Zongyang and Chen, Jiaxian and Zhang, Jianing and Su, Zhaolong and Zhang, Yutong and Yu, Zhiyin and Liu, Ruiqi and Lv, Xiaolei and Li, Bo and Gao, Jun and Zhang, Ziqi and Yuan, Chunfeng and Li, Bing and Hu, Weiming},
+  title = {How Far Is Document Parsing from Solved? {PureDocBench}: A Source-Traceable Benchmark across Clean, Degraded, and Real-World Settings},
+  author = {Li, Zhiheng and Ma, Zongyang and Chen, Jiaxian and Zhang, Jianing and Su, Zhaolong and Zhang, Yutong and Yu, Zhiyin and Liu, Ruiqi and Lv, Xiaolei and Li, Bo and Gao, Jun and Zhang, Ziqi and Yuan, Chunfeng and Li, Bing and Hu, Weiming},
   journal = {arXiv preprint arXiv:2605.07492},
-  year    = {2026},
-  doi     = {10.48550/arXiv.2605.07492},
-  url     = {https://arxiv.org/abs/2605.07492}
+  year = {2026},
+  eprint = {2605.07492},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  doi = {10.48550/arXiv.2605.07492},
+  url = {https://arxiv.org/abs/2605.07492}
 }
 ```
