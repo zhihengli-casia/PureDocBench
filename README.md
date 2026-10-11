@@ -37,7 +37,8 @@ PureDocBench evaluates text, formulas, tables, and reading order across matched 
 The current evaluation covers **13 pipeline / multi-stage specialists, 19 end-to-end specialists, and 26 general-purpose VLMs**, including recent releases through September 2026. The table reports Overall on each track and their mean, Avg₃. Model names link to official resources; release months follow each name. **Bold** marks the best result in each column.
 
 <p align="center">
-  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><strong>Open the interactive leaderboard: search, filter, and sort all component metrics ↗</strong></a>
+  <a href="https://zhihengli-casia.github.io/PureDocBench/leaderboard.html"><img alt="View Model Rankings" src="https://img.shields.io/badge/View_Model_Rankings-3157d5?style=for-the-badge"></a><br>
+  <sub>All 58 models ranked by Avg₃ by default. Search, filter, or click a metric header to view its ranking.</sub>
 </p>
 
 <table>
