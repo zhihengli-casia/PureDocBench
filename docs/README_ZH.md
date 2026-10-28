@@ -21,6 +21,7 @@ PureDocBench 评测文本、公式、表格和阅读顺序。文档图像由 HTM
 
 ## 更新
 
+- **2026-10-27**：新增 [DocLayoutV3 重算结果](../results/README.md#doclayoutv3-rescore)，使用 HF `2026-10-07` GT，对 4,425 份预测得到 **72.65 / 67.01 / 61.96**，Avg₃ **67.21**。提供三轨组件指标、十领域明细、GT／评测器版本及核验记录；该结果对应 PP-DocLayoutV3 版面分析 + PaddleOCR-VL-1.6 识别流程，权重 revision 和生成参数待补充。
 - **2026-09-26**：更新为 **58 个模型**的三轨结果与四项组件指标，提供 53 个模型的十领域结果；同步新版概览、数据构造、模型比较、组件分析和七个错误案例图。[结果文件](../results/) · [交互榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)。
 - **2026-09-21**：收录 WeVisDoc 作者提交的结果，原始文件保留在[社区结果归档](../data/README.md)。
 - **当前 GT**：稳定别名为 `puredocbench-gt-latest`，精确版本记录在 [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json)。
@@ -29,7 +30,7 @@ PureDocBench 评测文本、公式、表格和阅读顺序。文档图像由 HTM
 
 当前结果覆盖 **13 个多阶段专用模型、19 个端到端专用模型和 26 个通用视觉语言模型**，包括截至 2026 年 9 月的近期发布模型。[完整主表](../README.md#main-leaderboard)展示 Clean、Digital、Real 的 Overall 及三轨均值 Avg₃，并为模型提供官方链接和发布日期。
 
-[交互榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)支持按模型搜索、类别筛选和各项指标排序，默认展示上述 58 个模型。社区筛选项另保留 NaviDC-OCR 的作者报告结果。[三轨结果](../results/leaderboard.csv)、[组件指标](../results/components.csv)和[领域指标](../results/category_components.csv)均可下载。
+[交互榜单](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html)支持按模型搜索、类别筛选和各项指标排序，默认展示上述 58 个模型。社区筛选项包含 NaviDC-OCR 的作者报告结果，以及 [DocLayoutV3 的重算条目](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html?source=community&search=doclayoutv3)。[三轨结果](../results/leaderboard.csv)、[组件指标](../results/components.csv)和[领域指标](../results/category_components.csv)均可下载。
 
 Overall = [100 × (1 − TextEdit) + FormulaCDM + TableTEDS] / 3；阅读顺序单独评测。历史提交及来源说明保留在 [data/](../data/README.md)。
 

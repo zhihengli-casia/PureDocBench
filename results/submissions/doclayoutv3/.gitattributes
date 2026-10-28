@@ -1,0 +1,3 @@
+# Preserve exported data bytes and their recorded hashes, including CRLF endings.
+*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.tsv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

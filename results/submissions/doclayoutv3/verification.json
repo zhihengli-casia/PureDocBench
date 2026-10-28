@@ -1,0 +1,52 @@
+{
+  "verified_at_utc": "2026-10-28T02:58:12.011896+00:00",
+  "all_passed": true,
+  "downloaded_gt_sha256_verified": true,
+  "source_prediction_archive_sha256_verified": true,
+  "all_gt_annotation_content_preserved": true,
+  "evaluator_python_source_unchanged": true,
+  "checks": {
+    "clean": {
+      "input_pages": 1475,
+      "missing_predictions": 0,
+      "source_prediction_bytes_unchanged": true,
+      "formula_scored_pages": 224,
+      "formula_scoring_rows": 867,
+      "table_scored_pages": 1174,
+      "table_scoring_rows": 3840,
+      "reading_order_scored_pages": 1471,
+      "cdm_exceptions": 0,
+      "teds_remaining_errors": 0,
+      "utf8_table_transport_repairs": 11,
+      "independent_aggregation_max_abs_diff": 1.4210854715202004e-14
+    },
+    "digital": {
+      "input_pages": 1475,
+      "missing_predictions": 0,
+      "source_prediction_bytes_unchanged": true,
+      "formula_scored_pages": 224,
+      "formula_scoring_rows": 867,
+      "table_scored_pages": 1174,
+      "table_scoring_rows": 3840,
+      "reading_order_scored_pages": 1471,
+      "cdm_exceptions": 0,
+      "teds_remaining_errors": 0,
+      "utf8_table_transport_repairs": 10,
+      "independent_aggregation_max_abs_diff": 0.0
+    },
+    "real": {
+      "input_pages": 1475,
+      "missing_predictions": 0,
+      "source_prediction_bytes_unchanged": true,
+      "formula_scored_pages": 224,
+      "formula_scoring_rows": 867,
+      "table_scored_pages": 1174,
+      "table_scoring_rows": 3840,
+      "reading_order_scored_pages": 1471,
+      "cdm_exceptions": 0,
+      "teds_remaining_errors": 0,
+      "utf8_table_transport_repairs": 8,
+      "independent_aggregation_max_abs_diff": 0.0
+    }
+  }
+}

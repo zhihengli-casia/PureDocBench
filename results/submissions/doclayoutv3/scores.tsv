@@ -1,0 +1,34 @@
+Model	Domain	Track	Overall	TextEdit	FormulaCDM	TableTEDS	ROEdit
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Academic	clean	90.70	0.113	89.32	94.08	0.211
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Academic	digital	87.53	0.151	85.26	92.47	0.233
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Academic	real	81.50	0.182	74.07	88.69	0.269
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Education	clean	78.07	0.264	75.68	84.97	0.407
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Education	digital	69.87	0.365	70.15	76.00	0.474
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Education	real	63.72	0.409	62.32	69.75	0.517
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Legal / Gov	clean	62.73	0.185	12.00	94.73	0.287
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Legal / Gov	digital	72.17	0.241	53.50	87.06	0.344
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Legal / Gov	real	56.84	0.270	9.90	87.63	0.348
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Business	clean	66.42	0.265	34.81	91.00	0.419
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Business	digital	57.58	0.363	28.92	80.09	0.491
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Business	real	56.70	0.363	29.25	77.12	0.476
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Finance	clean	61.68	0.453	55.04	75.34	0.588
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Finance	digital	56.00	0.541	53.08	69.03	0.629
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Finance	real	56.74	0.558	58.56	67.48	0.639
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Medical	clean	58.69	0.460	54.68	67.40	0.580
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Medical	digital	55.55	0.533	60.50	59.48	0.617
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Medical	real	53.60	0.559	55.68	61.01	0.632
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Publishing	clean	78.35	0.215	65.86	90.72	0.376
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Publishing	digital	76.67	0.277	69.97	87.75	0.445
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Publishing	real	68.02	0.352	70.23	69.01	0.478
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Technical	clean	68.35	0.238	40.32	88.52	0.375
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Technical	digital	67.63	0.286	47.27	84.22	0.421
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Technical	real	56.16	0.364	33.04	71.82	0.465
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Logistics	clean	61.80	0.385	48.28	75.63	0.618
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Logistics	digital	59.29	0.486	52.27	74.25	0.673
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Logistics	real	47.97	0.565	39.23	61.15	0.703
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Certificate	clean	-	0.397	-	78.45	0.571
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Certificate	digital	-	0.424	-	67.54	0.600
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	Certificate	real	-	0.560	-	39.77	0.695
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	ALL	clean	72.65	0.305	64.77	83.73	0.446
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	ALL	digital	67.01	0.376	61.44	77.22	0.494
+PP-DocLayoutV3 + PaddleOCR-VL-1.6	ALL	real	61.96	0.420	55.24	72.62	0.519

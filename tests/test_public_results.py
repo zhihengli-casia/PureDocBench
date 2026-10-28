@@ -1,5 +1,6 @@
 """Protect released decimal values, model identity, and historical submissions."""
 
+import csv
 import hashlib
 import importlib.util
 import json
@@ -32,8 +33,8 @@ class PublicResultsTests(unittest.TestCase):
 
     def test_current_models_are_unique_and_community_is_separate(self):
         models = BUILDER.load_data()
-        self.assertEqual(len({model["key"] for model in models}), 59)
-        self.assertEqual([model["name"] for model in models if model["source"] == "community"], ["NaviDC-OCR"])
+        self.assertEqual(len({model["key"] for model in models}), 60)
+        self.assertEqual([model["name"] for model in models if model["source"] == "community"], ["NaviDC-OCR", "PP-DocLayoutV3 + PaddleOCR-VL-1.6"])
         self.assertEqual(sum("OpenDoc" in model["name"] for model in models), 1)
         self.assertNotIn("UniRec-0.1B", {model["name"] for model in models})
         self.assertNotIn("PaddleOCR-VL-1.5", {model["name"] for model in models})
@@ -52,6 +53,32 @@ class PublicResultsTests(unittest.TestCase):
         archived = json.loads((ROOT / "data/archive/leaderboard-2026-09-21.json").read_text())
         self.assertEqual(len(archived), 44)
         self.assertEqual(next(row[19] for row in archived if row[0] == "WeVisDoc-2B"), 73.86)
+
+    def test_doclayout_rescore_matches_versioned_result_record(self):
+        entry = next(model for model in BUILDER.load_data() if model["key"] == "doclayoutv3-rescore-20261027")
+        directory = ROOT / "results/submissions/doclayoutv3"
+        record = json.loads((directory / "run.json").read_text())
+        self.assertEqual(entry["evaluation_kind"], "maintainer-rescored")
+        self.assertEqual(entry["architecture"], "Pipeline")
+        self.assertEqual(entry["url"], "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6")
+        self.assertEqual(record["model_identity"]["confirmed_pipeline"], entry["name"])
+        self.assertIsNone(entry["params"])
+        self.assertIsNone(entry["release_month"])
+        self.assertEqual(record["inputs"]["total_predictions"], 4425)
+        self.assertEqual(record["inputs"]["missing_predictions"], 0)
+        self.assertEqual(record["ground_truth"]["revision"], "4665b40a3333f7643bad7c8675a9062b482511ad")
+        self.assertEqual(record["evaluator"]["commit"], "f133a71e9e91c3621c7ce8994200a7b394a06eb3")
+        self.assertEqual(record["denominators_per_track"]["reading_order_pages"], 1471)
+        self.assertEqual(float(entry["avg3"]), record["avg3"])
+        for row in record["scores"]:
+            scores = entry["scores"][row["Track"]]
+            for public, saved in [("overall", "Overall"), ("text_edit", "TextEdit"), ("formula_cdm", "FormulaCDM"), ("table_teds", "TableTEDS"), ("reading_edit", "ROEdit")]:
+                self.assertEqual(float(scores[public]), row[saved])
+        with (directory / "category_components.csv").open() as handle:
+            category_rows = list(csv.DictReader(handle))
+        self.assertEqual(len(category_rows), 30)
+        for name, expected in json.loads((directory / "checksums.json").read_text()).items():
+            self.assertEqual(hashlib.sha256((directory / name).read_bytes()).hexdigest(), expected, name)
 
 
 if __name__ == "__main__":

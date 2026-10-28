@@ -1,0 +1,34 @@
+Model	Domain	Track	Overall	TextEdit	FormulaCDM	TableTEDS	ROEdit
+DocLayoutV3	Academic	clean	90.56	0.113	88.89	94.08	0.211
+DocLayoutV3	Academic	digital	87.39	0.151	84.80	92.51	0.233
+DocLayoutV3	Academic	real	81.39	0.182	73.72	88.71	0.269
+DocLayoutV3	Education	clean	78.07	0.264	75.69	84.96	0.407
+DocLayoutV3	Education	digital	69.90	0.365	70.17	76.05	0.474
+DocLayoutV3	Education	real	63.72	0.409	62.31	69.77	0.517
+DocLayoutV3	Legal / Gov	clean	62.38	0.185	10.95	94.73	0.287
+DocLayoutV3	Legal / Gov	digital	71.82	0.241	52.45	87.06	0.344
+DocLayoutV3	Legal / Gov	real	56.86	0.270	9.90	87.68	0.348
+DocLayoutV3	Business	clean	66.43	0.265	34.84	90.99	0.419
+DocLayoutV3	Business	digital	57.59	0.363	28.96	80.10	0.491
+DocLayoutV3	Business	real	56.69	0.363	29.21	77.12	0.476
+DocLayoutV3	Finance	clean	60.98	0.453	52.96	75.33	0.590
+DocLayoutV3	Finance	digital	55.32	0.541	51.05	69.02	0.630
+DocLayoutV3	Finance	real	55.40	0.559	54.58	67.48	0.640
+DocLayoutV3	Medical	clean	54.37	0.460	41.72	67.37	0.580
+DocLayoutV3	Medical	digital	53.87	0.533	55.49	59.47	0.617
+DocLayoutV3	Medical	real	50.69	0.559	46.94	61.03	0.632
+DocLayoutV3	Publishing	clean	78.35	0.215	65.86	90.72	0.376
+DocLayoutV3	Publishing	digital	76.97	0.277	70.87	87.75	0.445
+DocLayoutV3	Publishing	real	67.44	0.352	68.48	69.01	0.478
+DocLayoutV3	Technical	clean	68.04	0.238	39.23	88.67	0.376
+DocLayoutV3	Technical	digital	67.32	0.286	46.18	84.37	0.422
+DocLayoutV3	Technical	real	56.21	0.364	33.04	71.96	0.465
+DocLayoutV3	Logistics	clean	61.81	0.385	48.30	75.63	0.621
+DocLayoutV3	Logistics	digital	59.33	0.486	52.39	74.25	0.675
+DocLayoutV3	Logistics	real	47.92	0.565	39.08	61.15	0.704
+DocLayoutV3	Certificate	clean	-	0.397	-	78.45	0.571
+DocLayoutV3	Certificate	digital	-	0.424	-	67.54	0.600
+DocLayoutV3	Certificate	real	-	0.560	-	39.77	0.695
+DocLayoutV3	ALL	clean	72.40	0.305	64.00	83.74	0.446
+DocLayoutV3	ALL	digital	66.85	0.376	60.94	77.24	0.494
+DocLayoutV3	ALL	real	61.71	0.420	54.47	72.65	0.520

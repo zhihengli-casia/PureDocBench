@@ -28,6 +28,7 @@ PureDocBench evaluates text, formulas, tables, and reading order across matched 
 
 ## Updates
 
+- **2026-10-27**: Added a [DocLayoutV3 rescore](results/README.md#doclayoutv3-rescore) of 4,425 supplied predictions using HF GT `2026-10-07`: **72.65 / 67.01 / 61.96**, Avg₃ **67.21**. Track components, ten-domain results, exact GT/evaluator revisions and verification records are available. The prediction provider confirmed PP-DocLayoutV3 layout analysis with PaddleOCR-VL-1.6 recognition.
 - **2026-09-26**: Updated the current benchmark results to **58 models**, with all four component metrics and per-domain results for 53 models. Refreshed the overview, construction, model comparison, component, and seven-case figures. [Results files](results/) · [Interactive leaderboard](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html).
 - **2026-09-21**: Added the authors' WeVisDoc submissions, retained in the [community result archive](data/README.md).
 - **Current GT**: The stable alias is `puredocbench-gt-latest`; its exact revision is recorded in [Hugging Face `gt/latest.json`](https://huggingface.co/datasets/zhihengli-casia/puredocbench/blob/main/gt/latest.json).
@@ -111,7 +112,15 @@ The current evaluation covers **13 pipeline / multi-stage specialists, 19 end-to
 
 Overall = [100 × (1 − TextEdit) + FormulaCDM + TableTEDS] / 3. Reading order is evaluated separately. [Download track scores](results/leaderboard.csv), [component metrics](results/components.csv), or [per-domain metrics](results/category_components.csv).
 
-The interactive leaderboard defaults to these 58 models. Its community filter also retains the separately reported NaviDC-OCR entry. Earlier submissions and their source notes remain in [data/](data/README.md).
+The interactive leaderboard defaults to these 58 models. Its community filter includes NaviDC-OCR's author-reported result and the maintainer-rescored DocLayoutV3 submission. Earlier submissions and their source notes remain in [data/](data/README.md).
+
+### Additional evaluations
+
+| Submitted system | Clean ↑ | Digital ↑ | Real ↑ | Avg₃ ↑ | Evaluation record |
+| --- | ---: | ---: | ---: | ---: | --- |
+| PP-DocLayoutV3 + PaddleOCR-VL-1.6 | 72.65 | 67.01 | 61.96 | **67.21** | [GT, evaluator, components and domain scores](results/README.md#doclayoutv3-rescore) · [Interactive row](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html?source=community&search=doclayoutv3) |
+
+The prediction provider identified this submission as [PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3) layout analysis plus [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6) recognition. The record preserves the supplied label `DocLayoutV3`, with the exact checkpoint revisions and generation settings awaiting documentation.
 
 ### Accuracy and robustness
 

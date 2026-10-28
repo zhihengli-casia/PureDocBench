@@ -1,0 +1,10 @@
+{
+  "platform": "macOS-26.3-arm64-arm-64bit",
+  "machine": "arm64",
+  "python": "Python 3.11.18",
+  "pdflatex": "pdfTeX 3.141592653-2.6-1.40.27 (TeX Live 2025)\nkpathsea version 6.4.1\nCopyright 2025 Han The Thanh (pdfTeX) et al.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the pdfTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the pdfTeX source.\nPrimary author of pdfTeX: Han The Thanh (pdfTeX) et al.\nCompiled with libpng 1.6.46; using libpng 1.6.46\nCompiled with zlib 1.3.1; using zlib 1.3.1\nCompiled with xpdf version 4.04",
+  "xelatex": "XeTeX 3.141592653-2.6-0.999997 (TeX Live 2025)\nkpathsea version 6.4.1\nCopyright 2025 SIL International, Jonathan Kew and Khaled Hosny.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the XeTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the XeTeX source.\nPrimary author of XeTeX: Jonathan Kew.\nCompiled with ICU version 76.1; using 76.1\nCompiled with zlib version 1.3.1; using 1.3.1\nCompiled with FreeType2 version 2.13.3; using 2.13.3\nCompiled with Graphite2 version 1.3.14; using 1.3.14\nCompiled with HarfBuzz version 10.2.0; using 10.2.0\nCompiled with libpng version 1.6.46; using 1.6.46\nCompiled with pplib version v2.2\nUsing Mac OS X Core Text and Cocoa frameworks",
+  "kpsewhich": "kpathsea version 6.4.1\nCopyright 2023 Karl Berry & Olaf Weber.\nLicense LGPLv2.1+: GNU Lesser GPL version 2.1 or later <https://gnu.org/licenses/lgpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+  "gs": "10.05.1",
+  "magick": "Version: ImageMagick 7.1.2-27 Q16-HDRI aarch64 e4c2b403b:20260705 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules \nDelegates (built-in): bzlib freetype heic jng jpeg lcms ltdl lzma png tiff webp xml zlib zstd\nCompiler: clang (21.0.0)"
+}

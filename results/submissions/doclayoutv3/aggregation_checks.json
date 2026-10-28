@@ -1,0 +1,92 @@
+{
+  "clean": {
+    "text_block": {
+      "score": 0.3054872986261205,
+      "page_count": 1475,
+      "sample_count": 65675,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 5.551115123125783e-17
+    },
+    "reading_order": {
+      "score": 0.44588791982473164,
+      "page_count": 1471,
+      "sample_count": 1471,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 5.551115123125783e-17
+    },
+    "display_formula": {
+      "score": 0.647659484563056,
+      "page_count": 224,
+      "sample_count": 867,
+      "gt_page_count": 224,
+      "aggregation_abs_diff": 0.0
+    },
+    "table": {
+      "score": 0.8373370164490639,
+      "page_count": 1174,
+      "sample_count": 3840,
+      "gt_page_count": 1174,
+      "aggregation_abs_diff": 1.4210854715202004e-14
+    }
+  },
+  "digital": {
+    "text_block": {
+      "score": 0.3763186181342754,
+      "page_count": 1475,
+      "sample_count": 66830,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 0.0
+    },
+    "reading_order": {
+      "score": 0.4939317489640279,
+      "page_count": 1471,
+      "sample_count": 1471,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 0.0
+    },
+    "display_formula": {
+      "score": 0.6144348841820382,
+      "page_count": 224,
+      "sample_count": 867,
+      "gt_page_count": 224,
+      "aggregation_abs_diff": 0.0
+    },
+    "table": {
+      "score": 0.7722047411441368,
+      "page_count": 1174,
+      "sample_count": 3840,
+      "gt_page_count": 1174,
+      "aggregation_abs_diff": 0.0
+    }
+  },
+  "real": {
+    "text_block": {
+      "score": 0.4198909800731215,
+      "page_count": 1475,
+      "sample_count": 68074,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 0.0
+    },
+    "reading_order": {
+      "score": 0.5192555321699425,
+      "page_count": 1471,
+      "sample_count": 1471,
+      "gt_page_count": 0,
+      "aggregation_abs_diff": 0.0
+    },
+    "display_formula": {
+      "score": 0.552362265952054,
+      "page_count": 224,
+      "sample_count": 867,
+      "gt_page_count": 224,
+      "aggregation_abs_diff": 0.0
+    },
+    "table": {
+      "score": 0.7262347280682213,
+      "page_count": 1174,
+      "sample_count": 3840,
+      "gt_page_count": 1174,
+      "aggregation_abs_diff": 0.0
+    }
+  }
+}

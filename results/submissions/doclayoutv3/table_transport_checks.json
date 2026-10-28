@@ -1,0 +1,517 @@
+{
+  "reason": "macOS libxml2 2.9.13 fails to parse some Python Unicode strings containing supplementary-plane characters. The same normalized HTML encoded as UTF-8 parses correctly.",
+  "lxml_version": [
+    4,
+    9,
+    1,
+    0
+  ],
+  "libxml_version": [
+    2,
+    9,
+    13
+  ],
+  "evaluator_source_modified": false,
+  "prediction_or_gt_content_modified": false,
+  "transport": "Unicode text encoded losslessly with UTF-8",
+  "tracks": {
+    "digital": {
+      "sample_count": 3840,
+      "equal_string_and_utf8_parse_trees": 6649,
+      "invalid_in_both_transports": [],
+      "repaired_table_count": 10,
+      "repairs": [
+        {
+          "img_id": "syllabus_009_Conservatory_Music_Theory.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.012284370099320438
+          },
+          "after": {
+            "TEDS": 0.9058321513192144,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.012284370099320438
+          }
+        },
+        {
+          "img_id": "lab_report_036_维生素C含量变化测定.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.018808777429467086
+          },
+          "after": {
+            "TEDS": 0.9383333333333334,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.018808777429467086
+          }
+        },
+        {
+          "img_id": "medical_bill_019.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.4739454094292804
+          },
+          "after": {
+            "TEDS": 0.1212903225806452,
+            "TEDS_structure_only": 0.4,
+            "Edit_dist": 0.4739454094292804
+          }
+        },
+        {
+          "img_id": "medical_bill_019.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.07320219284101903
+          },
+          "after": {
+            "TEDS": 0.8787073549275622,
+            "TEDS_structure_only": 0.9031413612565445,
+            "Edit_dist": 0.07320219284101903
+          }
+        },
+        {
+          "img_id": "brochure_menu_006_中餐厅菜单.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.42231075697211157
+          },
+          "after": {
+            "TEDS": 0.3555742296918767,
+            "TEDS_structure_only": 0.5,
+            "Edit_dist": 0.42231075697211157
+          }
+        },
+        {
+          "img_id": "brochure_menu_006_中餐厅菜单.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.4410480349344978
+          },
+          "after": {
+            "TEDS": 0.2926839485794319,
+            "TEDS_structure_only": 0.5,
+            "Edit_dist": 0.4410480349344978
+          }
+        },
+        {
+          "img_id": "brochure_menu_006_中餐厅菜单.png",
+          "gt_idx": [
+            3
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.3708206686930091
+          },
+          "after": {
+            "TEDS": 0.2470576298701298,
+            "TEDS_structure_only": 0.33333333333333337,
+            "Edit_dist": 0.3708206686930091
+          }
+        },
+        {
+          "img_id": "product_manual_007_Camera_User_Guide_EN.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.11439114391143912
+          },
+          "after": {
+            "TEDS": 0.9532010921612976,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.11439114391143912
+          }
+        },
+        {
+          "img_id": "release_notes_019_Cybersecurity_Bulletin.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.08008658008658008
+          },
+          "after": {
+            "TEDS": 0.8462902837902838,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.08008658008658008
+          }
+        },
+        {
+          "img_id": "itinerary_016_行程确认函_Itinerary_Confirmation_for_Visa_Application.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.14413680781758959
+          },
+          "after": {
+            "TEDS": 0.8799268653726995,
+            "TEDS_structure_only": 0.9375,
+            "Edit_dist": 0.14413680781758959
+          }
+        }
+      ],
+      "table_teds_delta_pp": 0.2027546614436604,
+      "overall_delta_pp": 0.0675848871478868,
+      "remaining_teds_errors": 0
+    },
+    "clean": {
+      "sample_count": 3840,
+      "equal_string_and_utf8_parse_trees": 6970,
+      "invalid_in_both_transports": [],
+      "repaired_table_count": 11,
+      "repairs": [
+        {
+          "img_id": "slides_030_Human_AI_CoReading.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.0023752969121140144
+          },
+          "after": {
+            "TEDS": 0.9940476190476191,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.0023752969121140144
+          }
+        },
+        {
+          "img_id": "syllabus_009_Conservatory_Music_Theory.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.01850886339937435
+          },
+          "after": {
+            "TEDS": 0.9163780917212281,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.01850886339937435
+          }
+        },
+        {
+          "img_id": "lab_report_036_维生素C含量变化测定.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.018808777429467086
+          },
+          "after": {
+            "TEDS": 0.9383333333333334,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.018808777429467086
+          }
+        },
+        {
+          "img_id": "employee_handbook_002_Manufacturing_Safety.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.005896805896805897
+          },
+          "after": {
+            "TEDS": 0.8214013980247746,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.005896805896805897
+          }
+        },
+        {
+          "img_id": "invoice_receipt_030.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.910384780431984
+          },
+          "after": {
+            "TEDS": 0.1013998257263663,
+            "TEDS_structure_only": 0.5527950310559007,
+            "Edit_dist": 0.910384780431984
+          }
+        },
+        {
+          "img_id": "medical_bill_019.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.3523573200992556
+          },
+          "after": {
+            "TEDS": 0.08666052416052428,
+            "TEDS_structure_only": 0.19999999999999996,
+            "Edit_dist": 0.3523573200992556
+          }
+        },
+        {
+          "img_id": "medical_bill_019.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.15103747788322341
+          },
+          "after": {
+            "TEDS": 0.7618744525126278,
+            "TEDS_structure_only": 0.7853403141361257,
+            "Edit_dist": 0.15103747788322341
+          }
+        },
+        {
+          "img_id": "brochure_menu_006_中餐厅菜单.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.4410480349344978
+          },
+          "after": {
+            "TEDS": 0.2926839485794319,
+            "TEDS_structure_only": 0.5,
+            "Edit_dist": 0.4410480349344978
+          }
+        },
+        {
+          "img_id": "product_manual_007_Camera_User_Guide_EN.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.11439114391143912
+          },
+          "after": {
+            "TEDS": 0.9532010921612976,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.11439114391143912
+          }
+        },
+        {
+          "img_id": "datasheet_028_甲苯安全数据表.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.5409181636726547
+          },
+          "after": {
+            "TEDS": 0.022945079125177847,
+            "TEDS_structure_only": 0.21875,
+            "Edit_dist": 0.5409181636726547
+          }
+        },
+        {
+          "img_id": "itinerary_016_行程确认函_Itinerary_Confirmation_for_Visa_Application.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.14413680781758959
+          },
+          "after": {
+            "TEDS": 0.8799268653726995,
+            "TEDS_structure_only": 0.9375,
+            "Edit_dist": 0.14413680781758959
+          }
+        }
+      ],
+      "table_teds_delta_pp": 0.15822360067635488,
+      "overall_delta_pp": 0.052741200225451625,
+      "remaining_teds_errors": 0
+    },
+    "real": {
+      "sample_count": 3840,
+      "equal_string_and_utf8_parse_trees": 6558,
+      "invalid_in_both_transports": [],
+      "repaired_table_count": 8,
+      "repairs": [
+        {
+          "img_id": "slides_030_Human_AI_CoReading__real_screen_photography.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.013064133016627079
+          },
+          "after": {
+            "TEDS": 0.9746096165739023,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.013064133016627079
+          }
+        },
+        {
+          "img_id": "syllabus_009_Conservatory_Music_Theory__real_phone_photocopy_photocopy_normal_top.png",
+          "gt_idx": [
+            0
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.18008636017272034
+          },
+          "after": {
+            "TEDS": 0.6132695134532671,
+            "TEDS_structure_only": 0.8809523809523809,
+            "Edit_dist": 0.18008636017272034
+          }
+        },
+        {
+          "img_id": "lab_report_036_维生素C含量变化测定__real_phone_handheld_normal_oblique.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.0438871473354232
+          },
+          "after": {
+            "TEDS": 0.8594444444444445,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.0438871473354232
+          }
+        },
+        {
+          "img_id": "invoice_receipt_030__real_phone_creased_normal_handheld.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.8543614901119116
+          },
+          "after": {
+            "TEDS": 0.24750469007955156,
+            "TEDS_structure_only": 0.6441717791411044,
+            "Edit_dist": 0.8543614901119116
+          }
+        },
+        {
+          "img_id": "medical_bill_019__real_phone_creased_normal_top.png",
+          "gt_idx": [
+            1
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.47392290249433106
+          },
+          "after": {
+            "TEDS": 0.22425925925925916,
+            "TEDS_structure_only": 0.6666666666666667,
+            "Edit_dist": 0.47392290249433106
+          }
+        },
+        {
+          "img_id": "medical_bill_019__real_phone_creased_normal_top.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.9082554014833925
+          },
+          "after": {
+            "TEDS": 0.05213162664308968,
+            "TEDS_structure_only": 0.09162303664921467,
+            "Edit_dist": 0.9082554014833925
+          }
+        },
+        {
+          "img_id": "product_manual_007_Camera_User_Guide_EN__real_phone_bent_normal_top.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.11439114391143912
+          },
+          "after": {
+            "TEDS": 0.9532010921612976,
+            "TEDS_structure_only": 1.0,
+            "Edit_dist": 0.11439114391143912
+          }
+        },
+        {
+          "img_id": "itinerary_016_行程确认函_Itinerary_Confirmation_for_Visa_Application__real_screenshot_na_na_na.png",
+          "gt_idx": [
+            2
+          ],
+          "before": {
+            "TEDS": 0.0,
+            "TEDS_structure_only": 0.0,
+            "Edit_dist": 0.14332247557003258
+          },
+          "after": {
+            "TEDS": 0.8804656584761478,
+            "TEDS_structure_only": 0.9375,
+            "Edit_dist": 0.14332247557003258
+          }
+        }
+      ],
+      "table_teds_delta_pp": 0.1257411755171578,
+      "overall_delta_pp": 0.04191372517238593,
+      "remaining_teds_errors": 0
+    }
+  },
+  "unique_html_parse_checks": 6079
+}

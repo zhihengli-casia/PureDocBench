@@ -1,0 +1,332 @@
+[
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Academic",
+    "Track": "clean",
+    "Overall": 90.70346352379379,
+    "TextEdit": 0.1129479245977708,
+    "FormulaCDM": 89.324853827607,
+    "TableTEDS": 94.08032920355143,
+    "ROEdit": 0.21093326643473914
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Education",
+    "Track": "clean",
+    "Overall": 78.0706046913768,
+    "TextEdit": 0.26430677804554936,
+    "FormulaCDM": 75.6770843384258,
+    "TableTEDS": 84.96540754025952,
+    "ROEdit": 0.40736935667519064
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Legal / Gov",
+    "Track": "clean",
+    "Overall": 62.72989923385336,
+    "TextEdit": 0.18542926515147026,
+    "FormulaCDM": 12.0,
+    "TableTEDS": 94.73262421670712,
+    "ROEdit": 0.28742006101189305
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Business",
+    "Track": "clean",
+    "Overall": 66.42349349540937,
+    "TextEdit": 0.2653225387776272,
+    "FormulaCDM": 34.80696381205002,
+    "TableTEDS": 90.99577055194082,
+    "ROEdit": 0.4187037764969321
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Finance",
+    "Track": "clean",
+    "Overall": 61.68099443878003,
+    "TextEdit": 0.4534501161096061,
+    "FormulaCDM": 55.0431328320802,
+    "TableTEDS": 75.34486209522052,
+    "ROEdit": 0.587851372899773
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Medical",
+    "Track": "clean",
+    "Overall": 58.69195098264396,
+    "TextEdit": 0.46001141955429115,
+    "FormulaCDM": 54.680119047619044,
+    "TableTEDS": 67.39687585574195,
+    "ROEdit": 0.579932977558228
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Publishing",
+    "Track": "clean",
+    "Overall": 78.35455526348068,
+    "TextEdit": 0.21521562537649244,
+    "FormulaCDM": 65.86428571428571,
+    "TableTEDS": 90.72094261380555,
+    "ROEdit": 0.3761049884931634
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Technical",
+    "Track": "clean",
+    "Overall": 68.35055397212341,
+    "TextEdit": 0.23790277446376368,
+    "FormulaCDM": 40.31875,
+    "TableTEDS": 88.5231893627466,
+    "ROEdit": 0.3750629661582009
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Logistics",
+    "Track": "clean",
+    "Overall": 61.80177736636386,
+    "TextEdit": 0.385057205101835,
+    "FormulaCDM": 48.27619047619048,
+    "TableTEDS": 75.6348621330846,
+    "ROEdit": 0.6183760839212956
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Certificate",
+    "Track": "clean",
+    "Overall": null,
+    "TextEdit": 0.39717247659973676,
+    "FormulaCDM": null,
+    "TableTEDS": 78.45090688734946,
+    "ROEdit": 0.5706178486378704
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "ALL",
+    "Track": "clean",
+    "Overall": 72.65030674619997,
+    "TextEdit": 0.30548729862612045,
+    "FormulaCDM": 64.7659484563056,
+    "TableTEDS": 83.7337016449064,
+    "ROEdit": 0.4458879198247317
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Academic",
+    "Track": "digital",
+    "Overall": 87.53043698725872,
+    "TextEdit": 0.15137675516878218,
+    "FormulaCDM": 85.26053797468353,
+    "TableTEDS": 92.46844850397086,
+    "ROEdit": 0.232797385062032
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Education",
+    "Track": "digital",
+    "Overall": 69.87292070793178,
+    "TextEdit": 0.3652831416136494,
+    "FormulaCDM": 70.14951521039936,
+    "TableTEDS": 75.99756107476091,
+    "ROEdit": 0.4737286666519988
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Legal / Gov",
+    "Track": "digital",
+    "Overall": 72.16726766967707,
+    "TextEdit": 0.24060034129852073,
+    "FormulaCDM": 53.5,
+    "TableTEDS": 87.06183713888326,
+    "ROEdit": 0.3439576304942069
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Business",
+    "Track": "digital",
+    "Overall": 57.57540092310131,
+    "TextEdit": 0.36288178708945995,
+    "FormulaCDM": 28.923412908930153,
+    "TableTEDS": 80.09096856931977,
+    "ROEdit": 0.4908434830591275
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Finance",
+    "Track": "digital",
+    "Overall": 56.002435049575865,
+    "TextEdit": 0.5410684720189769,
+    "FormulaCDM": 53.08137844611529,
+    "TableTEDS": 69.03277390451002,
+    "ROEdit": 0.6289631486280101
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Medical",
+    "Track": "digital",
+    "Overall": 55.548734953097075,
+    "TextEdit": 0.5333550694738257,
+    "FormulaCDM": 60.499880952380956,
+    "TableTEDS": 59.48183085429284,
+    "ROEdit": 0.6169134793779263
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Publishing",
+    "Track": "digital",
+    "Overall": 76.67272206664553,
+    "TextEdit": 0.2770527754456523,
+    "FormulaCDM": 69.97142857142858,
+    "TableTEDS": 87.75201517307329,
+    "ROEdit": 0.4452815483335406
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Technical",
+    "Track": "digital",
+    "Overall": 67.63060901075336,
+    "TextEdit": 0.2859689044516694,
+    "FormulaCDM": 47.268750000000004,
+    "TableTEDS": 84.21996747742699,
+    "ROEdit": 0.42132602045944234
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Logistics",
+    "Track": "digital",
+    "Overall": 59.29484953326109,
+    "TextEdit": 0.48635760928132865,
+    "FormulaCDM": 52.270291005291,
+    "TableTEDS": 74.25001852262514,
+    "ROEdit": 0.6730587980726187
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Certificate",
+    "Track": "digital",
+    "Overall": null,
+    "TextEdit": 0.4242214874404337,
+    "FormulaCDM": null,
+    "TableTEDS": 67.54409195112262,
+    "ROEdit": 0.6000149977069021
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "ALL",
+    "Track": "digital",
+    "Overall": 67.01070023972999,
+    "TextEdit": 0.3763186181342754,
+    "FormulaCDM": 61.44348841820382,
+    "TableTEDS": 77.22047411441369,
+    "ROEdit": 0.4939317489640279
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Academic",
+    "Track": "real",
+    "Overall": 81.50416611597014,
+    "TextEdit": 0.18246401063646245,
+    "FormulaCDM": 74.0680424954792,
+    "TableTEDS": 88.69085691607744,
+    "ROEdit": 0.2693439869360812
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Education",
+    "Track": "real",
+    "Overall": 63.71872097622071,
+    "TextEdit": 0.40913155463472267,
+    "FormulaCDM": 62.31929543017958,
+    "TableTEDS": 69.75002296195481,
+    "ROEdit": 0.5171398263732324
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Legal / Gov",
+    "Track": "real",
+    "Overall": 56.84363235759693,
+    "TextEdit": 0.2700161744421633,
+    "FormulaCDM": 9.9,
+    "TableTEDS": 87.63251451700712,
+    "ROEdit": 0.34761791627319816
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Business",
+    "Track": "real",
+    "Overall": 56.70238499653715,
+    "TextEdit": 0.3626332603753609,
+    "FormulaCDM": 29.24548976885184,
+    "TableTEDS": 77.12499125829571,
+    "ROEdit": 0.47573948849346964
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Finance",
+    "Track": "real",
+    "Overall": 56.743676038974264,
+    "TextEdit": 0.5581504586119038,
+    "FormulaCDM": 58.56365914786967,
+    "TableTEDS": 67.4824148302435,
+    "ROEdit": 0.6386871047762508
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Medical",
+    "Track": "real",
+    "Overall": 53.59829827063219,
+    "TextEdit": 0.5589681350930832,
+    "FormulaCDM": 55.68059523809524,
+    "TableTEDS": 61.011113083109656,
+    "ROEdit": 0.631627589290958
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Publishing",
+    "Track": "real",
+    "Overall": 68.02407881025167,
+    "TextEdit": 0.3516651718842755,
+    "FormulaCDM": 70.22857142857143,
+    "TableTEDS": 69.01018219061112,
+    "ROEdit": 0.4782601641209101
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Technical",
+    "Track": "real",
+    "Overall": 56.163388814775026,
+    "TextEdit": 0.36367616201868824,
+    "FormulaCDM": 33.037499999999994,
+    "TableTEDS": 71.8202826461939,
+    "ROEdit": 0.46463557044583337
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Logistics",
+    "Track": "real",
+    "Overall": 47.973349293828,
+    "TextEdit": 0.564628617600038,
+    "FormulaCDM": 39.231005291005296,
+    "TableTEDS": 61.15190435048251,
+    "ROEdit": 0.7031995542870152
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "Certificate",
+    "Track": "real",
+    "Overall": null,
+    "TextEdit": 0.5595567479427566,
+    "FormulaCDM": null,
+    "TableTEDS": 39.77069413718791,
+    "ROEdit": 0.6947376476345817
+  },
+  {
+    "Model": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
+    "Domain": "ALL",
+    "Track": "real",
+    "Overall": 61.95686713157179,
+    "TextEdit": 0.4198909800731215,
+    "FormulaCDM": 55.236226595205395,
+    "TableTEDS": 72.62347280682214,
+    "ROEdit": 0.5192555321699425
+  }
+]

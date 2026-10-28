@@ -1,0 +1,51 @@
+{
+  "official_scored_pages": 1471,
+  "total_pages": 1475,
+  "pages_without_reading_order_metric": [
+    {
+      "page": "court_document_022_海事法院船舶扣押令.png",
+      "categories": {
+        "header": 1,
+        "title": 2,
+        "text_block": 6,
+        "table_caption": 3,
+        "figure": 1,
+        "table": 2,
+        "footer": 1
+      },
+      "ordered_annotations": 0
+    },
+    {
+      "page": "meeting_memo_019_信息化建设推进会纪要.png",
+      "categories": {
+        "header": 1,
+        "text_block": 8,
+        "table": 5,
+        "title": 7,
+        "footer": 1
+      },
+      "ordered_annotations": 0
+    },
+    {
+      "page": "resume_017_酒店总经理简历.png",
+      "categories": {
+        "header": 1,
+        "text_block": 15,
+        "title": 9,
+        "table": 4,
+        "footer": 1
+      },
+      "ordered_annotations": 0
+    },
+    {
+      "page": "clinical_record_010.png",
+      "categories": {
+        "header": 1,
+        "text_block": 10,
+        "title": 1,
+        "table": 1
+      },
+      "ordered_annotations": 0
+    }
+  ]
+}

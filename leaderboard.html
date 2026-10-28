@@ -179,8 +179,8 @@
         </select>
         <select id="source" aria-label="Filter by result source">
           <option value="paper">Current results (58)</option>
-          <option value="community">Community results (1)</option>
-          <option value="">All results (59)</option>
+          <option value="community">Community results (2)</option>
+          <option value="">All results (60)</option>
         </select>
         <button class="reset" id="reset" type="button">Reset to Avg₃</button>
       </div>
@@ -224,7 +224,7 @@
       </div>
     </section>
 
-    <p class="notes"><a href="https://github.com/zhihengli-casia/PureDocBench/tree/main/results">Download current results</a>: 58 evaluated models with complete track and component scores; <a href="results/category_components.csv">per-domain metrics</a> cover 53 models. Model names link to official resources, with release months in parentheses. NaviDC-OCR is a separate <a href="https://github.com/caipeng328/NaviDC-OCR#puredocbench">author-reported community result</a>; its Reading Edit scores are unavailable (—). The current WeVisDoc and OvisOCR2 entries use our supplied evaluation results. Historical community submissions remain in the <a href="https://github.com/zhihengli-casia/PureDocBench/blob/main/data/README.md">source archive</a>. Historical scores retain their original evaluation versions; updating the public GT does not rescore these entries.</p>
+    <p class="notes"><a href="https://github.com/zhihengli-casia/PureDocBench/tree/main/results">Download current results</a>: 58 evaluated models with complete track and component scores; <a href="results/category_components.csv">per-domain metrics</a> cover 53 models. Current model names link to official resources, with release months in parentheses. Community results include <a href="https://github.com/caipeng328/NaviDC-OCR#puredocbench">NaviDC-OCR (author-reported)</a> and <a href="results/README.md#doclayoutv3-rescore">PP-DocLayoutV3 + PaddleOCR-VL-1.6 (maintainer-rescored)</a>. The prediction provider confirmed the two-stage PP-DocLayoutV3 + PaddleOCR-VL-1.6 configuration; its exact checkpoint revisions and generation settings are awaiting documentation. NaviDC-OCR has unreported Reading Edit scores (—). The current WeVisDoc and OvisOCR2 entries use our supplied evaluation results. Historical community submissions and their original evaluation versions remain in the <a href="https://github.com/zhihengli-casia/PureDocBench/blob/main/data/README.md">source archive</a>.</p>
   </main>
 
   <script src="data/leaderboard.js"></script>
@@ -235,7 +235,7 @@
       ...["clean", "digital", "real"].flatMap(track =>
         ["overall", "text_edit", "formula_cdm", "table_teds", "reading_edit"].map(metric =>
           model.scores[track][metric] === null ? null : Number(model.scores[track][metric]))),
-      Number(model.avg3), model.release_month, model.source, model.key
+      Number(model.avg3), model.release_month, model.source, model.key, model.evaluation_kind || null, model.source_url || null
     ]);
 
     const metricNames = {
@@ -292,7 +292,7 @@
       rows.innerHTML = filtered.map((row, rank) => `
         <tr>
           <td class="rank">${rank + 1}</td>
-          <td class="model"><a href="${escapeHTML(row[3])}" target="_blank" rel="noopener noreferrer" title="Official resource for ${escapeHTML(row[0])}">${escapeHTML(row[0])} ↗</a>${row[20] ? `<span class="release">(${escapeHTML(row[20])})</span>` : ""}${row[21] === "community" ? '<span class="source">Community · author-reported</span>' : ""}</td>
+          <td class="model"><a href="${escapeHTML(row[3])}" target="_blank" rel="noopener noreferrer" title="Official resource for ${escapeHTML(row[0])}">${escapeHTML(row[0])} ↗</a>${row[20] ? `<span class="release">(${escapeHTML(row[20])})</span>` : ""}${row[21] === "community" ? `<span class="source">${row[23] === "maintainer-rescored" ? `<a href="${escapeHTML(row[24])}" target="_blank" rel="noopener noreferrer">Community · maintainer-rescored</a>` : "Community · author-reported"}</span>` : ""}</td>
           <td class="family"><span class="pill ${familyClass(row[1])}">${row[1]}</span></td>
           <td>${row[2]}</td>
           ${row.slice(4, 19).map((value, offset) => `<td>${formatScore(value, offset + 4)}</td>`).join("")}
@@ -329,6 +329,13 @@
       direction = "desc";
       render();
     });
+    function applyInitialFilters() {
+      const parameters = new URLSearchParams(globalThis.location?.search || "");
+      const selectedSource = parameters.get("source");
+      if (["paper", "community", ""].includes(selectedSource)) source.value = selectedSource;
+      if (parameters.has("search")) search.value = parameters.get("search");
+    }
+    applyInitialFilters();
     render();
   </script>
 </body>
