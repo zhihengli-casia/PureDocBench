@@ -7,32 +7,36 @@ const leaderboardData = [
     "series": "PaddleOCR",
     "release_month": "2026-05",
     "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+    "evaluation_kind": "maintainer-rescored",
+    "source_url": "https://github.com/zhihengli-casia/PureDocBench/blob/main/results/README.md#doclayoutv3-rescore",
+    "evaluation_record": "results/submissions/doclayoutv3/run.json",
+    "pipeline": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
     "params": null,
     "source": "paper",
     "scores": {
       "clean": {
-        "text_edit": "0.43233558132036753",
-        "formula_cdm": "53.910527217818846",
-        "table_teds": "82.70259238942575",
-        "reading_edit": "0.5562682787505635",
-        "overall": "64.46"
+        "text_edit": "0.30548729862612045",
+        "formula_cdm": "64.7659484563056",
+        "table_teds": "83.7337016449064",
+        "reading_edit": "0.4458879198247317",
+        "overall": "72.65030674619997"
       },
       "digital": {
-        "text_edit": "0.49367447013617793",
-        "formula_cdm": "51.776372734992314",
-        "table_teds": "75.46331502816017",
-        "reading_edit": "0.5962929870391762",
-        "overall": "59.29"
+        "text_edit": "0.3763186181342754",
+        "formula_cdm": "61.44348841820382",
+        "table_teds": "77.22047411441369",
+        "reading_edit": "0.4939317489640279",
+        "overall": "67.01070023972999"
       },
       "real": {
-        "text_edit": "0.5293149443188507",
-        "formula_cdm": "43.90046259630386",
-        "table_teds": "71.76160914155295",
-        "reading_edit": "0.6186611249338422",
-        "overall": "54.24"
+        "text_edit": "0.4198909800731215",
+        "formula_cdm": "55.236226595205395",
+        "table_teds": "72.62347280682214",
+        "reading_edit": "0.5192555321699425",
+        "overall": "61.95686713157179"
       }
     },
-    "avg3": "59.33"
+    "avg3": "67.20595803916726"
   },
   {
     "key": "youtu-parsing",
@@ -2006,42 +2010,5 @@ const leaderboardData = [
       }
     },
     "avg3": "78.41"
-  },
-  {
-    "key": "doclayoutv3-rescore-20261027",
-    "name": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
-    "architecture": "Pipeline",
-    "params": null,
-    "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
-    "release_month": null,
-    "source": "community",
-    "evaluation_kind": "maintainer-rescored",
-    "source_url": "https://github.com/zhihengli-casia/PureDocBench/blob/main/results/README.md#doclayoutv3-rescore",
-    "evaluation_record": "results/submissions/doclayoutv3/run.json",
-    "provenance": "Maintainer recomputation of externally supplied Markdown predictions. The prediction provider confirmed PP-DocLayoutV3 for layout analysis and PaddleOCR-VL-1.6 for recognition. Exact checkpoint revisions, software versions and generation settings were not supplied. GT/evaluator revisions, coverage and scoring compatibility records are provided in the evaluation record.",
-    "scores": {
-      "clean": {
-        "overall": "72.65030674619997",
-        "text_edit": "0.30548729862612045",
-        "formula_cdm": "64.7659484563056",
-        "table_teds": "83.7337016449064",
-        "reading_edit": "0.4458879198247317"
-      },
-      "digital": {
-        "overall": "67.01070023972999",
-        "text_edit": "0.3763186181342754",
-        "formula_cdm": "61.44348841820382",
-        "table_teds": "77.22047411441369",
-        "reading_edit": "0.4939317489640279"
-      },
-      "real": {
-        "overall": "61.95686713157179",
-        "text_edit": "0.4198909800731215",
-        "formula_cdm": "55.236226595205395",
-        "table_teds": "72.62347280682214",
-        "reading_edit": "0.5192555321699425"
-      }
-    },
-    "avg3": "67.20595803916726"
   }
 ];

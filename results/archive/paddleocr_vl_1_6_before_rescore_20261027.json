@@ -1,0 +1,355 @@
+{
+  "superseded_by": "submissions/doclayoutv3/run.json",
+  "source_commit": "1268a953101a8f0e4c4a635f740a7f92dc27127f",
+  "model_key": "paddleocr-vl-1-6-layout-corrected",
+  "model": {
+    "key": "paddleocr-vl-1-6-layout-corrected",
+    "name": "PaddleOCR-VL-1.6",
+    "architecture": "Pipeline",
+    "series": "PaddleOCR",
+    "release_month": "2026-05",
+    "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6"
+  },
+  "leaderboard": [
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "model_name": "PaddleOCR-VL-1.6",
+      "architecture": "Pipeline",
+      "clean": "64.46",
+      "digital": "59.29",
+      "real": "54.24",
+      "avg3": "59.33"
+    }
+  ],
+  "components": [
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "track": "clean",
+      "overall": "64.45985382506927",
+      "text_edit": "0.43233558132036753",
+      "formula_cdm": "53.910527217818846",
+      "table_teds": "82.70259238942575",
+      "reading_edit": "0.5562682787505635"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "track": "digital",
+      "overall": "59.29074691651156",
+      "text_edit": "0.49367447013617793",
+      "formula_cdm": "51.776372734992314",
+      "table_teds": "75.46331502816017",
+      "reading_edit": "0.5962929870391762"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "track": "real",
+      "overall": "54.24352576865724",
+      "text_edit": "0.5293149443188507",
+      "formula_cdm": "43.90046259630386",
+      "table_teds": "71.76160914155295",
+      "reading_edit": "0.6186611249338422"
+    }
+  ],
+  "category_components": [
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "academic",
+      "track": "clean",
+      "overall": "86.1064438292176",
+      "text_edit": "0.169525520225922",
+      "formula_cdm": "81.5865585839599",
+      "table_teds": "93.685324926285",
+      "reading_edit": "0.256021693803378"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "academic",
+      "track": "digital",
+      "overall": "83.8961744477321",
+      "text_edit": "0.209757361601957",
+      "formula_cdm": "80.4130592105263",
+      "table_teds": "92.2512002928657",
+      "reading_edit": "0.291536841304765"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "academic",
+      "track": "real",
+      "overall": "76.4893144955788",
+      "text_edit": "0.252063074948374",
+      "formula_cdm": "66.5481516290727",
+      "table_teds": "88.1260993525011",
+      "reading_edit": "0.337597566789223"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "education",
+      "track": "clean",
+      "overall": "67.9269007582297",
+      "text_edit": "0.436315792012538",
+      "formula_cdm": "65.5141370644859",
+      "table_teds": "81.8981444114569",
+      "reading_edit": "0.567619307399511"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "education",
+      "track": "digital",
+      "overall": "60.3779030932944",
+      "text_edit": "0.518199850455593",
+      "formula_cdm": "59.9650642090468",
+      "table_teds": "72.9886301163957",
+      "reading_edit": "0.621085003708984"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "education",
+      "track": "real",
+      "overall": "53.8993087831109",
+      "text_edit": "0.542540319982738",
+      "formula_cdm": "50.0602569426697",
+      "table_teds": "65.8917014049369",
+      "reading_edit": "0.642495326210499"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "legal_gov",
+      "track": "clean",
+      "overall": "55.1775081119392",
+      "text_edit": "0.284281100408309",
+      "formula_cdm": "0",
+      "table_teds": "93.9606343766485",
+      "reading_edit": "0.421803037539807"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "legal_gov",
+      "track": "digital",
+      "overall": "50.2884738257529",
+      "text_edit": "0.338931712725887",
+      "formula_cdm": "0",
+      "table_teds": "84.7585927498472",
+      "reading_edit": "0.459091650442079"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "legal_gov",
+      "track": "real",
+      "overall": "52.5786480419396",
+      "text_edit": "0.360688259554982",
+      "formula_cdm": "6.05",
+      "table_teds": "87.754770081317",
+      "reading_edit": "0.452802363795448"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "business",
+      "track": "clean",
+      "overall": "58.9016575772282",
+      "text_edit": "0.368330102204125",
+      "formula_cdm": "24.2442957648646",
+      "table_teds": "89.2936871872325",
+      "reading_edit": "0.521475389259937"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "business",
+      "track": "digital",
+      "overall": "50.4210816362477",
+      "text_edit": "0.473493115772848",
+      "formula_cdm": "19.8971479320473",
+      "table_teds": "78.7154085539807",
+      "reading_edit": "0.58701013494332"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "business",
+      "track": "real",
+      "overall": "48.7750621626545",
+      "text_edit": "0.475189160428473",
+      "formula_cdm": "17.9626428580879",
+      "table_teds": "75.8814596727229",
+      "reading_edit": "0.588401490891525"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "finance",
+      "track": "clean",
+      "overall": "52.7425832953174",
+      "text_edit": "0.589014393856826",
+      "formula_cdm": "42.3530636873982",
+      "table_teds": "74.7761255842367",
+      "reading_edit": "0.696050796469932"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "finance",
+      "track": "digital",
+      "overall": "47.8742322263115",
+      "text_edit": "0.665958059159333",
+      "formula_cdm": "41.9774422620029",
+      "table_teds": "68.2410603328649",
+      "reading_edit": "0.733095765059774"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "finance",
+      "track": "real",
+      "overall": "47.4906142045642",
+      "text_edit": "0.6674893720938",
+      "formula_cdm": "40.9830189677418",
+      "table_teds": "68.2377608553307",
+      "reading_edit": "0.743498492806887"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "medical",
+      "track": "clean",
+      "overall": "45.693230627216",
+      "text_edit": "0.593723962016157",
+      "formula_cdm": "29.0492517006803",
+      "table_teds": "67.4028363825833",
+      "reading_edit": "0.687045692405121"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "medical",
+      "track": "digital",
+      "overall": "46.9501441032009",
+      "text_edit": "0.643686792732988",
+      "formula_cdm": "46.8781972789116",
+      "table_teds": "58.34091430399",
+      "reading_edit": "0.70884072972904"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "medical",
+      "track": "real",
+      "overall": "39.9929263660791",
+      "text_edit": "0.658548448319194",
+      "formula_cdm": "25.3824149659864",
+      "table_teds": "60.4512089641704",
+      "reading_edit": "0.711283530909833"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "publishing",
+      "track": "clean",
+      "overall": "74.8281510130739",
+      "text_edit": "0.339332674862175",
+      "formula_cdm": "68.9285714285714",
+      "table_teds": "89.4891490968677",
+      "reading_edit": "0.482006911503133"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "publishing",
+      "track": "digital",
+      "overall": "71.8588693594555",
+      "text_edit": "0.383915942160096",
+      "formula_cdm": "68.9285714285714",
+      "table_teds": "85.0396308658048",
+      "reading_edit": "0.538770362049827"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "publishing",
+      "track": "real",
+      "overall": "63.4345234551462",
+      "text_edit": "0.468961067217094",
+      "formula_cdm": "67.9857142857143",
+      "table_teds": "69.2139628014336",
+      "reading_edit": "0.582877293718176"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "technical",
+      "track": "clean",
+      "overall": "54.1259416983177",
+      "text_edit": "0.388637357697125",
+      "formula_cdm": "13.26875",
+      "table_teds": "87.9728108646656",
+      "reading_edit": "0.516432759945104"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "technical",
+      "track": "digital",
+      "overall": "52.1841325302795",
+      "text_edit": "0.436566929720423",
+      "formula_cdm": "18.75",
+      "table_teds": "81.4590905628808",
+      "reading_edit": "0.550879860700844"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "technical",
+      "track": "real",
+      "overall": "46.143340153737",
+      "text_edit": "0.526692588721398",
+      "formula_cdm": "21.43125",
+      "table_teds": "69.6680293333507",
+      "reading_edit": "0.607977106212684"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "logistics",
+      "track": "clean",
+      "overall": "53.3532066155242",
+      "text_edit": "0.565702349300614",
+      "formula_cdm": "38.79203125",
+      "table_teds": "77.837823526634",
+      "reading_edit": "0.721596118893859"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "logistics",
+      "track": "digital",
+      "overall": "46.2296858564131",
+      "text_edit": "0.642753980618843",
+      "formula_cdm": "31.0684375",
+      "table_teds": "71.8960181311236",
+      "reading_edit": "0.770483735425347"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "logistics",
+      "track": "real",
+      "overall": "40.2908120158991",
+      "text_edit": "0.687063639991135",
+      "formula_cdm": "28.22703125",
+      "table_teds": "61.3517687968109",
+      "reading_edit": "0.785952797314356"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "certificate",
+      "track": "clean",
+      "overall": "48.4849241867389",
+      "text_edit": "0.547365811009404",
+      "formula_cdm": "30.02",
+      "table_teds": "70.1713536611571",
+      "reading_edit": "0.69596427458704"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "certificate",
+      "track": "digital",
+      "overall": "44.7135011284243",
+      "text_edit": "0.562494717370003",
+      "formula_cdm": "29.99",
+      "table_teds": "60.3999751222732",
+      "reading_edit": "0.71139438323851"
+    },
+    {
+      "model_key": "paddleocr-vl-1-6-layout-corrected",
+      "category": "certificate",
+      "track": "real",
+      "overall": "33.3170291922654",
+      "text_edit": "0.66832757243171",
+      "formula_cdm": "30.02",
+      "table_teds": "36.7638448199673",
+      "reading_edit": "0.780941474736434"
+    }
+  ]
+}

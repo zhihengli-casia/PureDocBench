@@ -35,43 +35,6 @@
         }
       },
       "avg3": "78.41"
-    },
-    {
-      "key": "doclayoutv3-rescore-20261027",
-      "name": "PP-DocLayoutV3 + PaddleOCR-VL-1.6",
-      "architecture": "Pipeline",
-      "params": null,
-      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
-      "release_month": null,
-      "source": "community",
-      "evaluation_kind": "maintainer-rescored",
-      "source_url": "https://github.com/zhihengli-casia/PureDocBench/blob/main/results/README.md#doclayoutv3-rescore",
-      "evaluation_record": "results/submissions/doclayoutv3/run.json",
-      "provenance": "Maintainer recomputation of externally supplied Markdown predictions. The prediction provider confirmed PP-DocLayoutV3 for layout analysis and PaddleOCR-VL-1.6 for recognition. Exact checkpoint revisions, software versions and generation settings were not supplied. GT/evaluator revisions, coverage and scoring compatibility records are provided in the evaluation record.",
-      "scores": {
-        "clean": {
-          "overall": "72.65030674619997",
-          "text_edit": "0.30548729862612045",
-          "formula_cdm": "64.7659484563056",
-          "table_teds": "83.7337016449064",
-          "reading_edit": "0.4458879198247317"
-        },
-        "digital": {
-          "overall": "67.01070023972999",
-          "text_edit": "0.3763186181342754",
-          "formula_cdm": "61.44348841820382",
-          "table_teds": "77.22047411441369",
-          "reading_edit": "0.4939317489640279"
-        },
-        "real": {
-          "overall": "61.95686713157179",
-          "text_edit": "0.4198909800731215",
-          "formula_cdm": "55.236226595205395",
-          "table_teds": "72.62347280682214",
-          "reading_edit": "0.5192555321699425"
-        }
-      },
-      "avg3": "67.20595803916726"
     }
   ]
 }

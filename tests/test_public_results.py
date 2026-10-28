@@ -33,8 +33,8 @@ class PublicResultsTests(unittest.TestCase):
 
     def test_current_models_are_unique_and_community_is_separate(self):
         models = BUILDER.load_data()
-        self.assertEqual(len({model["key"] for model in models}), 60)
-        self.assertEqual([model["name"] for model in models if model["source"] == "community"], ["NaviDC-OCR", "PP-DocLayoutV3 + PaddleOCR-VL-1.6"])
+        self.assertEqual(len({model["key"] for model in models}), 59)
+        self.assertEqual([model["name"] for model in models if model["source"] == "community"], ["NaviDC-OCR"])
         self.assertEqual(sum("OpenDoc" in model["name"] for model in models), 1)
         self.assertNotIn("UniRec-0.1B", {model["name"] for model in models})
         self.assertNotIn("PaddleOCR-VL-1.5", {model["name"] for model in models})
@@ -55,15 +55,17 @@ class PublicResultsTests(unittest.TestCase):
         self.assertEqual(next(row[19] for row in archived if row[0] == "WeVisDoc-2B"), 73.86)
 
     def test_doclayout_rescore_matches_versioned_result_record(self):
-        entry = next(model for model in BUILDER.load_data() if model["key"] == "doclayoutv3-rescore-20261027")
+        entry = next(model for model in BUILDER.load_data() if model["key"] == "paddleocr-vl-1-6-layout-corrected")
         directory = ROOT / "results/submissions/doclayoutv3"
         record = json.loads((directory / "run.json").read_text())
         self.assertEqual(entry["evaluation_kind"], "maintainer-rescored")
         self.assertEqual(entry["architecture"], "Pipeline")
         self.assertEqual(entry["url"], "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6")
-        self.assertEqual(record["model_identity"]["confirmed_pipeline"], entry["name"])
-        self.assertIsNone(entry["params"])
-        self.assertIsNone(entry["release_month"])
+        self.assertEqual(entry["source"], "paper")
+        self.assertEqual(entry["name"], "PaddleOCR-VL-1.6")
+        self.assertEqual(record["canonical_model_key"], entry["key"])
+        self.assertEqual(record["model_identity"]["confirmed_pipeline"], entry["pipeline"])
+        self.assertEqual(entry["release_month"], "2026-05")
         self.assertEqual(record["inputs"]["total_predictions"], 4425)
         self.assertEqual(record["inputs"]["missing_predictions"], 0)
         self.assertEqual(record["ground_truth"]["revision"], "4665b40a3333f7643bad7c8675a9062b482511ad")
@@ -79,6 +81,22 @@ class PublicResultsTests(unittest.TestCase):
         self.assertEqual(len(category_rows), 30)
         for name, expected in json.loads((directory / "checksums.json").read_text()).items():
             self.assertEqual(hashlib.sha256((directory / name).read_bytes()).hexdigest(), expected, name)
+
+    def test_readme_main_row_and_inapplicable_category_summary(self):
+        text = (ROOT / "README.md").read_text()
+        row = next(line for line in text.splitlines() if '<tr><td><a href="https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6">' in line)
+        for value in ["72.65", "67.01", "61.96", "67.21"]:
+            self.assertIn(f'>{value}</td>', row)
+        spec = importlib.util.spec_from_file_location("result_summaries", ROOT / "results/summarize.py")
+        summaries = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(summaries)
+        _, categories = summaries.summarize(BUILDER.read_csv("category_components.csv"))
+        certificate = next(r for r in categories if r["model_key"] == "paddleocr-vl-1-6-layout-corrected" and r["category"] == "certificate")
+        self.assertEqual(certificate["avg3"], "")
+        self.assertEqual(certificate["mean_formula"], "")
+        self.assertNotEqual(certificate["mean_table"], "")
+        archived = json.loads((ROOT / "results/archive/paddleocr_vl_1_6_before_rescore_20261027.json").read_text())
+        self.assertEqual(archived["leaderboard"][0]["avg3"], "59.33")
 
 
 if __name__ == "__main__":

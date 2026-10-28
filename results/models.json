@@ -5,7 +5,11 @@
     "architecture": "Pipeline",
     "series": "PaddleOCR",
     "release_month": "2026-05",
-    "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6"
+    "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+    "evaluation_kind": "maintainer-rescored",
+    "source_url": "https://github.com/zhihengli-casia/PureDocBench/blob/main/results/README.md#doclayoutv3-rescore",
+    "evaluation_record": "results/submissions/doclayoutv3/run.json",
+    "pipeline": "PP-DocLayoutV3 + PaddleOCR-VL-1.6"
   },
   {
     "key": "youtu-parsing",

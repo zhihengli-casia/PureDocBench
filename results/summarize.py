@@ -31,11 +31,22 @@ def number(value: str, field: str, maximum=100, strict=True) -> Fraction:
     return result
 
 
-def decimal(value: Fraction) -> str:
+def decimal(value: Fraction | None) -> str:
+    if value is None:
+        return ""
     with localcontext() as context:
         context.prec = 60
         text = format(Decimal(value.numerator) / Decimal(value.denominator), "f")
     return text.rstrip("0").rstrip(".") if "." in text else text
+
+
+def complete_mean(values):
+    values = list(values)
+    return sum(values, Fraction()) / len(values) if values and all(value is not None for value in values) else None
+
+
+def difference(left, right):
+    return left - right if left is not None and right is not None else None
 
 
 def displayed(value: Fraction) -> str:
@@ -74,17 +85,17 @@ def summarize(rows: list[dict], reference: list[dict] | None = None):
         if track in group:
             raise ValueError(f"Duplicate model/category/track: {group_key}/{track}")
         metrics = {m: number(row[m], f"{key}/{track}/{m}", 1 if m.endswith("_edit") else 100,
-                             strict=False) for m in METRICS}
-        text_score = 100 * (1 - metrics["text_edit"])
-        reading_score = 100 * (1 - metrics["reading_edit"])
-        computed = (text_score + metrics["formula_cdm"] + metrics["table_teds"]) / 3
+                             strict=False) if row.get(m, "").strip() else None for m in METRICS}
+        text_score = 100 * (1 - metrics["text_edit"]) if metrics["text_edit"] is not None else None
+        reading_score = 100 * (1 - metrics["reading_edit"]) if metrics["reading_edit"] is not None else None
+        computed = complete_mean([text_score, metrics["formula_cdm"], metrics["table_teds"]])
         supplied = number(row["overall"], "overall", strict=False) if row.get("overall") else computed
         used = supplied
         if reference is not None:
             if key not in reference_lookup:
                 raise ValueError(f"Missing reference model: {key}")
             used = number(reference_lookup[key][track], track)
-            if displayed(used) != displayed(supplied):
+            if supplied is None or displayed(used) != displayed(supplied):
                 raise ValueError(f"Reference and input differ at two decimals: {key}/{track}")
         result = dict(model_key=key)
         if has_categories:
@@ -100,19 +111,19 @@ def summarize(rows: list[dict], reference: list[dict] | None = None):
     for group_key, tracks in groups.items():
         if set(tracks) != set(TRACKS):
             raise ValueError(f"Expected Clean, Digital and Real for {group_key}; got {list(tracks)}")
-        values = {t: Fraction(tracks[t]["overall"]) for t in TRACKS}
-        mean = sum(values.values(), Fraction()) / 3
+        values = {t: Fraction(tracks[t]["overall"]) if tracks[t]["overall"] else None for t in TRACKS}
+        mean = complete_mean(values.values())
         reference_mean = number(reference_lookup[group_key[0]]["avg3"], "avg3") if reference is not None else mean
         summary = dict(model_key=group_key[0])
         if has_categories:
             summary["category"] = group_key[1]
         summary.update({t: decimal(values[t]) for t in TRACKS})
         summary.update(avg3=decimal(reference_mean), avg3_recomputed=decimal(mean),
-                       digital_minus_clean=decimal(values["digital"] - values["clean"]),
-                       real_minus_clean=decimal(values["real"] - values["clean"]))
+                       digital_minus_clean=decimal(difference(values["digital"], values["clean"])),
+                       real_minus_clean=decimal(difference(values["real"], values["clean"])))
         for component in ("text", "formula", "table", "reading"):
-            summary[f"mean_{component}"] = decimal(sum(
-                (Fraction(tracks[t][f"{component}_score"]) for t in TRACKS), Fraction()) / 3)
+            summary[f"mean_{component}"] = decimal(complete_mean(
+                Fraction(tracks[t][f"{component}_score"]) if tracks[t][f"{component}_score"] else None for t in TRACKS))
         summaries.append(summary)
     return track_rows, summaries
 

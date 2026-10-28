@@ -20,7 +20,7 @@ vm.runInContext(fs.readFileSync(path.join(root, 'data/leaderboard.js'), 'utf8'),
 vm.runInContext(inline, context);
 const run = expression => vm.runInContext(expression, context);
 
-assert.equal(run('models.length'), 60);
+assert.equal(run('models.length'), 59);
 assert.match(elements.get('status').textContent, /^58 models · current results/);
 assert.equal(run('selectRows("", "", "paper", 19, "desc")[0][0]'), 'GLM-5.3-Flash');
 assert.equal(run('selectRows("", "", "paper", 4, "desc")[0][0]'), 'TeleOCR');
@@ -36,20 +36,20 @@ for (const order of ['asc', 'desc']) {
 elements.get('source').value = 'community';
 elements.get('source').listeners.change();
 assert.match(elements.get('rows').innerHTML, /Community · author-reported/);
-assert.match(elements.get('status').textContent, /^2 models · community results/);
-assert.match(elements.get('rows').innerHTML, /Community · maintainer-rescored/);
+assert.match(elements.get('status').textContent, /^1 models · community results/);
 elements.get('reset').listeners.click();
 assert.equal(elements.get('source').value, 'paper');
 assert.match(elements.get('status').textContent, /^58 models · current results/);
 assert.equal(run('formatScore(null, 8)'), '—');
 assert.equal(run('formatScore(0.123456, 8)'), '0.123');
-context.location = { search: '?source=community&search=doclayoutv3' };
+context.location = { search: '?search=paddleocr-vl-1.6' };
 run('applyInitialFilters(); render()');
-assert.match(elements.get('status').textContent, /^1 models · community results/);
-assert.match(elements.get('rows').innerHTML, /DocLayoutV3/);
+assert.match(elements.get('status').textContent, /^1 models · current results/);
+assert.match(elements.get('rows').innerHTML, /PaddleOCR-VL-1\.6/);
 assert.match(elements.get('rows').innerHTML, /72\.65/);
 assert.match(elements.get('rows').innerHTML, /67\.21/);
-assert.match(elements.get('rows').innerHTML, /Official resource for PP-DocLayoutV3 \+ PaddleOCR-VL-1\.6/);
+assert.match(elements.get('rows').innerHTML, /Official resource for PaddleOCR-VL-1\.6/);
+assert.match(elements.get('rows').innerHTML, /Updated evaluation/);
 assert.match(elements.get('rows').innerHTML, /PaddlePaddle\/PaddleOCR-VL-1\.6/);
-assert.equal(run('selectRows("doclayoutv3", "Pipeline", "community", 19, "desc").length'), 1);
+assert.equal(run('selectRows("paddleocr-vl-1.6", "Pipeline", "paper", 19, "desc").length'), 1);
 console.log('Leaderboard passed: current/community filters, rescore deep link and attribution, model search, architecture filters, track/Avg3 leaders, missing-last sorting, formatting, and reset.');

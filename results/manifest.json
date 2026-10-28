@@ -24,10 +24,19 @@
     "avg3": "(clean + digital + real) / 3"
   },
   "files": {
-    "leaderboard.csv": "051e708c3384264ed388f5d7d14e38ce20f22f8761b9cff26a6eadb1cf2728d0",
-    "components.csv": "a44a80319ff1136ada8460dc9d64b0f99615d3f8f3c911e07472caea2c8cac98",
-    "category_components.csv": "5ad9d661ffc85d3f1e3bf345097394559d759f3db4eb3cec46be99827f61dbe0",
-    "models.json": "7551238e7f0567f98fa0b79fa684534b20e9cc62bb996a77eed47ac0abd49c30",
+    "leaderboard.csv": "2aaeb7dec052dc1fccdd42dddba8c4a58279f6f22c22261f0a324a8ebfc80fb1",
+    "components.csv": "1ebf03fa6a4b1d8e9fe06dcc26686d153acc19d97907bb47b90a6c647b99ca49",
+    "category_components.csv": "cb8ed8d7fcf80e3b4a30e6b28e10d8a0ffd3ce5d225d64639ff08f19a13d4f25",
+    "models.json": "338670dc09c12413059eb124bb2b1d64e548ba52083e5c62f83c06567dd5d1f9",
     "categories.json": "8083ac3f1c5de4ec3fa9e3ebce7320bdc1a29f3cef3b301cabab6fbc8c69a428"
+  },
+  "model_update_records": {
+    "paddleocr-vl-1-6-layout-corrected": {
+      "evaluation_record": "submissions/doclayoutv3/run.json",
+      "previous_record": "archive/paddleocr_vl_1_6_before_rescore_20261027.json",
+      "updated_at": "2026-10-27",
+      "ground_truth_revision": "4665b40a3333f7643bad7c8675a9062b482511ad",
+      "evaluator_commit": "f133a71e9e91c3621c7ce8994200a7b394a06eb3"
+    }
   }
 }

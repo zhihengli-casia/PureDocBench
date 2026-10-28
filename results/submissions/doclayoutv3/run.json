@@ -171,5 +171,9 @@
   "aggregation": "Official per-page means; TextEdit/ROEdit length-weighted within each page; FormulaCDM/TEDS arithmetic means within pages, then means across pages, with evaluator GT-page denominator handling.",
   "comparison_note": "The supplied TSV does not identify its GT or evaluator revision. Deltas compare runs; attribution exclusively to GT changes is not established.",
   "prior_avg3_from_rounded_tsv": 66.98666666666666,
-  "avg3_delta_vs_supplied": 0.21929137250059227
+  "avg3_delta_vs_supplied": 0.21929137250059227,
+  "canonical_model_key": "paddleocr-vl-1-6-layout-corrected",
+  "canonical_model_name": "PaddleOCR-VL-1.6",
+  "leaderboard_placement": "current results",
+  "previous_main_table_record": "../../archive/paddleocr_vl_1_6_before_rescore_20261027.json"
 }

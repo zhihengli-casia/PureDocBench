@@ -11,11 +11,11 @@ The current release contains **58 models**: 13 pipeline / multi-stage specialist
 | [categories.json](categories.json) | Domain names and source-page counts |
 | [manifest.json](manifest.json) | Metric definitions, counts and SHA-256 checksums |
 
-The [interactive leaderboard](../leaderboard.html) defaults to these 58 models. Its community view includes the author-reported NaviDC-OCR result and the PP-DocLayoutV3 + PaddleOCR-VL-1.6 rescore below. Current WeVisDoc and OvisOCR2 values come from the supplied evaluation results in these CSV files; earlier external submissions remain in the [historical archive](../data/README.md).
+The [interactive leaderboard](../leaderboard.html) defaults to these 58 models. Its community view preserves the author-reported NaviDC-OCR result. The main PaddleOCR-VL-1.6 entry uses the rescore below. Current WeVisDoc and OvisOCR2 values come from the supplied evaluation results in these CSV files; earlier external submissions remain in the [historical archive](../data/README.md).
 
 ## DocLayoutV3 rescore
 
-Evaluated **2026-10-27 (America/Chicago)** from an externally supplied Markdown prediction bundle labeled **DocLayoutV3**. All **4,425 predictions** were matched: 1,475 each for Clean, Digital and Real, with zero missing or empty outputs. The prediction provider confirmed **[PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3) + [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6)**: layout analysis followed by region recognition. Exact checkpoint revisions and generation settings are awaiting documentation. This entry describes the supplied outputs and appears as **Community · maintainer-rescored** in the [interactive leaderboard](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html?source=community&search=doclayoutv3).
+Evaluated **2026-10-27 (America/Chicago)** from an externally supplied Markdown prediction bundle labeled **DocLayoutV3**. All **4,425 predictions** were matched: 1,475 each for Clean, Digital and Real, with zero missing or empty outputs. The prediction provider confirmed **[PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3) + [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6)**: layout analysis followed by region recognition. Exact checkpoint revisions and generation settings are awaiting documentation. The existing **PaddleOCR-VL-1.6 main-table row** uses these scores, with the confirmed PP-DocLayoutV3 layout stage recorded in the run metadata. The updated row appears in the default current-results view of the [interactive leaderboard](https://zhihengli-casia.github.io/PureDocBench/leaderboard.html?search=paddleocr-vl-1.6).
 
 | Track | Overall ↑ | TextEdit ↓ | FormulaCDM ↑ | TableTEDS ↑ | ROEdit ↓ |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -47,13 +47,15 @@ The local libxml2 Unicode-string transport failed on 29 table-scoring instances 
 
 The supplied baseline has Avg₃ **66.98666666666666**, computed from its rounded Overall values; this run differs by **+0.21929137250059227** points. The baseline's GT and evaluator revisions are unspecified, so this comparison describes two runs whose differences may include GT and runtime effects.
 
+The previous main-table PaddleOCR-VL-1.6 entry (**64.46 / 59.29 / 54.24**, Avg₃ **59.33**) is preserved in the [superseded-result archive](archive/paddleocr_vl_1_6_before_rescore_20261027.json). The original-score TSV linked above records the separately supplied prediction-bundle baseline.
+
 ## Metric definitions
 
 Text Edit and Reading Edit are normalized distances (lower is better). Formula CDM and Table TEDS use a 0–100 scale (higher is better). Per-track Overall is `(100 * (1 - TextEdit) + FormulaCDM + TableTEDS) / 3`; Avg3 averages the three track Overalls. Reading order is evaluated separately. Category summaries use the same definitions within each category; their unweighted mean is not a replacement for the global result.
 
 Supplied reference values retain their original decimal precision. Some historical component summaries were rounded before release, so recomputation can differ from reference Overall or Avg3. Both tables and the interactive view use the supplied reference scores, with display rounding only. The main results include all 1,475 pages in each track.
 
-The 58-model release contains evaluation summaries from earlier runs. Each historical score retains its supplied precision and provenance. Historical entries have incomplete per-model GT/evaluator version records; exact revisions for the DocLayoutV3 rescore are recorded above. New evaluations should record the exact GT revision, evaluator revision, page manifest and inference configuration with their results.
+The current 58-model table combines the updated PaddleOCR-VL-1.6 evaluation with the other released scores. Earlier runs retain their supplied precision and provenance. Historical entries have incomplete per-model GT/evaluator version records; exact revisions for the PaddleOCR-VL-1.6 rescore are recorded above. New evaluations should record the exact GT revision, evaluator revision, page manifest and inference configuration with their results.
 
 ## Summarize component tables
 

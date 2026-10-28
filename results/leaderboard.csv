@@ -1,5 +1,5 @@
 model_key,model_name,architecture,clean,digital,real,avg3
-paddleocr-vl-1-6-layout-corrected,PaddleOCR-VL-1.6,Pipeline,64.46,59.29,54.24,59.33
+paddleocr-vl-1-6-layout-corrected,PaddleOCR-VL-1.6,Pipeline,72.65030674619997,67.01070023972999,61.95686713157179,67.20595803916726
 youtu-parsing,YouTu-Parsing,Pipeline,75.02,69.66,60.29,68.32
 dotsmocr,DotsMOCR,Pipeline,76.27,73.16,61.73,70.39
 glm-ocr,GLM-OCR,Pipeline,68.65,63.06,58.31,63.34
